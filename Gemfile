@@ -39,7 +39,8 @@ gem 'pg'
 # Manage app-like JavaScript modules in Rails
 gem 'webpacker'
 
-
+# Provides React integration for Webpacker
+gem 'webpacker-react'
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
@@ -80,9 +81,6 @@ gem 'mini_magick'
 
 # Validates files
 gem 'active_storage_validations'
-
-# Postgresql gem
-gem 'pg'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

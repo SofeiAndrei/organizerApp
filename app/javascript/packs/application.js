@@ -20,3 +20,10 @@ require("@rails/activestorage").start()
 require("channels")
 require("jquery")
 import "bootstrap"
+
+import WebpackerReact from 'webpacker-react'
+
+import ToDoList from '../react_components/ToDoList'
+WebpackerReact.setup({
+    ToDoList,
+})
