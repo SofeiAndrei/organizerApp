@@ -5,36 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e28e46e0-8ac2-47f7-9869-d99e49173358" name="Changes" comment="Merged master into main">
-      <change afterPath="$PROJECT_DIR$/app/javascript/react_components/shared/helpers.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/user_todo_lists/_user_todo_list.html.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/user_todo_lists/index.html.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/user_todo_lists/new.html.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/user_todo_lists/show.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/organizerApp.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/organizerApp.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/controllers/api/individual_tasks_controller.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/controllers/api/user_todo_lists_controller.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/javascript/react_components/IndividualTask.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/javascript/react_components/NewIndividualTaskPopup.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/javascript/react_components/TaskPrioritySelector.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gemfile" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gemfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/custom.scss" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/stylesheets/custom.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/static_pages_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/static_pages_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/user_todo_lists_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/user_todo_lists_controller.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/javascript/react_components/ToDoList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/react_components/ToDoList.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/user.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/user.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/layouts/_footer.html.erb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/layouts/_header.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/_header.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/layouts/application.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/babel.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/babel.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/rails" beforeDir="false" afterPath="$PROJECT_DIR$/bin/rails" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/rake" beforeDir="false" afterPath="$PROJECT_DIR$/bin/rake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/setup" beforeDir="false" afterPath="$PROJECT_DIR$/bin/setup" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/locales/en.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/locales/en.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/react_components/shared/helpers.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/react_components/shared/helpers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/user_todo_list.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/user_todo_list.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/user_todo_lists/_user_todo_list.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/user_todo_lists/_user_todo_list.html.erb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/webpacker.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/webpacker.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/schema.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/schema.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/controllers/static_pages_controller_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/controllers/static_pages_controller_test.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/integration/site_layout_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/integration/site_layout_test.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,8 +31,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="ERB File" />
-        <option value="Ruby File" />
         <option value="JavaScript File" />
+        <option value="Ruby File" />
       </list>
     </option>
   </component>
@@ -402,7 +388,7 @@
       <workItem from="1683812752288" duration="1256000" />
       <workItem from="1683814957972" duration="5601000" />
       <workItem from="1683875905822" duration="6164000" />
-      <workItem from="1683893388245" duration="25347000" />
+      <workItem from="1683893388245" duration="40809000" />
     </task>
     <task id="LOCAL-00001" summary="Merged master into main">
       <created>1683892404964</created>

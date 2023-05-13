@@ -1,35 +1,88 @@
-import React, { useState }from 'react'
-import { getAuthenticityToken } from "./shared/helpers";
+import React, { useState, useEffect }from 'react'
+import { getAuthenticityToken, callAPI } from "./shared/helpers";
 import PropTypes from 'prop-types'
+import IndividualTask from "./IndividualTask";
+import NewIndividualTaskPopup from "./NewIndividualTaskPopup";
 
-const ToDoList = ({todoList}) => {
-  // const [name, setName] = useState(todoList.name)
+const ToDoList = (props) => {
+  const [tasks, setTasks] = useState([])
+  const [dataIsLoading, setDataIsLoading] = useState(true)
+  const [newTaskFormModalOpen, setNewTaskFormModalOpen] = useState(false)
+
+  const getTasks = () => {
+    callAPI(`/api/user_todo_lists/${props.todoList.id}/get_tasks`, 'GET')
+      .then((json) => {
+        setTasks(json.tasks)
+        setDataIsLoading(false)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  }
 
   const handleListDelete = () => {
-    console.log(window.parent)
-    console.log(window.location)
-    if (confirm(`Are you sure you want to delete ${todoList.name}? This record will be permanently deleted.`)){
-      fetch(`${todoList.id}`, {
+    if (confirm(`Are you sure you want to delete ${props.todoList.name}? This record will be permanently deleted.`)){
+      fetch(`${props.todoList.id}`, {
         method: 'DELETE',
         headers: {'X-CSRF-Token': getAuthenticityToken()}})
-        .then((response) => {
-          console.log(`Deleted ${todoList.name} To Do List`)
-          window.location.replace(response.url)
-        })
+      .then((response) => {
+        console.log(`Deleted ${props.todoList.name} To Do List`)
+        window.location.replace(response.url)
+      })
+      .catch(error => {
+        console.log(error)
+      })
     }
   }
 
+  const handleTaskDelete = (deletedTask) => {
+    if (confirm(`Are you sure you want to delete ${deletedTask.name}? This task will be permanently deleted.`)){
+      fetch(`${props.todoList.id}/individual_tasks/${deletedTask.id}`, {
+        method: 'DELETE',
+        headers: {'X-CSRF-Token': getAuthenticityToken()}})
+      .then((response) => {
+        const newTasks = tasks.filter((task) => task.id !== deletedTask.id)
+        setTasks(newTasks)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+    }
+  }
+
+  useEffect(getTasks, [])
+
 	return (
-		<div>
-			{todoList.name}
+    <div className='todolist'>
+      {props.todoList.name}
       <br/>
       <button
         className='btn btn-primary btn-danger'
         onClick={() => {handleListDelete()}}
-      >
-        Delete
+      >Delete</button>
+      <br/>
+      <button className='btn btn-primary'
+              onClick={() => {setNewTaskFormModalOpen(true)}}>
+        Create new Task
       </button>
-		</div>
+      { !dataIsLoading &&
+        <div>
+          <div className='todolist_tasks'>
+            {tasks.map((individualTask) =>
+              <IndividualTask key={individualTask.id} data={individualTask} handleTaskDelete={() => handleTaskDelete(individualTask)}></IndividualTask>
+            )}
+          </div>
+        </div>
+      }
+      <NewIndividualTaskPopup
+        newTaskFormModalOpen={newTaskFormModalOpen}
+        setNewTaskFormModalOpen={setNewTaskFormModalOpen}
+        tasks={tasks}
+        setTasks={setTasks}
+        todoList={props.todoList}
+        getTasks={getTasks}
+      />
+    </div>
 	)
 }
 ToDoList.propTypes = {

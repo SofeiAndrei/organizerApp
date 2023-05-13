@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_12_133242) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_13_172024) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,6 +42,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_12_133242) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "individual_tasks", force: :cascade do |t|
+    t.bigint "user_todo_list_id", null: false
+    t.string "name"
+    t.text "description"
+    t.boolean "completed", default: false
+    t.integer "priority", default: 3
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_todo_list_id", "completed", "priority", "created_at"], name: "individual_tasks_index_on_list_id_completed_priority_create_at"
+    t.index ["user_todo_list_id"], name: "index_individual_tasks_on_user_todo_list_id"
+  end
+
   create_table "user_todo_lists", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "name"
@@ -69,5 +81,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_12_133242) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "individual_tasks", "user_todo_lists"
   add_foreign_key "user_todo_lists", "users"
 end

@@ -1,5 +1,5 @@
 class UserTodoListsController < ApplicationController
-  before_action :logged_in_user, only: [:new, :create, :show, :update, :destroy, :index]
+  before_action :logged_in_user
   before_action :correct_user_for_other, only: [:show, :update, :destroy]
   before_action :correct_user_for_index, only: [:new, :index]
   def new
@@ -10,7 +10,7 @@ class UserTodoListsController < ApplicationController
     @user_todo_list = current_user.user_todo_lists.build(name: params[:name])
     if @user_todo_list.save
       flash[:success] = 'To Do List Created!'
-      redirect_to user_user_todo_lists_path(current_user)
+      redirect_to user_user_todo_list_path(current_user, @user_todo_list)
     else
       flash[:danger] = 'There has been a problem creating the To Do List'
       render 'user_todo_lists/index'
@@ -29,7 +29,8 @@ class UserTodoListsController < ApplicationController
   end
 
   def destroy
-    user_todo_list = UserTodoList.find(params[:id]).destroy
+    # user_todo_list = UserTodoList.find(params[:id]).destroy
+    @user_todo_list.destroy
     flash[:success] = 'Deleted user todo list successfully'
     respond_to do |f|
       f.html { redirect_to user_user_todo_lists_path(current_user) }
