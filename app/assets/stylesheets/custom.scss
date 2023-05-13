@@ -3,7 +3,7 @@
 $rosu-inchis: darkred;
   /* universal */
 body{
-  padding-top: 60px
+  padding-top: 80px
 }
 section{
   overflow: auto;
@@ -54,25 +54,6 @@ img{
   display:none;
 }
 */
-footer{
-  margin-top: 30px;
-  padding-top: 10px;
-  border-top: 2px;
-  color: #CCCCCC;
-  a{
-    color: coral;
-    &:hover{
-      color: $rosu-inchis;
-    }
-  }
-  ul{
-    float:right;
-    li{
-      float: left;
-      margin-left: 15px;
-    }
-  }
-}
 
 @mixin box_sizing {
   -moz-box-sizing: border-box;

@@ -30,4 +30,5 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  todo_list:
+    delete_list_confirmation: 'Are you sure you want to delete #{name}? This record will be permanently deleted.'

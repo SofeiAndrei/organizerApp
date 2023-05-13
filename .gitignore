@@ -46,3 +46,5 @@ db/test.*
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
+
+/.idea/*

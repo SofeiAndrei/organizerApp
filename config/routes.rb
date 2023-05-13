@@ -10,7 +10,9 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 
-  resources :users
+  resources :users do
+    resources :user_todo_lists
+  end
   resources :account_activations, only: [:edit] # creeaza doar ruta account_activations/edit
   resources :password_resets, only: %i[new create edit update] # %i[array] -> array de simboluri
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

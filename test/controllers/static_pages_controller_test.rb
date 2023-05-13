@@ -16,16 +16,4 @@ class StaticPagesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_select 'title', "Help | #{@base_title}"
   end
-
-  test 'should get about' do
-    get about_path
-    assert_response :success
-    assert_select 'title', "About | #{@base_title}"
-  end
-
-  test 'should get contact' do
-    get contact_path
-    assert_response :success  # asta iti verifica sa existe pagina respectiva
-    assert_select 'title', "Contact | #{@base_title}" # asta iti verifica sa fie un anumit titlu
-  end
 end
