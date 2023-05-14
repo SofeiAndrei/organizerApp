@@ -215,10 +215,29 @@ textarea {
   float: right;
 }
 
-.card{
-  padding: 10px;
-  border: solid #2E2F30;
-  .card-body{
-    padding: 10px;
+.todolist_tasks {
+  .card {
+    margin-top: 10px;
+    border: 2px solid #2E2F30;
+    border-radius: 10px;
+    max-width: 500px;
+    width: auto;
+
+    .card-title{
+      font-size: 1.1*16px*1.5;
+      line-height: 1.7*16px*1.5;  /*16px  <=> 1 em*/
+    }
+
+    .card-body {
+      padding: 10px;
+    }
+
+    .task-priority-selector {
+      width: auto;
+    }
   }
+}
+.description-input{
+  resize: none;
+  overflow-y: auto;
 }

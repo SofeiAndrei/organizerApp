@@ -80,7 +80,7 @@ const NewIndividualTaskPopup = (props) => {
           </div>
           <div>
             <label htmlFor="description">Description:</label>
-            <input type='text' id='description' value={description} onChange={(e) => setDescription(e.target.value)}/>
+            <textarea className='description-input' id='description' value={description} onChange={(e) => setDescription(e.target.value)}/>
           </div>
           <div>
             <label htmlFor="priority">Priority:</label>

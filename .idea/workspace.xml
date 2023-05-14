@@ -6,7 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="e28e46e0-8ac2-47f7-9869-d99e49173358" name="Changes" comment="Merged master into main">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/custom.scss" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/stylesheets/custom.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/javascript/react_components/IndividualTask.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/react_components/IndividualTask.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/react_components/NewIndividualTaskPopup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/react_components/NewIndividualTaskPopup.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/javascript/react_components/TaskPrioritySelector.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/react_components/TaskPrioritySelector.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -375,7 +377,7 @@
       <workItem from="1683812752288" duration="1256000" />
       <workItem from="1683814957972" duration="5601000" />
       <workItem from="1683875905822" duration="6164000" />
-      <workItem from="1683893388245" duration="51161000" />
+      <workItem from="1683893388245" duration="52718000" />
     </task>
     <task id="LOCAL-00001" summary="Merged master into main">
       <created>1683892404964</created>

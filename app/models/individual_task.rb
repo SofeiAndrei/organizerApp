@@ -4,5 +4,7 @@ class IndividualTask < ApplicationRecord
   validates :name, presence: true,
                    length: { minimum: 1, maximum: 20 }
 
+  validates :description, length: { maximum: 256 }
+
   enum priority: { urgent: 1, high: 2, normal: 3, low: 4 }
 end

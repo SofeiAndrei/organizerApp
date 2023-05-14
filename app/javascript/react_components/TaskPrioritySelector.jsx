@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 const TaskPrioritySelector = (props) => {
   return (
     <select
+      className='task-priority-selector'
       defaultValue={props.selectedPriority}
       onChange={(e) => {
         console.log(e.target.value)

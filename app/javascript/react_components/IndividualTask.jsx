@@ -19,7 +19,7 @@ const IndividualTask = (props) => {
   }
 
   const [name, setName] = useState(props.data.name)
-  const [description, setDecription] = useState(props.data.description)
+  const [description, setDescription] = useState(props.data.description)
   const [completed, setCompleted] = useState(props.data.completed)
   const [priority, setPriority] = useState(priorityId(props.data.priority))
   const [editPressed, setEditPressed] = useState(false)
@@ -28,18 +28,18 @@ const IndividualTask = (props) => {
     console.log("Cancel Changes")
     console.log(props.data)
     setName(props.data.name)
-    setDecription(props.data.description)
+    setDescription(props.data.description)
     setCompleted(props.data.completed)
     setPriority(priorityId(props.data.priority))
     setEditPressed(false)
   }
 
-  const updateTask = () => {
-    setName(props.data.name)
-    setDecription(props.data.description)
-    setCompleted(props.data.completed)
-    setPriority(props.data.priority)
-  }
+  // const updateTask = () => {
+  //   setName(props.data.name)
+  //   setDescription(props.data.description)
+  //   setCompleted(props.data.completed)
+  //   setPriority(props.data.priority)
+  // }
 
   const saveChanges = () => {
     console.log("Saved changes")
@@ -88,11 +88,16 @@ const IndividualTask = (props) => {
     <div className='card'>
       <div className='card-body'>
         {!editPressed &&
-          <div>
-            <div className='cart-title'>
+          <div className='task'>
+            <div className='card-title'>
+              <label htmlFor="name">Task Name:</label>
               {name}
             </div>
-            <p className='card-text'>{description}</p>
+            <p className='card-text'>
+              <label htmlFor="description">Description:</label>
+              <br/>
+              {description}
+            </p>
             <p className='card-text'>
               <label>Completed:</label>
               <input
@@ -121,10 +126,10 @@ const IndividualTask = (props) => {
         }
         {editPressed &&
           <div>
-            <div className='cart-title'>
+            <div className='card-title'>
               <label htmlFor="name">Name:</label>
               <input
-                className='cart-title'
+                className='card-title'
                 type='text'
                 value={name}
                 onChange={(e) => setName(e.target.value)}
@@ -132,9 +137,8 @@ const IndividualTask = (props) => {
             </div>
             <p className='card-text'>
               <label htmlFor="description">Description:</label>
-              <input
-                className='cart-title'
-                type='text'
+              <textarea
+                className='description-input'
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
               />
