@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from "prop-types";
 
 const TaskPrioritySelector = (props) => {
-  console.log(props.selectedPriority)
   return (
     <select
       defaultValue={props.selectedPriority}

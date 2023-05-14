@@ -99,8 +99,7 @@ const IndividualTask = (props) => {
                 className='checkbox-completed'
                 type='checkbox'
                 disabled={true}
-                checked={completed}
-                onChange={(e) => setCompleted(e.target.value)}
+                defaultChecked={completed}
               />
             </p>
             <p className='card-text'>
@@ -145,8 +144,14 @@ const IndividualTask = (props) => {
               <input
                 className='checkbox-completed'
                 type='checkbox'
-                checked={completed}
-                onChange={(e) => e.target.value==='on' ? setCompleted(true) : setCompleted(false)}
+                defaultChecked={completed}
+                onChange={(e) => {
+                  console.log(completed)
+                  setCompleted(!completed)
+                  console.log(completed)
+                  console.log(e.target.value)
+                  // e.target.value==='on' ? setCompleted(true) : setCompleted(false)
+                }}
               />
             </p>
             <p className='card-text'>
