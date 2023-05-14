@@ -2,8 +2,15 @@ import React from 'react'
 import PropTypes from "prop-types";
 
 const TaskPrioritySelector = (props) => {
+  console.log(props.selectedPriority)
   return (
-    <select onChange={(e) => props.setPriority(e.target.value)}>
+    <select
+      defaultValue={props.selectedPriority}
+      onChange={(e) => {
+        console.log(e.target.value)
+        props.setPriority(e.target.value)
+      }}
+      disabled={props.disabled}>
       {props.priorities.map((priority) => (
         <option key={priority.id} value={priority.id}>
           {priority.name}
@@ -15,7 +22,9 @@ const TaskPrioritySelector = (props) => {
 
 TaskPrioritySelector.propTypes = {
   priorities: PropTypes.array,
-  setPriority: PropTypes.func
+  setPriority: PropTypes.func,
+  disabled: PropTypes.bool,
+  selectedPriority: PropTypes.number
 }
 
 export default TaskPrioritySelector

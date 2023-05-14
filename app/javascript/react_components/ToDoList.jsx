@@ -12,6 +12,8 @@ const ToDoList = (props) => {
   const getTasks = () => {
     callAPI(`/api/user_todo_lists/${props.todoList.id}/get_tasks`, 'GET')
       .then((json) => {
+        console.log(json.tasks)
+        console.log("got tasks")
         setTasks(json.tasks)
         setDataIsLoading(false)
       })
@@ -53,23 +55,25 @@ const ToDoList = (props) => {
   useEffect(getTasks, [])
 
 	return (
-    <div className='todolist'>
-      {props.todoList.name}
-      <br/>
-      <button
-        className='btn btn-primary btn-danger'
-        onClick={() => {handleListDelete()}}
-      >Delete</button>
-      <br/>
-      <button className='btn btn-primary'
-              onClick={() => {setNewTaskFormModalOpen(true)}}>
-        Create new Task
-      </button>
+    <div className='todo-list'>
+      <h1>
+        {props.todoList.name}
+      </h1>
+      <div className='d-flex justify-content-between'>
+        <button className='btn btn-primary'
+                onClick={() => {setNewTaskFormModalOpen(true)}}>
+          Create new Task
+        </button>
+        <button
+          className='btn btn-primary btn-danger delete-list-button'
+          onClick={() => {handleListDelete()}}
+        >Delete</button>
+      </div>
       { !dataIsLoading &&
         <div>
           <div className='todolist_tasks'>
             {tasks.map((individualTask) =>
-              <IndividualTask key={individualTask.id} data={individualTask} handleTaskDelete={() => handleTaskDelete(individualTask)}></IndividualTask>
+              <IndividualTask key={individualTask.id} data={individualTask} handleTaskDelete={() => handleTaskDelete(individualTask)} getTasks={getTasks}/>
             )}
           </div>
         </div>

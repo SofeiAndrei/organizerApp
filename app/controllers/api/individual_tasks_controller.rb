@@ -3,7 +3,6 @@ class Api::IndividualTasksController < ApplicationController
   before_action :correct_user
 
   def create
-
     puts params.inspect
     @individual_task = @user_todo_list.individual_tasks.build(individual_task_params)
     if @individual_task.save
@@ -11,10 +10,14 @@ class Api::IndividualTasksController < ApplicationController
     else
       flash[:danger] = 'There was a problem creating the task'
     end
-    redirect_to user_user_todo_list_path(current_user, @user_todo_list)
+    # redirect_to user_user_todo_list_path(current_user, @user_todo_list)
   end
 
   def update
+    @individual_task = IndividualTask.find(params[:id])
+    if @individual_task.update(individual_task_params)
+      flash[:success] = 'Changes saved successfully!'
+    end
   end
 
   def destroy

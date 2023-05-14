@@ -4,7 +4,6 @@ class Api::UserTodoListsController < ApplicationController
 
   def get_tasks
     @tasks = @user_todo_list.individual_tasks
-    puts json: {tasks: @tasks}
     render json: { tasks: @tasks }
   end
 

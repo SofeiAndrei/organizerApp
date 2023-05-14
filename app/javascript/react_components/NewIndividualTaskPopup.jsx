@@ -8,7 +8,7 @@ import {getAuthenticityToken} from "./shared/helpers";
 const NewIndividualTaskPopup = (props) => {
   const [name, setName] = useState("")
   const [description, setDescription] = useState("")
-  const [priority, setPriority] = useState(null)
+  const [priority, setPriority] = useState(3)
 
   const handleModalClose = () => {
     props.setNewTaskFormModalOpen(false)
@@ -21,6 +21,12 @@ const NewIndividualTaskPopup = (props) => {
     {id: 4, name: 'low'}
   ]
 
+  const resetForm = () => {
+    console.log("I reset the form")
+    setName('')
+    setDescription('')
+    setPriority(3)
+  }
   const onSave = () => {
     // const individual_task = {
     //   name: name,
@@ -45,13 +51,14 @@ const NewIndividualTaskPopup = (props) => {
         'Content-Type': "application/json"
       }})
     .then((response) => {
-        if(response.ok){
-          props.getTasks()
-        }
-        else{
-          throw new Error('Network response was not OK')
-        }
-      })
+      if(response.ok){
+        props.getTasks()
+        resetForm()
+      }
+      else{
+        throw new Error('Network response was not OK')
+      }
+    })
     .catch(error => {
       console.log(error)
     })
@@ -76,8 +83,8 @@ const NewIndividualTaskPopup = (props) => {
             <input type='text' id='description' value={description} onChange={(e) => setDescription(e.target.value)}/>
           </div>
           <div>
-            <label htmlFor="description">Description:</label>
-            <TaskPrioritySelector priorities={priorityOptions} setPriority={setPriority}/>
+            <label htmlFor="priority">Priority:</label>
+            <TaskPrioritySelector priorities={priorityOptions} setPriority={setPriority} selectedPriority={priority}/>
           </div>
         </div>
       </Modal.Body>
