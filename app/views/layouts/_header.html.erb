@@ -24,6 +24,7 @@
             <ul class="dropdown-menu">
               <li><%= link_to "Profile", current_user %></li>
               <li><%= link_to "Settings", edit_user_path(current_user) %></li>
+              <li><%= link_to "Todo Lists", user_user_todo_lists_path(current_user) %></li>
               <li role="separator" class="divider"></li>
               <li><%= link_to "Log out", logout_path, method: "delete" %></li>
               <!-- daca foloseam link_to imi facea o cerere de GET si nu sunt sigur cum ar fi trebuit sa fac-->
