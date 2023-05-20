@@ -3,7 +3,6 @@ class IndividualTasksController < ApplicationController
   before_action :correct_user
 
   def create
-
     puts params.inspect
     @individual_task = @user_todo_list.individual_tasks.build(individual_task_params)
     if @individual_task.save

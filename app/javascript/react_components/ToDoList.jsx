@@ -73,7 +73,7 @@ const ToDoList = (props) => {
         <div>
           <div className='todolist_tasks'>
             {tasks.map((individualTask) =>
-              <IndividualTask key={individualTask.id} data={individualTask} handleTaskDelete={() => handleTaskDelete(individualTask)} getTasks={getTasks}/>
+              <IndividualTask key={individualTask.task.id} data={individualTask} handleTaskDelete={() => handleTaskDelete(individualTask.task)} getTasks={getTasks} listTags={props.listTags}/>
             )}
           </div>
         </div>
@@ -90,6 +90,7 @@ const ToDoList = (props) => {
 	)
 }
 ToDoList.propTypes = {
-	todoList: PropTypes.object
+	todoList: PropTypes.object,
+  listTags: PropTypes.array
 }
 export default ToDoList

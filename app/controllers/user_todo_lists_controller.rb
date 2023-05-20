@@ -19,6 +19,7 @@ class UserTodoListsController < ApplicationController
 
   def show
     @user_todo_list = UserTodoList.find(params[:id])
+    @tags = @user_todo_list.individual_task_tags.map{ |tag| { id: tag.id, name: tag.name } }
   end
 
   def update

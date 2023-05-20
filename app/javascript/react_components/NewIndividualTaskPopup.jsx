@@ -27,6 +27,7 @@ const NewIndividualTaskPopup = (props) => {
     setDescription('')
     setPriority(3)
   }
+
   const onSave = () => {
     // const individual_task = {
     //   name: name,

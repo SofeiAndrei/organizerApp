@@ -19,11 +19,11 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     resources :user_todo_lists do
       resources :individual_tasks, only: %i[create update destroy]
+      resources :individual_task_tags, only: %i[create destroy]
       member do
         get :get_tasks
       end
     end
-
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

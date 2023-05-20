@@ -3,6 +3,7 @@ import {Button} from "react-bootstrap";
 import PropTypes from 'prop-types'
 import TaskPrioritySelector from "./TaskPrioritySelector";
 import {getAuthenticityToken} from "./shared/helpers";
+import AddTagPopup from "./AddTagPopup";
 
 const IndividualTask = (props) => {
   const priorityOptions = [
@@ -12,50 +13,67 @@ const IndividualTask = (props) => {
     {id: 4, name: 'low'}
   ]
 
-  // const selectedPriority = priorityOptions.find((element) => element.name === props.data.priority).id
-
   const priorityId = (name) => {
     return priorityOptions.find((element) => element.name === name).id
   }
 
-  const [name, setName] = useState(props.data.name)
-  const [description, setDescription] = useState(props.data.description)
-  const [completed, setCompleted] = useState(props.data.completed)
-  const [priority, setPriority] = useState(priorityId(props.data.priority))
+
+
+
+  const [name, setName] = useState(props.data.task.name)
+  const [description, setDescription] = useState(props.data.task.description)
+  const [completed, setCompleted] = useState(props.data.task.completed)
+  const [priority, setPriority] = useState(priorityId(props.data.task.priority))
+  const [tags, setTags] = useState(props.data.tags)
+
+  const notSetTags = props.listTags.filter(tag => !tags.includes(tag))
+  notSetTags.unshift({id: 0, name: 'New Tag'})
+
+  console.log(notSetTags)
+  const [tagModalOpen, setTagModalOpen] = useState(false)
+  const [availableTags, setAvailableTags] = useState(notSetTags)
+
   const [editPressed, setEditPressed] = useState(false)
+
+  const [loading, setLoading] = useState(false)
 
   const cancelChanges = () => {
     console.log("Cancel Changes")
     console.log(props.data)
-    setName(props.data.name)
-    setDescription(props.data.description)
-    setCompleted(props.data.completed)
-    setPriority(priorityId(props.data.priority))
+    setName(props.data.task.name)
+    setDescription(props.data.task.description)
+    setCompleted(props.data.task.completed)
+    setPriority(priorityId(props.data.task.priority))
+    setTags(props.data.tags)
     setEditPressed(false)
   }
 
-  // const updateTask = () => {
-  //   setName(props.data.name)
-  //   setDescription(props.data.description)
-  //   setCompleted(props.data.completed)
-  //   setPriority(props.data.priority)
-  // }
+  const onTagDelete = (tag) => {
+    console.log("Remove tag from task")
+    const newTags = tags.filter((filteredTag) => filteredTag.id !== tag.id)
+    setTags(newTags)
+    console.log("Add the tag to available tags")
+    const newAvailableTags = [...availableTags, tag]
+    setAvailableTags(newAvailableTags)
+  }
 
   const saveChanges = () => {
     console.log("Saved changes")
 
     console.log("Old data:")
-    console.log("name:", props.data.name)
-    console.log("description:", props.data.description)
-    console.log("completed:", props.data.completed)
-    console.log("priority:", props.data.priority)
+    console.log("name:", props.data.task.name)
+    console.log("description:", props.data.task.description)
+    console.log("completed:", props.data.task.completed)
+    console.log("priority:", props.data.task.priority)
+    console.log("Tags:", props.data.tags)
 
     console.log("New data:")
-    console.log("name:",name)
+    console.log("name:", name)
     console.log("description:", description)
     console.log("completed:", completed)
     console.log("priority:", priority)
-    fetch(`/api/user_todo_lists/${props.data.user_todo_list_id}/individual_tasks/${props.data.id}`, {
+    console.log("Tags:", tags)
+    fetch(`/api/user_todo_lists/${props.data.task.user_todo_list_id}/individual_tasks/${props.data.task.id}`, {
       method: 'PATCH',
       body: JSON.stringify({
         individual_task: {
@@ -63,7 +81,8 @@ const IndividualTask = (props) => {
           description: description,
           priority: priority,
           completed: completed,
-        }
+          tags: tags,
+        },
       }),
       headers: {
         'X-CSRF-Token': getAuthenticityToken(),
@@ -84,19 +103,38 @@ const IndividualTask = (props) => {
     setEditPressed(false)
   }
 
+  console.log('TAGS:', tags)
   return(
     <div className='card'>
       <div className='card-body'>
         {!editPressed &&
           <div className='task'>
             <div className='card-title'>
-              <label htmlFor="name">Task Name:</label>
               {name}
             </div>
             <p className='card-text'>
               <label htmlFor="description">Description:</label>
               <br/>
               {description}
+            </p>
+            <div className='card-text'>
+              <div className='tags-container'>
+                <div className='content-tags'>
+                  {!loading && tags.map((tag) =>
+                    <div key={tag.id} className='tag-row'>
+                      <div className='tag-text-container'>
+                        <div className='text'>
+                          {tag.name}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+            <p className='card-text'>
+              <label htmlFor="priority">Priority:</label>
+              <TaskPrioritySelector priorities={priorityOptions} setPriority={setPriority} disabled={true} selectedPriority={priority}/>
             </p>
             <p className='card-text'>
               <label>Completed:</label>
@@ -106,10 +144,6 @@ const IndividualTask = (props) => {
                 disabled={true}
                 defaultChecked={completed}
               />
-            </p>
-            <p className='card-text'>
-              <label htmlFor="priority">Priority:</label>
-              <TaskPrioritySelector priorities={priorityOptions} setPriority={setPriority} disabled={true} selectedPriority={priority}/>
             </p>
             <button
               className='delete-task-button'
@@ -143,6 +177,35 @@ const IndividualTask = (props) => {
                 onChange={(e) => setDescription(e.target.value)}
               />
             </p>
+            <div className='card-text'>
+              <div className='tags-container'>
+                <div className='content-tags'>
+                  {!loading && tags.map((tag, index) =>
+                    <div key={index} className='tag-row'>
+                      <div className='tag-text-container'>
+                        <div className='text'>
+                          {tag.name}
+                        </div>
+                      </div>
+                      <a type='button' className='delete-tag-button' onClick={() => onTagDelete(tag)}>
+                        x
+                      </a>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+            <span className='add-tag'>
+              <a
+                className='add-tag-button'
+                onClick={() => setTagModalOpen(true)}>
+                <span>Add</span>
+              </a>
+            </span>
+            <p className='card-text'>
+              <label htmlFor="priority">Priority:</label>
+              <TaskPrioritySelector priorities={priorityOptions} setPriority={setPriority} disabled={false} selectedPriority={priority}/>
+            </p>
             <p className='card-text'>
               <label>Completed:</label>
               <input
@@ -154,13 +217,8 @@ const IndividualTask = (props) => {
                   setCompleted(!completed)
                   console.log(completed)
                   console.log(e.target.value)
-                  // e.target.value==='on' ? setCompleted(true) : setCompleted(false)
                 }}
               />
-            </p>
-            <p className='card-text'>
-              <label htmlFor="priority">Priority:</label>
-              <TaskPrioritySelector priorities={priorityOptions} setPriority={setPriority} disabled={false} selectedPriority={priority}/>
             </p>
             <Button
               className='edit-task-button-cancel'
@@ -171,13 +229,23 @@ const IndividualTask = (props) => {
           </div>
         }
       </div>
-
+      <AddTagPopup
+        tagModalOpen={tagModalOpen}
+        setTagModalOpen={setTagModalOpen}
+        availableTags={availableTags}
+        setAvailableTags={setAvailableTags}
+        tags={tags}
+        setTags={setTags}
+        todoListId={props.data.task.user_todo_list_id}
+        setLoading={setLoading}
+      />
     </div>
   )
 }
 IndividualTask.propTypes = {
   data: PropTypes.object,
   handleTaskDelete: PropTypes.func,
-  getTasks: PropTypes.func
+  getTasks: PropTypes.func,
+  listTags: PropTypes.array
 }
 export default IndividualTask

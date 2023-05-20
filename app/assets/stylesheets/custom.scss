@@ -235,8 +235,67 @@ textarea {
     .task-priority-selector {
       width: auto;
     }
+
+    .tag-selector {
+      width: auto;
+    }
+
+    .tags-container{
+      .content-tags{
+        width: fit-content;
+        display: flex;
+        flex-flow: wrap;
+      }
+      .tag-row{
+        display: inherit;
+        padding-top: 5px;
+        padding-bottom: 5px;
+
+        .tag-text-container{
+          min-width: 45px;
+          height: 25px;
+          text-align: center;
+          background-color: #0275d8;
+          color: white;
+          border-radius: 2px;
+          display: flex;
+          align-items: center;
+          margin-right: 5px;
+        }
+
+        .text{
+          padding: 10px;
+          margin: 0px
+        }
+
+        .delete-tag-button{
+          width: 15px;
+          text-align: center;
+          vertical-align: top;
+          color: #FFFFFF;
+          opacity: 1;
+          background: #DC3545;
+          border-radius: 50%;
+          margin-right: 10px;
+        }
+      }
+    }
   }
 }
+.add-tag{
+  padding-top: 5px;
+  min-width: fit-content;
+}
+
+.add-tag-button{
+  &:hover{
+    cursor: pointer;
+    color: #730E15;
+    border-color: #F7F7F7;
+    border-radius: 2px;
+  }
+}
+
 .description-input{
   resize: none;
   overflow-y: auto;
