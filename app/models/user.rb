@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_many :user_todo_lists, dependent: :destroy
+
   attr_accessor :remember_token, :activation_token, :reset_token  # adauga remember_token si activation_token ca atribut, nu il pune in DB
 
   before_save { self.email = email.downcase }

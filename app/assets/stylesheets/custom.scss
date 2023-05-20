@@ -3,7 +3,7 @@
 $rosu-inchis: darkred;
   /* universal */
 body{
-  padding-top: 60px
+  padding-top: 80px
 }
 section{
   overflow: auto;
@@ -54,25 +54,6 @@ img{
   display:none;
 }
 */
-footer{
-  margin-top: 30px;
-  padding-top: 10px;
-  border-top: 2px;
-  color: #CCCCCC;
-  a{
-    color: coral;
-    &:hover{
-      color: $rosu-inchis;
-    }
-  }
-  ul{
-    float:right;
-    li{
-      float: left;
-      margin-left: 15px;
-    }
-  }
-}
 
 @mixin box_sizing {
   -moz-box-sizing: border-box;
@@ -191,6 +172,11 @@ input{
     font-weight: normal;
   }
 }
+
+.checkbox-completed{
+  padding-left: 10px;
+  width: auto
+}
 #session_remember_me{  /* asta e stiling-ul al casutei propriu-zise */
   width: auto;
   margin-left: 0;
@@ -209,29 +195,6 @@ input{
   padding-top: 30px;
 }
 
-/* microposts */
-.microposts {
-  list-style: none; padding: 0;
-  li {
-    padding: 10px 0;
-    border-top: 1px solid #e8e8e8; }
-  .user { margin-top: 5em; padding-top: 0;
-  }
-  .title {
-    padding: 5px;
-  }
-  .content {
-    display: block; margin-left: 60px; img {
-    display: block;
-    padding: 5px 0; }
-  }
-  .timestamp {
-    color: $gray-light; display: block; margin-left: 60px;
-  }
-  .gravatar {
-    float: left; margin-right: 10px; margin-top: 5px;
-  }
-}
 aside { textarea {
   height: 100px;
   margin-bottom: 5px; }
@@ -239,4 +202,101 @@ aside { textarea {
 
 textarea {
   resize: vertical;
+}
+
+.modal-backdrop {
+  background-color: rgba(0,0,0,0.5);
+}
+
+.delete-list-button{
+  position: absolute;
+  padding-right: 15px;
+
+  float: right;
+}
+
+.todolist_tasks {
+  .card {
+    margin-top: 10px;
+    border: 2px solid #2E2F30;
+    border-radius: 10px;
+    max-width: 500px;
+    width: auto;
+
+    .card-title{
+      font-size: 1.1*16px*1.5;
+      line-height: 1.7*16px*1.5;  /*16px  <=> 1 em*/
+    }
+
+    .card-body {
+      padding: 10px;
+    }
+
+    .task-priority-selector {
+      width: auto;
+    }
+
+    .tag-selector {
+      width: auto;
+    }
+
+    .tags-container{
+      .content-tags{
+        width: fit-content;
+        display: flex;
+        flex-flow: wrap;
+      }
+      .tag-row{
+        display: inherit;
+        padding-top: 5px;
+        padding-bottom: 5px;
+
+        .tag-text-container{
+          min-width: 45px;
+          height: 25px;
+          text-align: center;
+          background-color: #0275d8;
+          color: white;
+          border-radius: 2px;
+          display: flex;
+          align-items: center;
+          margin-right: 5px;
+        }
+
+        .text{
+          padding: 10px;
+          margin: 0px
+        }
+
+        .delete-tag-button{
+          width: 15px;
+          text-align: center;
+          vertical-align: top;
+          color: #FFFFFF;
+          opacity: 1;
+          background: #DC3545;
+          border-radius: 50%;
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+}
+.add-tag{
+  padding-top: 5px;
+  min-width: fit-content;
+}
+
+.add-tag-button{
+  &:hover{
+    cursor: pointer;
+    color: #730E15;
+    border-color: #F7F7F7;
+    border-radius: 2px;
+  }
+}
+
+.description-input{
+  resize: none;
+  overflow-y: auto;
 }

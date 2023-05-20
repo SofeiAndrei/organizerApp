@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_13_201451) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_14_205210) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,6 +42,45 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_13_201451) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "individual_task_tag_relationships", force: :cascade do |t|
+    t.integer "individual_task_id"
+    t.integer "individual_task_tag_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["individual_task_id", "individual_task_tag_id"], name: "index_individual_task_tag_relationships_unique", unique: true
+    t.index ["individual_task_id"], name: "index_individual_task_tag_relationships_on_task_id"
+    t.index ["individual_task_tag_id"], name: "index_individual_task_tag_relationships_on_task_tag_id"
+  end
+
+  create_table "individual_task_tags", force: :cascade do |t|
+    t.string "name"
+    t.bigint "user_todo_list_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_todo_list_id"], name: "index_individual_task_tags_on_user_todo_list_id"
+  end
+
+  create_table "individual_tasks", force: :cascade do |t|
+    t.bigint "user_todo_list_id", null: false
+    t.string "name"
+    t.text "description"
+    t.boolean "completed", default: false
+    t.integer "priority", default: 3
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_todo_list_id", "completed", "priority", "created_at"], name: "individual_tasks_index_on_list_id_completed_priority_create_at"
+    t.index ["user_todo_list_id"], name: "index_individual_tasks_on_user_todo_list_id"
+  end
+
+  create_table "user_todo_lists", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "created_at"], name: "index_user_todo_lists_on_user_id_and_created_at"
+    t.index ["user_id"], name: "index_user_todo_lists_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -60,4 +99,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_13_201451) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "individual_task_tags", "user_todo_lists"
+  add_foreign_key "individual_tasks", "user_todo_lists"
+  add_foreign_key "user_todo_lists", "users"
 end

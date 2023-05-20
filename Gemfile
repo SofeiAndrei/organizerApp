@@ -42,6 +42,9 @@ gem 'webpacker'
 # Provides React integration for Webpacker
 gem 'webpacker-react'
 
+# Export i18n translations and use them on JavaScript
+gem 'i18n-js'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
