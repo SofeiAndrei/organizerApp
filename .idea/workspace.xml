@@ -5,14 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e28e46e0-8ac2-47f7-9869-d99e49173358" name="Changes" comment="Merged master into main">
-      <change afterPath="$PROJECT_DIR$/app/views/users/my_teams.html.erb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/teams/_form.html.erb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/teams/_team.html.erb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/teams/edit.html.erb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/teams/new.html.erb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/teams/show.html.erb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/users_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/users_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/user.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/user.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/layouts/_header.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/_header.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/migrate/20230514190115_create_individual_task_tags.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/migrate/20230514190115_create_individual_task_tags.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/schema.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/schema.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/teams_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/teams_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/team.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/team.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/users/my_teams.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/users/my_teams.html.erb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

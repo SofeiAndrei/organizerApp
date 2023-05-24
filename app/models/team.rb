@@ -16,4 +16,9 @@ class Team < ApplicationRecord
     team_membership = self.team_memberships.find(member_id: user.id)
     return team_membership.team_admin?
   end
+
+  def add_member(user, is_admin)
+    new_membership = TeamMembership.new(team: self, member: user, team_admin: is_admin)
+    new_membership.save
+  end
 end

@@ -1,0 +1,9 @@
+<!-- Cand folosesti form_with cu un user asta face POST daca nu exista user-ul ala si PATCH daca exista-->
+<%= form_with(model: @team, local: true) do |f|%>
+  <%= render 'shared/error_messages', object: @team %>
+  <%= f.label :name %>
+  <%= f.text_field :name, class: 'form-control' %>
+
+  <%= f.hidden_field :owner_id, value: current_user.id %>
+  <%= f.submit yield(:form_button_text), class: 'btn btn-primary' %>
+<% end %>
