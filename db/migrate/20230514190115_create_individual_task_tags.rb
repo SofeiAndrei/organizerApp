@@ -6,7 +6,5 @@ class CreateIndividualTaskTags < ActiveRecord::Migration[7.0]
 
       t.timestamps
     end
-
-    add_index :individual_task_tags, %i[user_todo_list_id]
   end
 end

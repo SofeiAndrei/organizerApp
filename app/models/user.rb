@@ -1,5 +1,9 @@
 class User < ApplicationRecord
   has_many :user_todo_lists, dependent: :destroy
+  has_many :team_memberships, class_name: 'TeamMembership',
+                              foreign_key: 'member_id',
+                              dependent: :destroy
+  has_many :teams, through: :team_memberships, source: :team
 
   attr_accessor :remember_token, :activation_token, :reset_token  # adauga remember_token si activation_token ca atribut, nu il pune in DB
 
@@ -14,7 +18,7 @@ class User < ApplicationRecord
                     length: { minimum: 10, maximum: 100 },
                     format: { with: VALID_EMAIL_REGEX }
 
-  has_secure_password   # include functionalitatea pentru a avea o parola cu hash
+  has_secure_password # include functionalitatea pentru a avea o parola cu hash
   validates :password, presence: true,
                        length: { minimum: 8 }
 
@@ -28,7 +32,7 @@ class User < ApplicationRecord
   # Creates a random token
   # <=> User.new_token
   def self.new_token
-    SecureRandom.urlsafe_base64  # string de 22 de caractere cu a-z, A-z, 0-9, - si _
+    SecureRandom.urlsafe_base64 # string de 22 de caractere cu a-z, A-z, 0-9, - si _
   end
 
   def remember

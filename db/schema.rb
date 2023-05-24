@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_24_081753) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_24_160430) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -71,6 +71,25 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_24_081753) do
     t.date "deadline"
     t.index ["user_todo_list_id", "completed", "priority", "created_at"], name: "individual_tasks_index_on_list_id_completed_priority_create_at"
     t.index ["user_todo_list_id"], name: "index_individual_tasks_on_user_todo_list_id"
+  end
+
+  create_table "team_memberships", force: :cascade do |t|
+    t.integer "team_id"
+    t.integer "member_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "team_admin", default: false
+    t.index ["member_id"], name: "index_team_memberships_on_member_id"
+    t.index ["team_id", "member_id"], name: "index_team_memberships_on_team_id_and_member_id", unique: true
+    t.index ["team_id"], name: "index_team_memberships_on_team_id"
+  end
+
+  create_table "teams", force: :cascade do |t|
+    t.string "name"
+    t.integer "owner_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["owner_id", "created_at"], name: "index_teams_on_owner_id_and_created_at"
   end
 
   create_table "user_todo_lists", force: :cascade do |t|
