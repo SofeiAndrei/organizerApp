@@ -24,6 +24,8 @@ import "bootstrap"
 import WebpackerReact from 'webpacker-react'
 
 import ToDoList from '../react_components/ToDoList'
+import UserCalendar from "../react_components/UserCalendar";
 WebpackerReact.setup({
     ToDoList,
+    UserCalendar,
 })

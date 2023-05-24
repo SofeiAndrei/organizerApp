@@ -300,3 +300,19 @@ textarea {
   resize: none;
   overflow-y: auto;
 }
+
+.calendar-type-container{
+  display: flex;
+  flex-direction: column;
+  .calendar-type{
+    display: inline;
+    align-items: start;
+    width: 100px;
+    .calendar-type-label{
+      width: 70%
+    }
+    .calendar-type-button{
+      width: 30%;
+    }
+  }
+}
