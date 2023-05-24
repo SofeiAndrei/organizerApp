@@ -3,6 +3,7 @@ import { getAuthenticityToken, callAPI } from "./shared/helpers";
 import PropTypes from 'prop-types'
 import Calendar from "react-calendar";
 import {DayPilot, DayPilotCalendar} from "daypilot-pro-react";
+import {formatDate} from "./shared/calendar_helper";
 
 const UserCalendar = (props) => {
   const [calendarType, setCalendarType] = useState('today') // 1 -> today, 2 -> 3days, 3 -> week
@@ -11,21 +12,6 @@ const UserCalendar = (props) => {
 
   const onChangeCalendarType = (e) => {
     setCalendarType(e.target.value)
-  }
-
-  const formatDate = (givenDate) => {
-    let date = new Date(givenDate)
-    const year = date.getFullYear().toString()
-    let month = (date.getMonth() + 1).toString()
-    let day = date.getDate().toString()
-    if (month.length < 2){
-      month = '0' + month
-    }
-    if (day.length < 2){
-      day = '0' + day
-    }
-
-    return [year, month, day].join('-')
   }
 
   const selectNewDate = (value) => {

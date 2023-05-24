@@ -20,6 +20,7 @@ class Api::IndividualTasksController < ApplicationController
       name: permitted_params[:name],
       description: permitted_params[:description],
       priority: permitted_params[:priority],
+      deadline: permitted_params[:deadline],
       completed: permitted_params[:completed]
     }
     if @individual_task.update(task_params)
@@ -51,7 +52,7 @@ class Api::IndividualTasksController < ApplicationController
   private
 
   def individual_task_params
-    params.require(:individual_task).permit(:name, :description, :priority, :completed, tags: [:id, :name, :user_todo_list_id, :created_at, :updated_at])
+    params.require(:individual_task).permit(:name, :description, :priority, :deadline, :completed, tags: [:id, :name, :user_todo_list_id, :created_at, :updated_at])
           .tap { |whitelisted| whitelisted[:priority] = params[:individual_task][:priority].to_i }
   end
 

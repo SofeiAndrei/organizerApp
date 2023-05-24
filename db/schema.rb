@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_14_205210) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_24_081753) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -68,6 +68,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_14_205210) do
     t.integer "priority", default: 3
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "deadline"
     t.index ["user_todo_list_id", "completed", "priority", "created_at"], name: "individual_tasks_index_on_list_id_completed_priority_create_at"
     t.index ["user_todo_list_id"], name: "index_individual_tasks_on_user_todo_list_id"
   end
