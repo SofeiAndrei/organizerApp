@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
 
   resources :users do
+    member do
+      get :calendar
+    end
     resources :user_todo_lists do
       resources :individual_tasks, only: %i[create update destroy]
     end
