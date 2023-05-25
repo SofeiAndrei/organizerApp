@@ -66,6 +66,7 @@ class UsersController < ApplicationController
   def my_teams
     puts 'My teams'
     @teams = current_user.teams
+    @team_invitations = current_user.team_invitations.includes(:team)
   end
 
   private

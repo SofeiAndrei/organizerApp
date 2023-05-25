@@ -5,22 +5,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e28e46e0-8ac2-47f7-9869-d99e49173358" name="Changes" comment="Merged master into main">
-      <change afterPath="$PROJECT_DIR$/app/controllers/api/users_controller.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/javascript/react_components/AddUserToTeamPopup.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/javascript/react_components/SearchResults.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/javascript/react_components/TeamPage.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/javascript/react_components/teams/TeamInvitations.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/javascript/react_components/teams/TeamMembers.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/team_invitations/_team_invitation.html.erb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/custom.scss" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/stylesheets/custom.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/api/users_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/api/users_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/team_invitations_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/team_invitations_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/team_memberships_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/team_memberships_controller.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/teams_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/teams_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/users_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/users_controller.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/javascript/packs/application.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/packs/application.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/javascript/react_components/UserCalendar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/react_components/UserCalendar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/react_components/AddTagPopup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/react_components/modals/AddTagPopup.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/react_components/AddUserToTeamPopup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/react_components/modals/AddUserToTeamPopup.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/react_components/IndividualTask.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/react_components/IndividualTask.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/react_components/NewIndividualTaskPopup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/react_components/modals/NewIndividualTaskPopup.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/react_components/SearchResults.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/react_components/modals/SearchResults.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/react_components/TeamPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/react_components/teams/TeamPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/react_components/ToDoList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/react_components/ToDoList.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/models/team.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/team.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/user.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/user.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/team_invitation.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/team_invitation.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/teams/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/teams/show.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/users/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/users/show.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/application.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/application.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/users/my_teams.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/users/my_teams.html.erb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/schema.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/schema.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,8 +40,8 @@
       <list>
         <option value="SCSS File" />
         <option value="JavaScript File" />
-        <option value="ERB File" />
         <option value="Ruby File" />
+        <option value="ERB File" />
       </list>
     </option>
   </component>
@@ -84,6 +92,8 @@
       <recent name="D:\Facultate\Anul 3\Sem 2\TestareProiect\config" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Facultate\Licenta\organizerApp\app\javascript\react_components\modals" />
+      <recent name="D:\Facultate\Licenta\organizerApp\app\javascript\react_components\teams" />
       <recent name="D:\Facultate\Licenta\organizerApp\app\javascript\react_components" />
       <recent name="D:\Facultate\Anul 3\Sem 2\TestareProiect\app\models" />
     </key>
@@ -392,7 +402,7 @@
       <workItem from="1683814957972" duration="5601000" />
       <workItem from="1683875905822" duration="6164000" />
       <workItem from="1683893388245" duration="82149000" />
-      <workItem from="1684963575673" duration="21134000" />
+      <workItem from="1684963575673" duration="30543000" />
     </task>
     <task id="LOCAL-00001" summary="Merged master into main">
       <created>1683892404964</created>

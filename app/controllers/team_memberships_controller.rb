@@ -5,7 +5,22 @@ class TeamMembershipsController < ApplicationController
   def create
   end
 
+  def promote
+    @team_membership = TeamMembership.find(params[:id])
+    if @team_membership.update(team_admin: true)
+      flash[:success] = 'User promoted successfully!'
+    end
+  end
+
+  def demote
+    @team_membership = TeamMembership.find(params[:id])
+    if @team_membership.update(team_admin: false)
+      flash[:success] = 'User demoted successfully!'
+    end
+  end
+
   def destroy
+    @team_membership = TeamMembership.find(params[:id]).destroy
   end
 
   private

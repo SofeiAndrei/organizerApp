@@ -2,9 +2,9 @@ import React, {useState} from 'react'
 import PropTypes from "prop-types";
 
 import { Modal, Button} from 'react-bootstrap'
-import TaskPrioritySelector from "./TaskPrioritySelector";
-import {getAuthenticityToken} from "./shared/helpers";
-import {formatDate} from "./shared/calendar_helper";
+import TaskPrioritySelector from "../TaskPrioritySelector";
+import {getAuthenticityToken} from "../shared/helpers";
+import {formatDate} from "../shared/calendar_helper";
 
 const NewIndividualTaskPopup = (props) => {
   const [name, setName] = useState("")

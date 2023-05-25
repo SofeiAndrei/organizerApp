@@ -20,8 +20,18 @@ Rails.application.routes.draw do
   resources :account_activations, only: [:edit] # creeaza doar ruta account_activations/edit
   resources :password_resets, only: %i[new create edit update] # %i[array] -> array de simboluri
   resources :teams
-  resources :team_memberships, only: %i[create destroy]
-  resources :team_invitations, only: %i[create destroy]
+  resources :team_memberships, only: %i[create destroy update] do
+    member do
+      patch :promote
+      patch :demote
+    end
+  end
+  resources :team_invitations, only: %i[create destroy] do
+    member do
+      delete :accept
+      delete :reject
+    end
+  end
 
   namespace :api, defaults: { format: :json } do
     resources :users do

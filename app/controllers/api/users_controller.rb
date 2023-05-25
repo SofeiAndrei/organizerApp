@@ -8,9 +8,9 @@ class Api::UsersController < ApplicationController
       render json: { users: {} }
     else
       users = if params[:search_by_id] == 'true'
-                User.where.not(id: params[:already_selected_ids])&.find_by(id: params[:search_input].to_i)
+                User.where(activated: true).where.not(id: params[:already_selected_ids])&.find_by(id: params[:search_input].to_i)
               else
-                User.where.not(id: params[:already_selected_ids])&.where("name ILIKE '#{params[:search_input]}%'")&.limit(user_limit_for_search)
+                User.where(activated: true).where.not(id: params[:already_selected_ids])&.where("name ILIKE '#{params[:search_input]}%'")&.limit(user_limit_for_search)
               end
       render json: { users: users }
     end

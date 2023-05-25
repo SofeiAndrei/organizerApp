@@ -18,7 +18,7 @@ class Team < ApplicationRecord
 
   def team_admin?(user)
     team_membership = self.team_memberships.find_by(member_id: user.id)
-    return team_membership.nil? ? false : team_membership.team_admin
+    return team_membership.nil? ? false : team_membership.team_admin?
   end
 
   def add_member(user, is_admin)

@@ -19,7 +19,10 @@ class TeamsController < ApplicationController
   end
 
   def show
-    @team = Team.includes(:invited_users, :members).find(params[:id])
+    @team = Team.includes(:invited_users).find(params[:id])
+    @team_invitations = @team.team_invitations
+    @team_memberships = @team.team_memberships.includes(:member)
+    @members_with_admin_field = @team_memberships.map { |membership| { id: membership.member_id, name: membership.member.name, team_admin: membership.team_admin? } }
   end
 
   def edit
