@@ -4,6 +4,10 @@ class User < ApplicationRecord
                               foreign_key: 'member_id',
                               dependent: :destroy
   has_many :teams, through: :team_memberships, source: :team
+  has_many :team_invitations, class_name: 'TeamInvitation',
+                              foreign_key: 'invited_id',
+                              dependent: :destroy
+  has_many :invited_by_teams, through: :team_invitations, source: :team
 
   attr_accessor :remember_token, :activation_token, :reset_token  # adauga remember_token si activation_token ca atribut, nu il pune in DB
 

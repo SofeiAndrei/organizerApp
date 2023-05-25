@@ -19,7 +19,7 @@ class TeamsController < ApplicationController
   end
 
   def show
-    @team = Team.find(params[:id])
+    @team = Team.includes(:invited_users, :members).find(params[:id])
   end
 
   def edit
@@ -39,7 +39,10 @@ class TeamsController < ApplicationController
   def destroy
     team = Team.find(params[:id]).destroy
     flash[:success] = 'Deleted team successfully'
-    redirect_to my_teams_user_path(current_user)
+
+    respond_to do |f|
+      f.html { redirect_to user_user_todo_lists_path(current_user) }
+    end
   end
 
   private

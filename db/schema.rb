@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_24_160430) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_25_112851) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -71,6 +71,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_24_160430) do
     t.date "deadline"
     t.index ["user_todo_list_id", "completed", "priority", "created_at"], name: "individual_tasks_index_on_list_id_completed_priority_create_at"
     t.index ["user_todo_list_id"], name: "index_individual_tasks_on_user_todo_list_id"
+  end
+
+  create_table "team_invitations", force: :cascade do |t|
+    t.integer "invited_id"
+    t.integer "team_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["invited_id", "team_id"], name: "index_team_invitations_on_invited_id_and_team_id", unique: true
+    t.index ["invited_id"], name: "index_team_invitations_on_invited_id"
+    t.index ["team_id"], name: "index_team_invitations_on_team_id"
   end
 
   create_table "team_memberships", force: :cascade do |t|

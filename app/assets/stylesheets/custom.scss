@@ -301,18 +301,19 @@ textarea {
   overflow-y: auto;
 }
 
-.calendar-type-container{
+.radio-button-group-container{
   display: flex;
   flex-direction: column;
-  .calendar-type{
+  .radio-button-div{
     display: inline;
     align-items: start;
     width: 100px;
-    .calendar-type-label{
+    .radio-label{
       width: 70%
     }
-    .calendar-type-button{
+    .radio-button{
       width: 30%;
     }
   }
 }
+
