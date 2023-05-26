@@ -25,7 +25,9 @@ import WebpackerReact from 'webpacker-react'
 
 import ToDoList from '../react_components/ToDoList'
 import UserCalendar from "../react_components/UserCalendar";
+import TeamPage from "../react_components/teams/TeamPage";
 WebpackerReact.setup({
     ToDoList,
     UserCalendar,
+    TeamPage
 })

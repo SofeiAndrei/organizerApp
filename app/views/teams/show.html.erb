@@ -1,0 +1,9 @@
+<%= react_component('TeamPage',
+                    team: @team,
+                    invitedUsers: @team.invited_users,
+                    teamInvitations: @team_invitations,
+                    members: @members_with_admin_field,
+                    teamMemberships: @team_memberships,
+                    userIsTeamAdmin: @team.team_admin?(current_user),
+                    userIsTeamOwner: current_user?(@team.owner),
+                    currentUserId: current_user.id)%>

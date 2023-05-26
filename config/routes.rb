@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :users do
     member do
       get :calendar
+      get :my_teams
     end
     resources :user_todo_lists do
       resources :individual_tasks, only: %i[create update destroy]
@@ -18,8 +19,26 @@ Rails.application.routes.draw do
   end
   resources :account_activations, only: [:edit] # creeaza doar ruta account_activations/edit
   resources :password_resets, only: %i[new create edit update] # %i[array] -> array de simboluri
+  resources :teams
+  resources :team_memberships, only: %i[create destroy update] do
+    member do
+      patch :promote
+      patch :demote
+    end
+  end
+  resources :team_invitations, only: %i[create destroy] do
+    member do
+      delete :accept
+      delete :reject
+    end
+  end
 
   namespace :api, defaults: { format: :json } do
+    resources :users do
+      collection do
+        get :search_users
+      end
+    end
     resources :user_todo_lists do
       resources :individual_tasks, only: %i[create update destroy]
       resources :individual_task_tags, only: %i[create destroy]

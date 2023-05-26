@@ -3,7 +3,7 @@ import {Button} from "react-bootstrap";
 import PropTypes from 'prop-types'
 import TaskPrioritySelector from "./TaskPrioritySelector";
 import {getAuthenticityToken} from "./shared/helpers";
-import AddTagPopup from "./AddTagPopup";
+import AddTagPopup from "./modals/AddTagPopup";
 import {formatDate} from "./shared/calendar_helper";
 
 const IndividualTask = (props) => {

@@ -26,6 +26,7 @@
               <li><%= link_to "Settings", edit_user_path(current_user) %></li>
               <li><%= link_to "Todo Lists", user_user_todo_lists_path(current_user) %></li>
               <li><%= link_to "My Calendar", calendar_user_path(current_user) %></li>
+              <li><%= link_to "My Teams", my_teams_user_path(current_user) %></li>
               <li role="separator" class="divider"></li>
               <li><%= link_to "Log out", logout_path, method: "delete" %></li>
             </ul>

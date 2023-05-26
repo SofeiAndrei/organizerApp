@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:index, :edit, :update, :destroy, :calendar]
+  before_action :logged_in_user, only: [:index, :edit, :update, :destroy, :calendar, :my_teams]
   before_action :correct_user, only: [:edit, :update, :calendar]
   before_action :admin_user, only: [:destroy]
   def new
@@ -61,6 +61,12 @@ class UsersController < ApplicationController
 
     puts now
     puts @current_date
+  end
+
+  def my_teams
+    puts 'My teams'
+    @teams = current_user.teams
+    @team_invitations = current_user.team_invitations.includes(:team)
   end
 
   private

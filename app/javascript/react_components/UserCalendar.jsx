@@ -27,18 +27,18 @@ const UserCalendar = (props) => {
         {`Selected Date: ${selectedDate.toDateString()}`}
         <br/>
       </div>
-      <div className='calendar-type-container'>
-        <div className='calendar-type'>
-          <label className='calendar-type-label' htmlFor='today'>Today</label>
-          <input className='calendar-type-button' type='radio' id='today' name='today' value='today' checked={calendarType === 'today'} onChange={onChangeCalendarType}/>
+      <div className='radio-button-group-container'>
+        <div className='radio-button-div'>
+          <label className='radio-label' htmlFor='today'>Today</label>
+          <input className='radio-button' type='radio' id='today' name='today' value='today' checked={calendarType === 'today'} onChange={onChangeCalendarType}/>
         </div>
-        <div className='calendar-type'>
-          <label className='calendar-type-label' htmlFor='3days'>3 Days</label>
-          <input className='calendar-type-button' type='radio' id='3days' name='3days' value='3days' checked={calendarType === '3days'} onChange={onChangeCalendarType}/>
+        <div className='radio-button-div'>
+          <label className='radio-label' htmlFor='3days'>3 Days</label>
+          <input className='radio-button' type='radio' id='3days' name='3days' value='3days' checked={calendarType === '3days'} onChange={onChangeCalendarType}/>
         </div>
-        <div className='calendar-type'>
-          <label className='calendar-type-label' htmlFor='week'>Week</label>
-          <input className='calendar-type-button' type='radio' id='week' name='week' value='week' checked={calendarType === 'week'} onChange={onChangeCalendarType}/>
+        <div className='radio-button-div'>
+          <label className='radio-label' htmlFor='week'>Week</label>
+          <input className='radio-button' type='radio' id='week' name='week' value='week' checked={calendarType === 'week'} onChange={onChangeCalendarType}/>
         </div>
       </div>
       { calendarType === 'today' &&

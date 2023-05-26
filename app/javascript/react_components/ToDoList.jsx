@@ -2,7 +2,7 @@ import React, { useState, useEffect }from 'react'
 import { getAuthenticityToken, callAPI } from "./shared/helpers";
 import PropTypes from 'prop-types'
 import IndividualTask from "./IndividualTask";
-import NewIndividualTaskPopup from "./NewIndividualTaskPopup";
+import NewIndividualTaskPopup from "./modals/NewIndividualTaskPopup";
 
 const ToDoList = (props) => {
   const [tasks, setTasks] = useState([])

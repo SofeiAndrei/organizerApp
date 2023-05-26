@@ -1,8 +1,8 @@
 import React, {useState} from 'react'
 import PropTypes from "prop-types";
 import {Button, Modal} from "react-bootstrap";
-import {getAuthenticityToken} from "./shared/helpers";
-import TagSelector from "./TagSelector";
+import {getAuthenticityToken} from "../shared/helpers";
+import TagSelector from "../TagSelector";
 
 const AddTagPopup = (props) => {
   const [newTagName, setNewTagName] = useState("")
