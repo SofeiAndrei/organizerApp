@@ -1,0 +1,17 @@
+<h3>
+  <%=@team_project.name %>
+  <% if @team.team_admin?(current_user) %>
+    <%= link_to "Edit Project Name", edit_team_team_project_path(@team, @team_project), class: 'btn btn-primary' %>
+  <% end %>
+</h3>
+<%= link_to "Go to Team", team_path(@team), class: 'btn btn-primary' %>
+<br/>
+<%= react_component('ProjectTasksBoard',
+                    teamProject: @team_project,
+                    teamMembers: @team_members,
+                    userIsTeamAdmin: @team.team_admin?(current_user),
+                    currentUserId: current_user.id)%>
+<% if @team.team_admin?(current_user) %>
+  <br/>
+  <%= link_to "Delete Project", team_team_project_path(@team, @team_project), method: 'delete', data: {confirm: "Are you sure?"},  class: 'btn btn-danger' %>
+<% end %>

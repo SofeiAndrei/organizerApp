@@ -1,9 +1,9 @@
 import React, { useState, useEffect }from 'react'
-import { getAuthenticityToken, callAPI } from "./shared/helpers";
+import { getAuthenticityToken, callAPI } from "../shared/helpers";
 import PropTypes from 'prop-types'
 import Calendar from "react-calendar";
 import {DayPilot, DayPilotCalendar} from "daypilot-pro-react";
-import {formatDate} from "./shared/calendar_helper";
+import {formatDate} from "../shared/calendar_helper";
 
 const UserCalendar = (props) => {
   const [calendarType, setCalendarType] = useState('today') // 1 -> today, 2 -> 3days, 3 -> week

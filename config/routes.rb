@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'team_project_tasks/create'
+  get 'team_project_tasks/update'
+  get 'team_project_tasks/destroy'
   get 'password_resets/new'
   get 'password_resets/edit'
   root 'static_pages#home'
@@ -19,7 +22,11 @@ Rails.application.routes.draw do
   end
   resources :account_activations, only: [:edit] # creeaza doar ruta account_activations/edit
   resources :password_resets, only: %i[new create edit update] # %i[array] -> array de simboluri
-  resources :teams
+  resources :teams do
+    resources :team_projects do
+      resources :team_project_tasks, only: %i[create update destroy]
+    end
+  end
   resources :team_memberships, only: %i[create destroy update] do
     member do
       patch :promote
@@ -44,6 +51,11 @@ Rails.application.routes.draw do
       resources :individual_task_tags, only: %i[create destroy]
       member do
         get :get_tasks
+      end
+    end
+    resources :team_projects do
+      member do
+        get :get_project_tasks
       end
     end
   end

@@ -1,10 +1,12 @@
 class Api::IndividualTasksController < ApplicationController
+  before_action :logged_in_user
   before_action :load_todo_list
   before_action :correct_user
 
   def create
     puts params.inspect
     @individual_task = @user_todo_list.individual_tasks.build(individual_task_params)
+    puts @individual_task.inspect
     if @individual_task.save
       flash[:success] = 'Task Created!'
     else
@@ -53,7 +55,7 @@ class Api::IndividualTasksController < ApplicationController
 
   def individual_task_params
     params.require(:individual_task).permit(:name, :description, :priority, :deadline, :completed, tags: [:id, :name, :user_todo_list_id, :created_at, :updated_at])
-          .tap { |whitelisted| whitelisted[:priority] = params[:individual_task][:priority].to_i }
+          .tap { |whitelisted| whitelisted[:priority] = params[:individual_task][:priority].to_i.zero? ? params[:individual_task][:priority] : params[:individual_task][:priority].to_i}
   end
 
   def load_todo_list
@@ -61,6 +63,7 @@ class Api::IndividualTasksController < ApplicationController
   end
 
   def correct_user
+    puts @user_todo_list
     @user = @user_todo_list.user
     redirect_to root_url unless current_user?(@user)
   end

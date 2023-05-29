@@ -5,30 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e28e46e0-8ac2-47f7-9869-d99e49173358" name="Changes" comment="Merged master into main">
-      <change afterPath="$PROJECT_DIR$/app/javascript/react_components/teams/TeamInvitations.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/javascript/react_components/teams/TeamMembers.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/team_invitations/_team_invitation.html.erb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/javascript/react_components/shared/formater_helper.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/api/users_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/api/users_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/team_invitations_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/team_invitations_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/team_memberships_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/team_memberships_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/teams_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/teams_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/users_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/users_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/javascript/packs/application.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/packs/application.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/javascript/react_components/AddTagPopup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/react_components/modals/AddTagPopup.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/javascript/react_components/AddUserToTeamPopup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/react_components/modals/AddUserToTeamPopup.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/javascript/react_components/IndividualTask.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/react_components/IndividualTask.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/javascript/react_components/NewIndividualTaskPopup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/react_components/modals/NewIndividualTaskPopup.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/javascript/react_components/SearchResults.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/react_components/modals/SearchResults.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/javascript/react_components/TeamPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/react_components/teams/TeamPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/javascript/react_components/ToDoList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/react_components/ToDoList.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/team.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/team.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/team_invitation.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/team_invitation.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/teams/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/teams/show.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/users/my_teams.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/users/my_teams.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/api/individual_tasks_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/api/individual_tasks_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/team_project_tasks_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/team_project_tasks_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/react_components/TaskOptionSelector.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/react_components/TaskOptionSelector.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/react_components/modals/SearchResults.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/react_components/SearchResults.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/react_components/teams/AddUserToTeamPopup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/react_components/teams/AddUserToTeamPopup.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/react_components/teams/projects/ProjectTasksBoard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/react_components/teams/projects/ProjectTasksBoard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/react_components/teams/projects/tasks/NewProjectTaskPopup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/react_components/teams/projects/tasks/NewProjectTaskPopup.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/react_components/teams/projects/tasks/ViewProjectTaskPopup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/react_components/teams/projects/tasks/ViewProjectTaskPopup.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/react_components/todo_lists/IndividualTask.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/react_components/todo_lists/IndividualTask.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/react_components/todo_lists/NewIndividualTaskPopup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/react_components/todo_lists/NewIndividualTaskPopup.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/team_projects/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/team_projects/show.html.erb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,9 +28,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="SCSS File" />
-        <option value="JavaScript File" />
-        <option value="Ruby File" />
         <option value="ERB File" />
+        <option value="Ruby File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -64,38 +53,40 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Ruby.ViewRefParam.DefaultExtension&quot;: &quot;html.erb&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Facultate/Licenta/organizer-app&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;SCSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;ruby.rails.projectView.checked&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;settings.nodejs&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\RubyMine 2022.1.2\\plugins\\JavaScriptLanguage\\jsLanguageServicesImpl\\external&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Ruby.ViewRefParam.DefaultExtension": "html.erb",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "D:/Facultate/Licenta/organizerApp/app/views/team_projects",
+    "list.type.of.created.stylesheet": "SCSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "ruby.rails.projectView.checked": "true",
+    "settings.editor.selected.configurable": "settings.nodejs",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\RubyMine 2022.1.2\\plugins\\JavaScriptLanguage\\jsLanguageServicesImpl\\external"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Facultate\Licenta\organizerApp\app\views\team_projects" />
       <recent name="D:\Facultate\Anul 3\Sem 2\TestareProiect\config" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\Facultate\Licenta\organizerApp\app\javascript\react_components\modals" />
-      <recent name="D:\Facultate\Licenta\organizerApp\app\javascript\react_components\teams" />
       <recent name="D:\Facultate\Licenta\organizerApp\app\javascript\react_components" />
-      <recent name="D:\Facultate\Anul 3\Sem 2\TestareProiect\app\models" />
+      <recent name="D:\Facultate\Licenta\organizerApp\app\javascript\react_components\teams\projects\tasks" />
+      <recent name="D:\Facultate\Licenta\organizerApp\app\javascript\react_components\calendars" />
+      <recent name="D:\Facultate\Licenta\organizerApp\app\javascript\react_components\todo_lists" />
+      <recent name="D:\Facultate\Licenta\organizerApp\app\javascript\react_components\teams" />
     </key>
   </component>
   <component name="RubyModuleManagerSettings">

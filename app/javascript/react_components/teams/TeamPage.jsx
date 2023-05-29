@@ -1,13 +1,13 @@
 import React, {useState} from "react";
 import PropTypes from "prop-types";
 import {getAuthenticityToken} from "../shared/helpers";
-import AddUserToTeamPopup from "../modals/AddUserToTeamPopup";
+import AddUserToTeamPopup from "./AddUserToTeamPopup";
 import TeamInvitations from "./TeamInvitations";
 import TeamMembers from "./TeamMembers";
+import TeamProjectIndex from "./projects/TeamProjectIndex";
 
 const TeamPage = (props) => {
   const [addUserToTeamModalOpen, setAddUserToTeamModalOpen] = useState(false)
-
 
   const handleTeamDelete = () => {
     if (confirm(`Are you sure you want to delete ${props.team.name}? This record will be permanently deleted.`)){
@@ -69,6 +69,7 @@ const TeamPage = (props) => {
         </div>
       }
       <TeamMembers teamMemberships={props.teamMemberships} members={props.members} userIsTeamOwner={props.userIsTeamOwner} currentUserId={props.currentUserId}/>
+      <TeamProjectIndex team={props.team} userIsTeamAdmin={props.userIsTeamAdmin} userIsTeamOwner={props.userIsTeamOwner} teamProjects={props.teamProjects}/>
       {props.userIsTeamOwner &&
         <div className='team-owner-commands'>
           <a href={`/teams/${props.team.id}/edit`} className='btn btn-primary'>Edit Team</a>
@@ -98,7 +99,8 @@ TeamPage.propTypes = {
   teamMemberships: PropTypes.array,
   userIsTeamAdmin: PropTypes.bool,
   userIsTeamOwner: PropTypes.bool,
-  currentUserId: PropTypes.number
+  currentUserId: PropTypes.number,
+  teamProjects: PropTypes.array
 }
 
 export default TeamPage

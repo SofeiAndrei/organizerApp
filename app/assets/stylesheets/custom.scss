@@ -21,7 +21,6 @@ textarea{
     margin-bottom: 10px;
   }
 }
-
 /* Typography */
 h1,h2,h3,h4,h5,h6{
   line-height: 1;
@@ -232,7 +231,7 @@ textarea {
       padding: 10px;
     }
 
-    .task-priority-selector {
+    .task-option-selector {
       width: auto;
     }
 
@@ -307,7 +306,7 @@ textarea {
   .radio-button-div{
     display: inline;
     align-items: start;
-    width: 100px;
+    width: 150px;
     .radio-label{
       width: 70%
     }
@@ -316,4 +315,53 @@ textarea {
     }
   }
 }
-
+.kanban-container {
+  height: 500px;
+  overflow: auto;
+  .kanban-column-container{
+    height: 100%;
+    background-color: #2f3030;
+    border: 2px solid #2E2F30;
+    border-radius: 10px;
+    padding: 1px;
+    //background-color: #2E2F30;
+    margin-left: 5px;
+    margin-right: 5px;
+    .kanban-column-header {
+      height: 30px;
+      color: white;
+    }
+    .kanban-column-body {
+      color: white;
+      .task-card{
+        width: auto;
+        border: 2px solid #2E2F30;
+        border-radius: 10px;
+        font-size-adjust: inherit;
+        background-color: #494A4A;
+        .task-name{
+          font-size: 15px;
+        }
+        .task-footer{
+          display: flex;
+          justify-content: space-between;
+          font-size: 15px;
+        }
+        .task-tags{
+          width: fit-content;
+          display: flex;
+          flex-flow: wrap;
+          .task-tag{
+            display: inherit;
+            background-color: white;
+            color: #2f3030;
+          }
+        }
+      }
+      .task-card:hover {
+        box-shadow: 0 0 5px white;
+        background-color: #575959;
+      }
+    }
+  }
+}

@@ -1,7 +1,7 @@
 class TeamsController < ApplicationController
   before_action :logged_in_user
   before_action :team_member, only: [:show]
-  before_action :team_owner, only: [:edit, :update, :destroy]
+  before_action :team_owner, only: %i[edit update destroy]
 
   def new
     @team = Team.new
@@ -19,7 +19,7 @@ class TeamsController < ApplicationController
   end
 
   def show
-    @team = Team.includes(:invited_users).find(params[:id])
+    @team = Team.includes(:invited_users, :team_projects).find(params[:id])
     @team_invitations = @team.team_invitations
     @team_memberships = @team.team_memberships.includes(:member)
     @members_with_admin_field = @team_memberships.map { |membership| { id: membership.member_id, name: membership.member.name, team_admin: membership.team_admin? } }

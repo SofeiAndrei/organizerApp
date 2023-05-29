@@ -1,8 +1,8 @@
 import React, { useState, useEffect }from 'react'
-import { getAuthenticityToken, callAPI } from "./shared/helpers";
+import { getAuthenticityToken, callAPI } from "../shared/helpers";
 import PropTypes from 'prop-types'
 import IndividualTask from "./IndividualTask";
-import NewIndividualTaskPopup from "./modals/NewIndividualTaskPopup";
+import NewIndividualTaskPopup from "./NewIndividualTaskPopup";
 
 const ToDoList = (props) => {
   const [tasks, setTasks] = useState([])
@@ -91,6 +91,6 @@ const ToDoList = (props) => {
 }
 ToDoList.propTypes = {
 	todoList: PropTypes.object,
-  listTags: PropTypes.array
+  listTags: PropTypes.array,
 }
 export default ToDoList
