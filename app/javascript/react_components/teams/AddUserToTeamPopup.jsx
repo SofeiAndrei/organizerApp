@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import PropTypes from "prop-types";
 import {Button, Modal} from "react-bootstrap";
 import {callAPI, getAuthenticityToken} from "../shared/helpers";
-import SearchResults from "../modals/SearchResults";
+import SearchResults from "../SearchResults";
 
 const AddUserToTeamPopup = (props) => {
   const [userSearchInput, setUserSearchInput] = useState('')

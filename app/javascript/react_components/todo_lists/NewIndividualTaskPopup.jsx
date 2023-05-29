@@ -9,7 +9,7 @@ import {formatDate} from "../shared/calendar_helper";
 const NewIndividualTaskPopup = (props) => {
   const [name, setName] = useState("")
   const [description, setDescription] = useState("")
-  const [priority, setPriority] = useState(3)
+  const [priority, setPriority] = useState('normal')
   const [deadline, setDeadline] = useState(formatDate(new Date()))
 
   const handleModalClose = () => {
@@ -88,7 +88,7 @@ const NewIndividualTaskPopup = (props) => {
           </div>
           <div>
             <label htmlFor="priority">Priority:</label>
-            <TaskOptionSelector options={priorityOptions} setOption={setPriority} selectedOption={priority}/>
+            <TaskOptionSelector options={priorityOptions} setOption={setPriority} selectedOption={priority} useIdAsValue={false}/>
           </div>
           <div>
             <label htmlFor='deadline'>Deadline:</label>

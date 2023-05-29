@@ -4,6 +4,12 @@ import PropTypes from "prop-types";
 const TaskOptionSelector = (props) => {
   return (
     <select
+      autoFocus={props.hasFocus}
+      onBlur={() => {
+        if(props.hasFocus){
+          props.onBlur()
+        }
+      }}
       className='task-option-selector'
       defaultValue={props.selectedOption}
       onChange={(e) => {
@@ -12,7 +18,7 @@ const TaskOptionSelector = (props) => {
       }}
       disabled={props.disabled}>
       {props.options.map((option) => (
-        <option key={option.id} value={option.id}>
+        <option key={option.id} value={props.useIdAsValue ? option.id : option.name}>
           {option.name}
         </option>
       ))}
@@ -24,7 +30,13 @@ TaskOptionSelector.propTypes = {
   options: PropTypes.array,
   setOption: PropTypes.func,
   disabled: PropTypes.bool,
-  selectedOption: PropTypes.number
+  selectedOption: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ]),
+  useIdAsValue: PropTypes.bool,
+  hasFocus: PropTypes.bool,
+  onBlur: PropTypes.func
 }
 
 export default TaskOptionSelector

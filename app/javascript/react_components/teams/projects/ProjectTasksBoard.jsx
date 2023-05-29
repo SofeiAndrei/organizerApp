@@ -36,6 +36,7 @@ const ProjectTasksBoard = (props) => {
           priority: task.priority,
           deadline: task.deadline,
           status: task.status,
+          assignee_id: task.assignee_id
         }
       }),
       headers: {
@@ -53,6 +54,21 @@ const ProjectTasksBoard = (props) => {
       .catch(error => {
         console.log(error)
       })
+  }
+
+  const handleTaskDelete = (deletedTask) => {
+    console.log("DELETE ", deletedTask.name)
+    if (confirm(`Are you sure you want to delete ${deletedTask.name}? This task will be permanently deleted.`)){
+      fetch(`/teams/${props.teamProject.team_id}/team_projects/${props.teamProject.id}/team_project_tasks/${deletedTask.id}`, {
+        method: 'DELETE',
+        headers: {'X-CSRF-Token': getAuthenticityToken()}})
+        .then(() => {
+          getTasks()
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    }
   }
 
   const onChangeViewType = (e) => {
@@ -107,7 +123,10 @@ const ProjectTasksBoard = (props) => {
         setViewProjectTaskModalOpen={setViewProjectTaskModalOpen}
         data={selectedTaskData}
         teamMembers={props.teamMembers}
-        getTasks={getTasks}
+        updateTask={updateTask}
+        handleTaskDelete={handleTaskDelete}
+        userIsTeamAdmin={props.userIsTeamAdmin}
+        currentUserId={props.currentUserId}
       />
     </div>
   )
@@ -117,7 +136,6 @@ ProjectTasksBoard.propTypes = {
   teamProject: PropTypes.object,
   teamMembers: PropTypes.array,
   userIsTeamAdmin: PropTypes.bool,
-  userIsTeamOwner: PropTypes.bool,
   currentUserId: PropTypes.number
 }
 

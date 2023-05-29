@@ -9,9 +9,9 @@ import {formatDate} from "../../../shared/calendar_helper";
 const NewProjectTaskPopup = (props) => {
   const [name, setName] = useState("")
   const [description, setDescription] = useState("")
-  const [priority, setPriority] = useState(3)
+  const [priority, setPriority] = useState('normal')
   const [deadline, setDeadline] = useState(formatDate(new Date()))
-  const [status, setStatus] = useState(1)
+  const [status, setStatus] = useState('backlog')
 
   const handleModalClose = () => {
     props.setNewProjectTaskModalOpen(false)
@@ -26,8 +26,8 @@ const NewProjectTaskPopup = (props) => {
 
   const statusOptions = [
     {id: 1, name: 'backlog'},
-    {id: 2, name: 'selected for development'},
-    {id: 3, name: 'in progress'},
+    {id: 2, name: 'selected_for_development'},
+    {id: 3, name: 'in_progress'},
     {id: 4, name: 'testing'},
     {id: 5, name: 'completed'}
   ]
@@ -36,8 +36,8 @@ const NewProjectTaskPopup = (props) => {
     console.log("I reset the form")
     setName('')
     setDescription('')
-    setPriority(3)
-    setStatus(1)
+    setPriority('normal')
+    setStatus('backlog')
   }
 
   const onSave = () => {
@@ -93,7 +93,7 @@ const NewProjectTaskPopup = (props) => {
           </div>
           <div>
             <label htmlFor="priority">Priority:</label>
-            <TaskOptionSelector options={priorityOptions} setOption={setPriority} selectedOption={priority}/>
+            <TaskOptionSelector options={priorityOptions} setOption={setPriority} selectedOption={priority} useIdAsValue={false}/>
           </div>
           <div>
             <label htmlFor='deadline'>Deadline:</label>
@@ -105,7 +105,7 @@ const NewProjectTaskPopup = (props) => {
           </div>
           <div>
             <label htmlFor="status">Status:</label>
-            <TaskOptionSelector options={statusOptions} setOption={setStatus} selectedOption={status}/>
+            <TaskOptionSelector options={statusOptions} setOption={setStatus} selectedOption={status} useIdAsValue={false}/>
           </div>
         </div>
       </Modal.Body>

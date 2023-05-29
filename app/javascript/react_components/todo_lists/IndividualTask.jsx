@@ -14,14 +14,10 @@ const IndividualTask = (props) => {
     {id: 4, name: 'low'}
   ]
 
-  const priorityId = (name) => {
-    return priorityOptions.find((element) => element.name === name).id
-  }
-
   const [name, setName] = useState(props.data.task.name)
   const [description, setDescription] = useState(props.data.task.description)
   const [completed, setCompleted] = useState(props.data.task.completed)
-  const [priority, setPriority] = useState(priorityId(props.data.task.priority))
+  const [priority, setPriority] = useState(props.data.task.priority)
   const [deadline, setDeadline] = useState(props.data.task.deadline ||= formatDate(new Date()))
   const [tags, setTags] = useState(props.data.tags)
 
@@ -42,7 +38,7 @@ const IndividualTask = (props) => {
     setName(props.data.task.name)
     setDescription(props.data.task.description)
     setCompleted(props.data.task.completed)
-    setPriority(priorityId(props.data.task.priority))
+    setPriority(props.data.task.priority)
     setTags(props.data.tags)
     setEditPressed(false)
   }
@@ -134,7 +130,7 @@ const IndividualTask = (props) => {
             </div>
             <p className='card-text'>
               <label htmlFor="priority">Priority:</label>
-              <TaskOptionSelector options={priorityOptions} setOption={setPriority} disabled={true} selectedOption={priority}/>
+              <TaskOptionSelector options={priorityOptions} setOption={setPriority} disabled={true} selectedOption={priority} useIdAsValue={false}/>
             </p>
             <p className='card-text'>
               <label htmlFor='deadline'>Deadline:</label>
@@ -208,7 +204,7 @@ const IndividualTask = (props) => {
             </span>
             <p className='card-text'>
               <label htmlFor="priority">Priority:</label>
-              <TaskOptionSelector options={priorityOptions} setOption={setPriority} disabled={false} selectedOption={priority}/>
+              <TaskOptionSelector options={priorityOptions} setOption={setPriority} disabled={false} selectedOption={priority} useIdAsValue={false}/>
             </p>
             <p className='card-text'>
               <label htmlFor='deadline'>Deadline:</label>

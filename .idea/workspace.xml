@@ -5,19 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e28e46e0-8ac2-47f7-9869-d99e49173358" name="Changes" comment="Merged master into main">
-      <change afterPath="$PROJECT_DIR$/app/javascript/react_components/teams/projects/tasks/ProjectTaskKanban.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/javascript/react_components/teams/projects/tasks/ViewProjectTaskPopup.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/javascript/react_components/shared/formater_helper.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/custom.scss" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/stylesheets/custom.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/api/individual_tasks_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/api/individual_tasks_controller.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/team_project_tasks_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/team_project_tasks_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/javascript/react_components/teams/projects/NewProjectTaskPopup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/react_components/teams/projects/tasks/NewProjectTaskPopup.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/javascript/react_components/teams/projects/ProjectTask.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/react_components/TaskOptionSelector.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/react_components/TaskOptionSelector.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/react_components/modals/SearchResults.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/react_components/SearchResults.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/react_components/teams/AddUserToTeamPopup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/react_components/teams/AddUserToTeamPopup.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/javascript/react_components/teams/projects/ProjectTasksBoard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/react_components/teams/projects/ProjectTasksBoard.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/javascript/react_components/teams/projects/ProjectTasksBoardKanban.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/react_components/teams/projects/ProjectTasksBoardKanban.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/react_components/teams/projects/tasks/NewProjectTaskPopup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/react_components/teams/projects/tasks/NewProjectTaskPopup.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/react_components/teams/projects/tasks/ViewProjectTaskPopup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/react_components/teams/projects/tasks/ViewProjectTaskPopup.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/javascript/react_components/todo_lists/IndividualTask.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/react_components/todo_lists/IndividualTask.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/react_components/todo_lists/NewIndividualTaskPopup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/react_components/todo_lists/NewIndividualTaskPopup.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/team_projects/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/team_projects/show.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,9 +28,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="SCSS File" />
-        <option value="JavaScript File" />
         <option value="ERB File" />
         <option value="Ruby File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -82,10 +82,10 @@
       <recent name="D:\Facultate\Anul 3\Sem 2\TestareProiect\config" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Facultate\Licenta\organizerApp\app\javascript\react_components" />
       <recent name="D:\Facultate\Licenta\organizerApp\app\javascript\react_components\teams\projects\tasks" />
       <recent name="D:\Facultate\Licenta\organizerApp\app\javascript\react_components\calendars" />
       <recent name="D:\Facultate\Licenta\organizerApp\app\javascript\react_components\todo_lists" />
-      <recent name="D:\Facultate\Licenta\organizerApp\app\javascript\react_components" />
       <recent name="D:\Facultate\Licenta\organizerApp\app\javascript\react_components\teams" />
     </key>
   </component>
