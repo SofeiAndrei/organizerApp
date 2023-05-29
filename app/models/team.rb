@@ -8,9 +8,10 @@ class Team < ApplicationRecord
                               foreign_key: 'team_id',
                               dependent: :destroy
   has_many :invited_users, through: :team_invitations, source: :invited
+  has_many :team_projects, dependent: :destroy
 
   validates :name, presence: true,
-                   length: { minimum: 5, maximum: 30 }
+                   length: { minimum: 5, maximum: 40 }
 
   def team_member?(user)
     return self.members.include?(user)

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_25_112851) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_27_140219) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -94,6 +94,31 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_25_112851) do
     t.index ["team_id"], name: "index_team_memberships_on_team_id"
   end
 
+  create_table "team_project_tasks", force: :cascade do |t|
+    t.bigint "team_project_id", null: false
+    t.string "name"
+    t.text "description"
+    t.integer "priority", default: 3
+    t.integer "status", default: 1
+    t.date "deadline"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "assignee_id"
+    t.integer "creator_id", null: false
+    t.index ["creator_id"], name: "index_team_project_tasks_on_creator_id"
+    t.index ["team_project_id", "created_at"], name: "team_project_tasks_index_on_team_project_id_and_created_at"
+    t.index ["team_project_id"], name: "index_team_project_tasks_on_team_project_id"
+  end
+
+  create_table "team_projects", force: :cascade do |t|
+    t.string "name"
+    t.bigint "team_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["team_id", "created_at"], name: "index_team_projects_on_team_id_and_created_at"
+    t.index ["team_id"], name: "index_team_projects_on_team_id"
+  end
+
   create_table "teams", force: :cascade do |t|
     t.string "name"
     t.integer "owner_id"
@@ -131,5 +156,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_25_112851) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "individual_task_tags", "user_todo_lists"
   add_foreign_key "individual_tasks", "user_todo_lists"
+  add_foreign_key "team_project_tasks", "team_projects"
+  add_foreign_key "team_projects", "teams"
   add_foreign_key "user_todo_lists", "users"
 end

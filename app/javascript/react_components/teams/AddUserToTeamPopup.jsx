@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import PropTypes from "prop-types";
 import {Button, Modal} from "react-bootstrap";
 import {callAPI, getAuthenticityToken} from "../shared/helpers";
-import SearchResults from "./SearchResults";
+import SearchResults from "../modals/SearchResults";
 
 const AddUserToTeamPopup = (props) => {
   const [userSearchInput, setUserSearchInput] = useState('')
@@ -138,11 +138,11 @@ const AddUserToTeamPopup = (props) => {
         }
         <div className='radio-button-group-container'>
           <div className='radio-button-div'>
-            <label className='radio-label' htmlFor='3days'>By Name</label>
+            <label className='radio-label' htmlFor='by_name'>By Name</label>
             <input className='radio-button' type='radio' id='by_name' name='by_name' value='by_name' checked={!findUserById} onChange={onChangeSearchType}/>
           </div>
           <div className='radio-button-div'>
-            <label className='radio-label' htmlFor='week'>By Id</label>
+            <label className='radio-label' htmlFor='by_id'>By Id</label>
             <input className='radio-button' type='radio' id='by_id' name='by_id' value='by_id' checked={findUserById} onChange={onChangeSearchType}/>
           </div>
         </div>

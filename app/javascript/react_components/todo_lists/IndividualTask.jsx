@@ -1,10 +1,10 @@
 import React, {useState} from 'react'
 import {Button} from "react-bootstrap";
 import PropTypes from 'prop-types'
-import TaskPrioritySelector from "./TaskPrioritySelector";
-import {getAuthenticityToken} from "./shared/helpers";
-import AddTagPopup from "./modals/AddTagPopup";
-import {formatDate} from "./shared/calendar_helper";
+import TaskOptionSelector from "../TaskOptionSelector";
+import {getAuthenticityToken} from "../shared/helpers";
+import AddTagPopup from "../AddTagPopup";
+import {formatDate} from "../shared/calendar_helper";
 
 const IndividualTask = (props) => {
   const priorityOptions = [
@@ -134,7 +134,7 @@ const IndividualTask = (props) => {
             </div>
             <p className='card-text'>
               <label htmlFor="priority">Priority:</label>
-              <TaskPrioritySelector priorities={priorityOptions} setPriority={setPriority} disabled={true} selectedPriority={priority}/>
+              <TaskOptionSelector options={priorityOptions} setOption={setPriority} disabled={true} selectedOption={priority}/>
             </p>
             <p className='card-text'>
               <label htmlFor='deadline'>Deadline:</label>
@@ -208,7 +208,7 @@ const IndividualTask = (props) => {
             </span>
             <p className='card-text'>
               <label htmlFor="priority">Priority:</label>
-              <TaskPrioritySelector priorities={priorityOptions} setPriority={setPriority} disabled={false} selectedPriority={priority}/>
+              <TaskOptionSelector options={priorityOptions} setOptions={setPriority} disabled={false} selectedOption={priority}/>
             </p>
             <p className='card-text'>
               <label htmlFor='deadline'>Deadline:</label>

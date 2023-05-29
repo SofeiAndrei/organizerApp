@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import PropTypes from "prop-types";
 
 import { Modal, Button} from 'react-bootstrap'
-import TaskPrioritySelector from "../TaskPrioritySelector";
+import TaskOptionSelector from "../TaskOptionSelector";
 import {getAuthenticityToken} from "../shared/helpers";
 import {formatDate} from "../shared/calendar_helper";
 
@@ -88,7 +88,7 @@ const NewIndividualTaskPopup = (props) => {
           </div>
           <div>
             <label htmlFor="priority">Priority:</label>
-            <TaskPrioritySelector priorities={priorityOptions} setPriority={setPriority} selectedPriority={priority}/>
+            <TaskOptionSelector options={priorityOptions} setOption={setPriority} selectedOption={priority}/>
           </div>
           <div>
             <label htmlFor='deadline'>Deadline:</label>

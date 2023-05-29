@@ -8,6 +8,9 @@ class User < ApplicationRecord
                               foreign_key: 'invited_id',
                               dependent: :destroy
   has_many :invited_by_teams, through: :team_invitations, source: :team
+  has_many :assigned_tasks, class_name: 'TeamProjectTask',
+                            foreign_key: 'assignee_id',
+                            dependent: :nullify
 
   attr_accessor :remember_token, :activation_token, :reset_token  # adauga remember_token si activation_token ca atribut, nu il pune in DB
 
