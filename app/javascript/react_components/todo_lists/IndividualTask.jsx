@@ -208,7 +208,7 @@ const IndividualTask = (props) => {
             </span>
             <p className='card-text'>
               <label htmlFor="priority">Priority:</label>
-              <TaskOptionSelector options={priorityOptions} setOptions={setPriority} disabled={false} selectedOption={priority}/>
+              <TaskOptionSelector options={priorityOptions} setOption={setPriority} disabled={false} selectedOption={priority}/>
             </p>
             <p className='card-text'>
               <label htmlFor='deadline'>Deadline:</label>

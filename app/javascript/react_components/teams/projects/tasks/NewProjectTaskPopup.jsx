@@ -2,9 +2,9 @@ import React, {useState} from 'react'
 import PropTypes from "prop-types";
 
 import { Modal, Button} from 'react-bootstrap'
-import TaskOptionSelector from "../../TaskOptionSelector";
-import {getAuthenticityToken} from "../../shared/helpers";
-import {formatDate} from "../../shared/calendar_helper";
+import TaskOptionSelector from "../../../TaskOptionSelector";
+import {getAuthenticityToken} from "../../../shared/helpers";
+import {formatDate} from "../../../shared/calendar_helper";
 
 const NewProjectTaskPopup = (props) => {
   const [name, setName] = useState("")
@@ -37,6 +37,7 @@ const NewProjectTaskPopup = (props) => {
     setName('')
     setDescription('')
     setPriority(3)
+    setStatus(1)
   }
 
   const onSave = () => {
@@ -92,7 +93,7 @@ const NewProjectTaskPopup = (props) => {
           </div>
           <div>
             <label htmlFor="priority">Priority:</label>
-            <TaskOptionSelector options={priorityOptions} setOptions={setPriority} selectedOption={priority}/>
+            <TaskOptionSelector options={priorityOptions} setOption={setPriority} selectedOption={priority}/>
           </div>
           <div>
             <label htmlFor='deadline'>Deadline:</label>
@@ -104,7 +105,7 @@ const NewProjectTaskPopup = (props) => {
           </div>
           <div>
             <label htmlFor="status">Status:</label>
-            <TaskOptionSelector options={statusOptions} setOptions={setStatus} selectedOption={status}/>
+            <TaskOptionSelector options={statusOptions} setOption={setStatus} selectedOption={status}/>
           </div>
         </div>
       </Modal.Body>
@@ -118,8 +119,6 @@ const NewProjectTaskPopup = (props) => {
 NewProjectTaskPopup.propTypes = {
   newProjectTaskModalOpen: PropTypes.bool,
   setNewProjectTaskModalOpen: PropTypes.func,
-  tasks: PropTypes.array,
-  setTasks: PropTypes.func,
   teamProject: PropTypes.object,
   getTasks: PropTypes.func,
   currentUserId: PropTypes.number

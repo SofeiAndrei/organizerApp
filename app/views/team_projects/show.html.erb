@@ -9,6 +9,8 @@
 <%= react_component('ProjectTasksBoard',
                     teamProject: @team_project,
                     teamMembers: @team_members,
+                    userIsTeamAdmin: @team.team_admin?(current_user),
+                    userIsTeamOwner: current_user?(@team.owner),
                     currentUserId: current_user.id)%>
 <% if @team.team_admin?(current_user) %>
   <br/>

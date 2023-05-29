@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import ProjectTask from "./ProjectTask";
+import ProjectTaskKanban from "./tasks/ProjectTaskKanban";
+import {DragDropContext, Droppable} from "react-beautiful-dnd"
 
 const ProjectTasksBoardKanban = (props) => {
 
@@ -11,31 +12,51 @@ const ProjectTasksBoardKanban = (props) => {
     'testing',
     'completed'
   ]
+  const onDragEnd = (result) => {
+    if (result.destination.droppableId !== result.source.droppableId) {
+      const taskToUpdate = props.tasks.filter(task => task.task.id.toString() === result.draggableId).map(task_data => task_data.task)[0]
+      taskToUpdate.status = result.destination.droppableId
+      console.log(taskToUpdate)
+      props.updateTask(taskToUpdate)
+    }
+  }
 
   return(
-    <div className='container'>
-      <div className='row kanban-container'>
-        {taskStatuses.map((status, index) =>
-          <div key={index} className='col-sm-2 kanban-column-container'>
-            <div className='kanban-column-header'>
-              <h5>{status.toUpperCase().replaceAll('_', ' ') + ' ' + props.tasks.filter(task => task.task.status === status).length.toString()}</h5>
-            </div>
-            <div className='kanban-column-body'>
-              {props.tasks.filter(task => task.task.status === status).map(task => {
-                return <ProjectTask key={task.id} data={task}/>}
+    <DragDropContext onDragEnd={onDragEnd}>
+      <div className='container'>
+        <div className='row kanban-container'>
+          {taskStatuses.map((status, index) =>
+            <Droppable droppableId={status}>
+              { (provided) => (
+                <div className='col-sm-2 kanban-column-container'
+                     ref={provided.innerRef}
+                     {...provided.droppableProps}
+                >
+                  <div className='kanban-column-header'>
+                    <h5>{status.toUpperCase().replaceAll('_', ' ') + ' ' + props.tasks.filter(task => task.task.status === status).length.toString()}</h5>
+                  </div>
+                  <div className='kanban-column-body'>
+                    {props.tasks.filter(task => task.task.status === status).map((task, index) =>
+                      <ProjectTaskKanban key={task.id} data={task} index={index} handleViewTaskClicked={props.handleViewTaskClicked}/>
+                    )}
+                  </div>
+                  {provided.placeholder}
+                </div>
               )}
-            </div>
-          </div>
-        )}
+            </Droppable>
+          )}
+        </div>
       </div>
-    </div>
+    </DragDropContext>
   )
 }
 
 ProjectTasksBoardKanban.propTypes = {
   tasks: PropTypes.array,
   setTasks: PropTypes.func,
-  teamMembers: PropTypes.array
+  teamMembers: PropTypes.array,
+  updateTask: PropTypes.func,
+  handleViewTaskClicked: PropTypes.func
 }
 
 export default ProjectTasksBoardKanban

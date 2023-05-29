@@ -19,6 +19,19 @@ class TeamProjectTasksController < ApplicationController
 
   def update
     puts params.inspect
+    @team_project_task = TeamProjectTask.find(params[:id])
+    permitted_params = team_project_task_params
+
+    task_params = {
+      name: permitted_params[:name],
+      description: permitted_params[:description],
+      priority: permitted_params[:priority],
+      deadline: permitted_params[:deadline],
+      status: permitted_params[:status]
+    }
+    if @team_project_task.update(task_params)
+      flash[:success] = 'Changes saved successfully!'
+    end
   end
 
   def destroy
@@ -37,8 +50,8 @@ class TeamProjectTasksController < ApplicationController
   def team_project_task_params
     params.require(:team_project_task).permit(:name, :description, :priority, :deadline, :status, :creator_id)
           .tap do |whitelisted|
-            whitelisted[:priority] = params[:team_project_task][:priority].to_i
-            whitelisted[:status] = params[:team_project_task][:status].to_i
+            whitelisted[:priority] = params[:team_project_task][:priority].to_i.zero? ? params[:team_project_task][:priority] : params[:team_project_task][:priority].to_i
+            whitelisted[:status] = params[:team_project_task][:status].to_i.zero? ? params[:team_project_task][:status] : params[:team_project_task][:status].to_i
           end
   end
 
