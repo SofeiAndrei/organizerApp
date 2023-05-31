@@ -58,9 +58,6 @@ class UsersController < ApplicationController
       month: now.month - 1,
       day: now.day
     }
-
-    puts now
-    puts @current_date
   end
 
   def my_teams

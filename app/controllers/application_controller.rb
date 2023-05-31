@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   end
 
   include SessionsHelper # includem ca sa putem folosi chestiile de la login in toata aplicatia
+  include CalendarHelper
 
   private
 

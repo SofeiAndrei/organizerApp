@@ -26,6 +26,9 @@ Rails.application.routes.draw do
     resources :team_projects do
       resources :team_project_tasks, only: %i[create update destroy]
     end
+    member do
+      get :calendar
+    end
   end
   resources :team_memberships, only: %i[create destroy update] do
     member do
@@ -45,6 +48,9 @@ Rails.application.routes.draw do
       collection do
         get :search_users
       end
+      member do
+        get :calendar_filtered_events
+      end
     end
     resources :user_todo_lists do
       resources :individual_tasks, only: %i[create update destroy]
@@ -56,6 +62,11 @@ Rails.application.routes.draw do
     resources :team_projects do
       member do
         get :get_project_tasks
+      end
+    end
+    resources :teams do
+      member do
+        get :calendar_filtered_events
       end
     end
   end

@@ -50,13 +50,6 @@ const TeamPage = (props) => {
       <h1>
         {props.team.name}
       </h1>
-      {!props.userIsTeamOwner &&
-        <button
-          className='btn btn-primary btn-danger'
-          onClick={handleLeaveTeam}
-        >Leave Team
-        </button>
-      }
       {props.userIsTeamAdmin &&
         <div className='team-admin-commands'>
           <button
@@ -70,7 +63,8 @@ const TeamPage = (props) => {
       }
       <TeamMembers teamMemberships={props.teamMemberships} members={props.members} userIsTeamOwner={props.userIsTeamOwner} currentUserId={props.currentUserId}/>
       <TeamProjectIndex team={props.team} userIsTeamAdmin={props.userIsTeamAdmin} userIsTeamOwner={props.userIsTeamOwner} teamProjects={props.teamProjects}/>
-      {props.userIsTeamOwner &&
+      <a href={`/teams/${props.team.id}/calendar`} className='btn btn-primary'>Team Calendar</a>
+      {props.userIsTeamOwner ? (
         <div className='team-owner-commands'>
           <a href={`/teams/${props.team.id}/edit`} className='btn btn-primary'>Edit Team</a>
           <button
@@ -78,6 +72,13 @@ const TeamPage = (props) => {
             onClick={() => {handleTeamDelete()}}>Delete
           </button>
         </div>
+      ) : (
+        <button
+          className='btn btn-primary btn-danger'
+          onClick={handleLeaveTeam}
+        >Leave Team
+        </button>
+      )
       }
 
       <AddUserToTeamPopup
