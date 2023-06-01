@@ -15,6 +15,8 @@ Rails.application.routes.draw do
     member do
       get :calendar
       get :my_teams
+      get :friend_list
+      get :common_friends
     end
     resources :user_todo_lists do
       resources :individual_tasks, only: %i[create update destroy]
@@ -42,6 +44,14 @@ Rails.application.routes.draw do
       delete :reject
     end
   end
+
+  resources :friendship_requests, only: %i[create destroy] do
+    member do
+      delete :accept
+      delete :reject
+    end
+  end
+  resources :friendships, only: %i[destroy]
 
   namespace :api, defaults: { format: :json } do
     resources :users do
