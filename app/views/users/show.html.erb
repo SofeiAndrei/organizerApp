@@ -8,5 +8,17 @@
       <%= "##{@user.id}" %>
       </h1>
     </section>
+    <section class="stats">
+      <div class="stats">
+        <% if current_user?(@user) || current_user.friend?(@user)%>
+          <%= link_to "Friends", friend_list_user_path(@user) %>
+        <% else %>
+          <%= link_to "#{@user.common_friends(current_user).size} Common friends", common_friends_user_path(@user) %>
+        <% end %>
+      </div>
+    </section>
   </aside>
+  <div>
+    <%= render 'friendship_form' if logged_in? %>
+  </div>
 </div>

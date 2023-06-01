@@ -1,18 +1,18 @@
 class UsersController < ApplicationController
   before_action :logged_in_user, only: [:index, :edit, :update, :destroy, :calendar, :my_teams]
+  before_action :load_user, only: %i[edit show update destroy calendar friend_list common_friends]
   before_action :correct_user, only: [:edit, :update, :calendar]
+  before_action :correct_user_or_friend, only: [:friend_list]
+  before_action :not_same_user, only: [:common_friends]
   before_action :admin_user, only: [:destroy]
+
   def new
     @user = User.new
   end
 
-  def edit
-    # shows view for the edit user page
-    @user = User.find(params[:id])
-  end
+  def edit; end
 
   def show
-    @user = User.find(params[:id]) # params fiind parametrul din url
     redirect_to root_url and return unless @user.activated?
   end
 
@@ -29,7 +29,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])
     if @user.update(user_params)
       flash[:success] = 'Changes saved successfully!'
       redirect_to @user
@@ -46,7 +45,7 @@ class UsersController < ApplicationController
 
   # Should be available only for admins
   def destroy
-    user = User.find(params[:id]).destroy
+    @user.destroy
     flash[:success] = 'Deleted user successfully'
     redirect_to users_url
   end
@@ -66,6 +65,15 @@ class UsersController < ApplicationController
     @team_invitations = current_user.team_invitations.includes(:team)
   end
 
+  def friend_list
+    @friends = @user.friends
+    @received_friend_request_from = @user.users_received_friendship_requests_from
+  end
+
+  def common_friends
+    @common_friends = current_user.common_friends(@user)
+  end
+
   private
 
   def user_params
@@ -79,12 +87,23 @@ class UsersController < ApplicationController
     end
   end
 
-  def correct_user
+  def load_user
     @user = User.find(params[:id])
+  end
+
+  def correct_user
     redirect_to(root_url) unless current_user?(@user)
   end
 
   def admin_user
     redirect_to(root_url) unless current_user.admin?
+  end
+
+  def not_same_user
+    redirect_to(root_url) if current_user?(@user)
+  end
+
+  def correct_user_or_friend
+    redirect_to(root_url) unless current_user?(@user) || current_user.friend?(@user)
   end
 end

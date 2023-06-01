@@ -15,6 +15,22 @@ class User < ApplicationRecord
   has_many :calendar_events, class_name: 'CalendarEvent',
                              foreign_key: 'organizer_id',
                              dependent: :destroy
+  has_many :sent_friendship_requests, class_name: 'FriendshipRequest',
+                                      foreign_key: 'sender_id',
+                                      dependent: :destroy
+  has_many :users_sent_friendship_requests_to, through: :sent_friendship_requests, source: :receiver, class_name: 'User'
+  has_many :received_friendship_requests, class_name: 'FriendshipRequest',
+                                          foreign_key: 'receiver_id',
+                                          dependent: :destroy
+  has_many :users_received_friendship_requests_from, through: :received_friendship_requests, source: :sender, class_name: 'User'
+  has_many :active_friendships, class_name: 'Friendship',
+                                foreign_key: 'sender_id',
+                                dependent: :destroy
+  has_many :active_friends, through: :active_friendships, source: :receiver, class_name: 'User'
+  has_many :passive_friendships, class_name: 'Friendship',
+                                 foreign_key: 'receiver_id',
+                                 dependent: :destroy
+  has_many :passive_friends, through: :passive_friendships, source: :sender, class_name: 'User'
 
   attr_accessor :remember_token, :activation_token, :reset_token  # adauga remember_token si activation_token ca atribut, nu il pune in DB
 
@@ -92,6 +108,56 @@ class User < ApplicationRecord
       individual_tasks: self.individual_tasks,
       assigned_tasks: self.assigned_tasks
     }
+  end
+
+  def send_friend_request(another_user)
+    self.users_sent_friendship_requests_to << another_user
+  end
+
+  def retract_friend_request(another_user)
+    self.users_sent_friendship_requests_to.delete(another_user)
+  end
+
+  def sent_friend_request?(another_user)
+    self.users_sent_friendship_requests_to.include?(another_user)
+  end
+
+  def received_friend_request?(another_user)
+    self.users_received_friendship_requests_from.include?(another_user)
+  end
+
+  def befriend(another_user)
+    self.passive_friends << another_user
+  end
+
+  def unfriend(another_user)
+    if self.active_friends.include?(another_user)
+      self.active_friends.delete(another_user)
+    elsif self.passive_friends.include?(another_user)
+      self.passive_friends.delete(another_user)
+    end
+  end
+
+  def friend?(another_user)
+    self.active_friends.include?(another_user) || self.passive_friends.include?(another_user)
+  end
+
+  def friendships
+    self.active_friendships.or(self.passive_friendships)
+  end
+
+  def friends
+    Friendship.includes(:receiver, :sender).where('friendships.receiver_id = ? or friendships.sender_id = ?', self.id, self.id).map do |friendship|
+      if friendship.receiver == self
+        friendship.sender
+      else
+        friendship.receiver
+      end
+    end
+  end
+
+  def common_friends(another_user)
+    self.friends&.select { |friend| another_user.friend?(friend) && friend != self}
   end
 
   private

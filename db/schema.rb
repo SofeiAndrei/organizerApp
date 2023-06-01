@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_31_122832) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_01_080415) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -53,6 +53,26 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_31_122832) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["organizer_id", "team_id"], name: "index_calendar_events_on_organizer_id_and_team_id"
+  end
+
+  create_table "friendship_requests", force: :cascade do |t|
+    t.integer "sender_id"
+    t.integer "receiver_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["receiver_id", "sender_id"], name: "index_friendship_requests_on_receiver_id_and_sender_id", unique: true
+    t.index ["receiver_id"], name: "index_friendship_requests_on_receiver_id"
+    t.index ["sender_id"], name: "index_friendship_requests_on_sender_id"
+  end
+
+  create_table "friendships", force: :cascade do |t|
+    t.integer "sender_id"
+    t.integer "receiver_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["receiver_id", "sender_id"], name: "index_friendships_on_receiver_id_and_sender_id", unique: true
+    t.index ["receiver_id"], name: "index_friendships_on_receiver_id"
+    t.index ["sender_id"], name: "index_friendships_on_sender_id"
   end
 
   create_table "individual_task_tag_relationships", force: :cascade do |t|
