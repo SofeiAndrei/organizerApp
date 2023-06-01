@@ -1,9 +1,10 @@
 import React, {useState} from 'react'
 import {Button} from "react-bootstrap";
 import PropTypes from 'prop-types'
-import TaskPrioritySelector from "./TaskPrioritySelector";
-import {getAuthenticityToken} from "./shared/helpers";
-import AddTagPopup from "./AddTagPopup";
+import TaskOptionSelector from "../TaskOptionSelector";
+import {getAuthenticityToken} from "../shared/helpers";
+import AddTagPopup from "../AddTagPopup";
+import {formatDate} from "../shared/calendar_helper";
 
 const IndividualTask = (props) => {
   const priorityOptions = [
@@ -13,23 +14,17 @@ const IndividualTask = (props) => {
     {id: 4, name: 'low'}
   ]
 
-  const priorityId = (name) => {
-    return priorityOptions.find((element) => element.name === name).id
-  }
-
-
-
-
   const [name, setName] = useState(props.data.task.name)
   const [description, setDescription] = useState(props.data.task.description)
   const [completed, setCompleted] = useState(props.data.task.completed)
-  const [priority, setPriority] = useState(priorityId(props.data.task.priority))
+  const [priority, setPriority] = useState(props.data.task.priority)
+  const [deadline, setDeadline] = useState(props.data.task.deadline ||= formatDate(new Date()))
   const [tags, setTags] = useState(props.data.tags)
 
   const notSetTags = props.listTags.filter(tag => !tags.includes(tag))
   notSetTags.unshift({id: 0, name: 'New Tag'})
-
   console.log(notSetTags)
+
   const [tagModalOpen, setTagModalOpen] = useState(false)
   const [availableTags, setAvailableTags] = useState(notSetTags)
 
@@ -43,7 +38,7 @@ const IndividualTask = (props) => {
     setName(props.data.task.name)
     setDescription(props.data.task.description)
     setCompleted(props.data.task.completed)
-    setPriority(priorityId(props.data.task.priority))
+    setPriority(props.data.task.priority)
     setTags(props.data.tags)
     setEditPressed(false)
   }
@@ -81,6 +76,7 @@ const IndividualTask = (props) => {
           description: description,
           priority: priority,
           completed: completed,
+          deadline: deadline,
           tags: tags,
         },
       }),
@@ -134,7 +130,11 @@ const IndividualTask = (props) => {
             </div>
             <p className='card-text'>
               <label htmlFor="priority">Priority:</label>
-              <TaskPrioritySelector priorities={priorityOptions} setPriority={setPriority} disabled={true} selectedPriority={priority}/>
+              <TaskOptionSelector options={priorityOptions} setOption={setPriority} disabled={true} selectedOption={priority} useIdAsValue={false}/>
+            </p>
+            <p className='card-text'>
+              <label htmlFor='deadline'>Deadline:</label>
+              {deadline}
             </p>
             <p className='card-text'>
               <label>Completed:</label>
@@ -204,7 +204,15 @@ const IndividualTask = (props) => {
             </span>
             <p className='card-text'>
               <label htmlFor="priority">Priority:</label>
-              <TaskPrioritySelector priorities={priorityOptions} setPriority={setPriority} disabled={false} selectedPriority={priority}/>
+              <TaskOptionSelector options={priorityOptions} setOption={setPriority} disabled={false} selectedOption={priority} useIdAsValue={false}/>
+            </p>
+            <p className='card-text'>
+              <label htmlFor='deadline'>Deadline:</label>
+              <input
+                type="date"
+                value={deadline}
+                onChange={(e) => setDeadline(e.target.value)}
+              />
             </p>
             <p className='card-text'>
               <label>Completed:</label>

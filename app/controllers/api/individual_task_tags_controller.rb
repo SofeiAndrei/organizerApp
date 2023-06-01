@@ -1,4 +1,5 @@
 class Api::IndividualTaskTagsController < ApplicationController
+  before_action :logged_in_user
   before_action :load_todo_list
   before_action :correct_user
 

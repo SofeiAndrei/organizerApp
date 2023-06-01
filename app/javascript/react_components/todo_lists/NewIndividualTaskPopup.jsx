@@ -2,13 +2,15 @@ import React, {useState} from 'react'
 import PropTypes from "prop-types";
 
 import { Modal, Button} from 'react-bootstrap'
-import TaskPrioritySelector from "./TaskPrioritySelector";
-import {getAuthenticityToken} from "./shared/helpers";
+import TaskOptionSelector from "../TaskOptionSelector";
+import {getAuthenticityToken} from "../shared/helpers";
+import {formatDate} from "../shared/calendar_helper";
 
 const NewIndividualTaskPopup = (props) => {
   const [name, setName] = useState("")
   const [description, setDescription] = useState("")
-  const [priority, setPriority] = useState(3)
+  const [priority, setPriority] = useState('normal')
+  const [deadline, setDeadline] = useState(formatDate(new Date()))
 
   const handleModalClose = () => {
     props.setNewTaskFormModalOpen(false)
@@ -45,6 +47,7 @@ const NewIndividualTaskPopup = (props) => {
           description: description,
           priority: priority,
           completed: false,
+          deadline: deadline,
         }
       }),
       headers: {
@@ -85,7 +88,15 @@ const NewIndividualTaskPopup = (props) => {
           </div>
           <div>
             <label htmlFor="priority">Priority:</label>
-            <TaskPrioritySelector priorities={priorityOptions} setPriority={setPriority} selectedPriority={priority}/>
+            <TaskOptionSelector options={priorityOptions} setOption={setPriority} selectedOption={priority} useIdAsValue={false}/>
+          </div>
+          <div>
+            <label htmlFor='deadline'>Deadline:</label>
+            <input
+              type="date"
+              value={deadline}
+              onChange={(e) => setDeadline(e.target.value)}
+            />
           </div>
         </div>
       </Modal.Body>

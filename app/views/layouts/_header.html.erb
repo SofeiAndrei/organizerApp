@@ -12,7 +12,7 @@
           <span class="icon-bar"></span>
         </button>
       </div>
-      <ul class="nav navbar-nav navbar-right collapse navbar-collapse" id="bs-example-navbar-collapse-1"><!--Clasele astea au o semnificatie speciala pentru Bootstrap si o sa aiba deja un styling de nu navbar centrat la dreapta-->
+      <ul class="nav navbar-nav navbar-right collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <li><%=link_to 'Home', root_path %></li>
         <li><%=link_to 'Help', helf_path %></li>
         <% if logged_in? %>
@@ -25,9 +25,10 @@
               <li><%= link_to "Profile", current_user %></li>
               <li><%= link_to "Settings", edit_user_path(current_user) %></li>
               <li><%= link_to "Todo Lists", user_user_todo_lists_path(current_user) %></li>
+              <li><%= link_to "My Calendar", calendar_user_path(current_user) %></li>
+              <li><%= link_to "My Teams", my_teams_user_path(current_user) %></li>
               <li role="separator" class="divider"></li>
               <li><%= link_to "Log out", logout_path, method: "delete" %></li>
-              <!-- daca foloseam link_to imi facea o cerere de GET si nu sunt sigur cum ar fi trebuit sa fac-->
             </ul>
           </li>
         <% else %>

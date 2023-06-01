@@ -23,7 +23,13 @@ import "bootstrap"
 
 import WebpackerReact from 'webpacker-react'
 
-import ToDoList from '../react_components/ToDoList'
+import ToDoList from '../react_components/todo_lists/ToDoList'
+import UserCalendar from "../react_components/calendars/UserCalendar";
+import TeamPage from "../react_components/teams/TeamPage";
+import ProjectTasksBoard from "../react_components/teams/projects/ProjectTasksBoard";
 WebpackerReact.setup({
     ToDoList,
+    UserCalendar,
+    TeamPage,
+    ProjectTasksBoard,
 })

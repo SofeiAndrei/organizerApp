@@ -8,7 +8,7 @@ class IndividualTask < ApplicationRecord
 
   validates :user_todo_list_id, presence: true
   validates :name, presence: true,
-                   length: { minimum: 1, maximum: 20 }
+                   length: { minimum: 1, maximum: 40 }
 
   validates :description, length: { maximum: 256 }
 

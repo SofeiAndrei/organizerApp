@@ -5,23 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e28e46e0-8ac2-47f7-9869-d99e49173358" name="Changes" comment="Merged master into main">
-      <change afterPath="$PROJECT_DIR$/app/controllers/api/individual_task_tags_controller.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/javascript/react_components/AddTagPopup.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/javascript/react_components/TagSelector.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/javascript/react_components/shared/formater_helper.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/custom.scss" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/stylesheets/custom.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/api/individual_tasks_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/api/individual_tasks_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/api/user_todo_lists_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/api/user_todo_lists_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/individual_tasks_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/individual_tasks_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/user_todo_lists_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/user_todo_lists_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/javascript/react_components/IndividualTask.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/react_components/IndividualTask.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/javascript/react_components/NewIndividualTaskPopup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/react_components/NewIndividualTaskPopup.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/javascript/react_components/ToDoList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/react_components/ToDoList.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/individual_task.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/individual_task.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/user_todo_list.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/user_todo_list.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/user_todo_lists/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/user_todo_lists/show.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/schema.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/schema.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/team_project_tasks_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/team_project_tasks_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/react_components/TaskOptionSelector.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/react_components/TaskOptionSelector.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/react_components/modals/SearchResults.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/react_components/SearchResults.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/react_components/teams/AddUserToTeamPopup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/react_components/teams/AddUserToTeamPopup.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/react_components/teams/projects/ProjectTasksBoard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/react_components/teams/projects/ProjectTasksBoard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/react_components/teams/projects/tasks/NewProjectTaskPopup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/react_components/teams/projects/tasks/NewProjectTaskPopup.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/react_components/teams/projects/tasks/ViewProjectTaskPopup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/react_components/teams/projects/tasks/ViewProjectTaskPopup.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/react_components/todo_lists/IndividualTask.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/react_components/todo_lists/IndividualTask.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/react_components/todo_lists/NewIndividualTaskPopup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/react_components/todo_lists/NewIndividualTaskPopup.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/team_projects/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/team_projects/show.html.erb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,9 +27,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="SCSS File" />
         <option value="ERB File" />
-        <option value="JavaScript File" />
         <option value="Ruby File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -62,14 +59,16 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/Facultate/Licenta/organizer-app",
+    "last_opened_file_path": "D:/Facultate/Licenta/organizerApp/app/views/team_projects",
+    "list.type.of.created.stylesheet": "SCSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "ruby.rails.projectView.checked": "true",
-    "settings.editor.selected.configurable": "settings.nodejs"
+    "settings.editor.selected.configurable": "settings.nodejs",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\RubyMine 2022.1.2\\plugins\\JavaScriptLanguage\\jsLanguageServicesImpl\\external"
   },
   "keyToStringList": {
     "DatabaseDriversLRU": [
@@ -79,11 +78,15 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Facultate\Licenta\organizerApp\app\views\team_projects" />
       <recent name="D:\Facultate\Anul 3\Sem 2\TestareProiect\config" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Facultate\Licenta\organizerApp\app\javascript\react_components" />
-      <recent name="D:\Facultate\Anul 3\Sem 2\TestareProiect\app\models" />
+      <recent name="D:\Facultate\Licenta\organizerApp\app\javascript\react_components\teams\projects\tasks" />
+      <recent name="D:\Facultate\Licenta\organizerApp\app\javascript\react_components\calendars" />
+      <recent name="D:\Facultate\Licenta\organizerApp\app\javascript\react_components\todo_lists" />
+      <recent name="D:\Facultate\Licenta\organizerApp\app\javascript\react_components\teams" />
     </key>
   </component>
   <component name="RubyModuleManagerSettings">
@@ -390,6 +393,7 @@
       <workItem from="1683814957972" duration="5601000" />
       <workItem from="1683875905822" duration="6164000" />
       <workItem from="1683893388245" duration="82149000" />
+      <workItem from="1684963575673" duration="30543000" />
     </task>
     <task id="LOCAL-00001" summary="Merged master into main">
       <created>1683892404964</created>

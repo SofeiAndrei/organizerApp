@@ -1,0 +1,17 @@
+<h3>My Teams:</h3>
+<%= link_to "Create a new team", new_team_path , class:'btn btn-primary'%>
+<% if @teams.size == 0 %>
+  <div>
+    You have no teams!
+  </div>
+<% else %>
+  <ul class="teams">
+    <% @teams.each do |team| %>
+      <%= render team %>
+    <% end %>
+    <!--  e echivalent cu < %= render @teams %>   -->
+  </ul>
+<% end %>
+
+<h4>Received Team Invitations:</h4>
+<%= render @team_invitations %>

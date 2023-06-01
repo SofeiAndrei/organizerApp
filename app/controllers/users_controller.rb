@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
-  before_action :correct_user, only: [:edit, :update]
+  before_action :logged_in_user, only: [:index, :edit, :update, :destroy, :calendar, :my_teams]
+  before_action :correct_user, only: [:edit, :update, :calendar]
   before_action :admin_user, only: [:destroy]
   def new
     @user = User.new
@@ -49,6 +49,24 @@ class UsersController < ApplicationController
     user = User.find(params[:id]).destroy
     flash[:success] = 'Deleted user successfully'
     redirect_to users_url
+  end
+
+  def calendar
+    now = Time.now
+    @current_date = {
+      year: now.year,
+      month: now.month - 1,
+      day: now.day
+    }
+
+    puts now
+    puts @current_date
+  end
+
+  def my_teams
+    puts 'My teams'
+    @teams = current_user.teams
+    @team_invitations = current_user.team_invitations.includes(:team)
   end
 
   private
