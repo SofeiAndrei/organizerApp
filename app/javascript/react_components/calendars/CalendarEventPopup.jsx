@@ -153,9 +153,9 @@ const CalendarEventPopup = (props) => {
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={() => cancelChanges()}>{props.newEvent ? 'Cancel' : 'Back'}</Button>
-        <Button className={props.newEvent || editPressed ? 'hidden' : ''}
+        <Button className={props.newEvent || editPressed || !props.event.organizer ? 'hidden' : ''}
                 onClick={() => setEditPressed(true)}>{'Edit'}</Button>
-        <Button className={editPressed ? '' : 'hidden'}
+        <Button className={props.newEvent || (editPressed && props.event.organizer) ? '' : 'hidden'}
                 onClick={() => onSave()}>{'Save'}</Button>
       </Modal.Footer>
     </Modal>

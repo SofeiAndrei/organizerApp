@@ -5,23 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e28e46e0-8ac2-47f7-9869-d99e49173358" name="Changes" comment="Merged master into main">
-      <change afterPath="$PROJECT_DIR$/app/views/friendship_requests/accept.js.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/friendship_requests/create.js.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/friendship_requests/destroy.js.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/friendship_requests/reject.js.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/friendships/destroy.js.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/users/_friendship_form.html.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/users/_respond_friendship_request.html.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/users/_retract_friendship_request.html.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/users/_send_friendship_request.html.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/users/_unfriend.html.erb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/users_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/users_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/api/calendar_events_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/api/calendar_events_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/helpers/calendar_helper.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers/calendar_helper.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/react_components/calendars/CalendarEventPopup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/react_components/calendars/CalendarEventPopup.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/react_components/calendars/CalendarPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/react_components/calendars/CalendarPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/calendar_event.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/calendar_event.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/models/user.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/user.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/layouts/_header.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/_header.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/users/_user.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/users/_user.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/users/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/users/show.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/schema.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/schema.rb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

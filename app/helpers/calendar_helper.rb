@@ -33,7 +33,8 @@ module CalendarHelper
           type: event.team_id.nil? ? 'personal_event' : 'team_event',
           description: event.description,
           real_id: event.id,
-          all_day_event: event.all_day_event
+          all_day_event: event.all_day_event,
+          organizer_id: event.organizer_id
         }
       }
     end

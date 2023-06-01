@@ -63,10 +63,12 @@ const CalendarPage = (props) => {
       event_start: clickedEvent.start.value,
       event_end: clickedEvent.end.value,
       type: clickedEvent.tags.type,
-      real_id: clickedEvent.tags.real_id
+      real_id: clickedEvent.tags.real_id,
+      organizer: clickedEvent.tags.organizer_id === props.currentUserId
     }
     setNewEvent(false)
 
+    console.log("SALUT", clickedEvent.tags.organizer_id === props.currentUserId)
     if(clickedEvent.tags.type.includes('task')){
       setCalendarTaskPopupOpen(true)
     } else {

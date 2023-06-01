@@ -1,7 +1,7 @@
 class Api::CalendarEventsController < ApplicationController
   before_action :logged_in_user
-  before_action :correct_user, only: %i[update destroy]
   before_action :load_calendar_event, only: %i[update destroy]
+  before_action :correct_user, only: %i[update destroy]
   # before_action :team_member_for_team_events
 
   def create
