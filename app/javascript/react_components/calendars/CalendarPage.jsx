@@ -4,14 +4,22 @@ import PropTypes from 'prop-types'
 import Calendar from "react-calendar";
 import {DayPilot, DayPilotCalendar} from "daypilot-pro-react";
 import {formatDate} from "../shared/calendar_helper";
+import CalendarEventPopup from "./CalendarEventPopup";
+import CalendarTaskPopup from "./CalendarTaskPopup";
 
 const CalendarPage = (props) => {
   const [calendarType, setCalendarType] = useState('today') // 1 -> today, 2 -> 3days, 3 -> week
   const [selectedDate, setSelectedDate] = useState(new Date(props.currentDate.year, props.currentDate.month, props.currentDate.day))
   const [pilotSelectedDate, setPilotSelectedDate] = useState(DayPilot.Date.today())
   const [calendarReference, setCalendarReference] = useState(React.createRef())
-  const [createEventModalOpen, setCreateEventModalOpen] = useState(false)
+
+  const [calendarEventPopupOpen, setCalendarEventPopupOpen] = useState(false)
+  const [calendarTaskPopupOpen, setCalendarTaskPopupOpen] = useState(false)
+
   const [events, setEvents] = useState([])
+
+  const [newEvent, setNewEvent] = useState(true)
+  const [eventData, setEventData] = useState({})
 
   const getTasks = () => {
     const url = props.userCalendar ?
@@ -47,6 +55,29 @@ const CalendarPage = (props) => {
     return calendarReference.current.control
   }
 
+  const handleClickCalendarEvent = (clickedEvent) => {
+    const clickedEventData = {
+      name: clickedEvent.text,
+      description: clickedEvent.tags.description,
+      all_day_event: clickedEvent.allday,
+      event_start: clickedEvent.start.value,
+      event_end: clickedEvent.end.value,
+      type: clickedEvent.tags.type,
+      real_id: clickedEvent.tags.real_id
+    }
+    setNewEvent(false)
+
+    if(clickedEvent.tags.type.includes('task')){
+      setCalendarTaskPopupOpen(true)
+    } else {
+      setCalendarEventPopupOpen(true)
+    }
+    console.log(clickedEventData)
+    console.log("salut")
+    setEventData(clickedEventData)
+    console.log("again")
+  }
+
   useEffect(getTasks, [])
   useEffect(() => {calendar().update({events})})
 
@@ -72,8 +103,12 @@ const CalendarPage = (props) => {
         </div>
       </div>
       <button
-        className='btn btn-primary'>
-        Create Event
+        className='btn btn-primary'
+        onClick={() => {
+          setCalendarEventPopupOpen(true)
+          setNewEvent(true)
+        }}>
+        {`Create ${props.userCalendar ? '' : 'Team '}Event`}
       </button>
       { calendarType === 'today' &&
         <DayPilotCalendar
@@ -82,6 +117,9 @@ const CalendarPage = (props) => {
           startDate={pilotSelectedDate}
           showAllDayEvents={true}
           allDayEnd={"Date"}
+          onEventClick={(args) => {
+            handleClickCalendarEvent(args.e.data)
+          }}
           // onTimeRangeSelected={args => {
           //   calendar().message("Selected range: " + args.start.toString("hh:mm tt") + " - " + args.end.toString("hh:mm tt"));
           // }}
@@ -96,6 +134,9 @@ const CalendarPage = (props) => {
           days={3}
           showAllDayEvents={true}
           allDayEnd={"Date"}
+          onEventClick={(args) => {
+            handleClickCalendarEvent(args.e.data)
+          }}
         />
       }
       { calendarType === 'week' &&
@@ -107,8 +148,27 @@ const CalendarPage = (props) => {
           weekStarts={1} // Week starts on Monday
           showAllDayEvents={true}
           allDayEnd={"Date"}
+          onEventClick={(args) => {
+            handleClickCalendarEvent(args.e.data)
+          }}
         />
       }
+      <CalendarEventPopup
+        defaultDate={(new Date(props.currentDate.year, props.currentDate.month, props.currentDate.day + 1, 15)).toISOString().slice(0, 16)}
+        newEvent={newEvent}
+        event={eventData}
+        calendarEventPopupOpen={calendarEventPopupOpen}
+        setCalendarEventPopupOpen={setCalendarEventPopupOpen}
+        currentTeamId={props.currentTeamId}
+        currentUserId={props.currentUserId}
+        getTasks={getTasks}
+      />
+      <CalendarTaskPopup
+        defaultDate={(new Date(props.currentDate.year, props.currentDate.month, props.currentDate.day + 1, 15)).toISOString().slice(0, 16)}
+        task={eventData}
+        calendarTaskPopupOpen={calendarTaskPopupOpen}
+        setCalendarTaskPopupOpen={setCalendarTaskPopupOpen}
+      />
     </div>
   )
 }

@@ -69,6 +69,7 @@ Rails.application.routes.draw do
         get :calendar_filtered_events
       end
     end
+    resources :calendar_events
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

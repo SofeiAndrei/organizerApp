@@ -22,9 +22,11 @@ class Api::UsersController < ApplicationController
   def calendar_filtered_events
     calendar_events = []
     tasks = @user.tasks
+    user_calendar_events = @user.calendar_events
 
     calendar_events.concat(format_tasks(tasks[:assigned_tasks], false, 0))
     calendar_events.concat(format_tasks(tasks[:individual_tasks], true, calendar_events.length))
+    calendar_events.concat(format_events(user_calendar_events, calendar_events.length))
 
     render json: { events: calendar_events }
   end

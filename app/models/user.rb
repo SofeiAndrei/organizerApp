@@ -12,6 +12,9 @@ class User < ApplicationRecord
   has_many :assigned_tasks, class_name: 'TeamProjectTask',
                             foreign_key: 'assignee_id',
                             dependent: :nullify
+  has_many :calendar_events, class_name: 'CalendarEvent',
+                             foreign_key: 'organizer_id',
+                             dependent: :destroy
 
   attr_accessor :remember_token, :activation_token, :reset_token  # adauga remember_token si activation_token ca atribut, nu il pune in DB
 

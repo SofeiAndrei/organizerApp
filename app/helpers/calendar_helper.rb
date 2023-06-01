@@ -11,7 +11,29 @@ module CalendarHelper
         allday: true,
         tags: {
           type: personal ? 'personal_task' : 'team_task',
-          task_id: task.id
+          description: task.description,
+          real_id: task.id,
+          all_day_event: true
+        }
+      }
+    end
+  end
+
+  def format_events(events, start_index)
+    current_index = start_index
+    events.map do |event|
+      current_index += 1
+      {
+        id: current_index + 1,
+        text: event.name,
+        start: event.event_start,
+        end: event.event_end,
+        allday: event.all_day_event,
+        tags: {
+          type: event.team_id.nil? ? 'personal_event' : 'team_event',
+          description: event.description,
+          real_id: event.id,
+          all_day_event: event.all_day_event
         }
       }
     end
