@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_27_140219) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_31_122832) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -40,6 +40,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_27_140219) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "calendar_events", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.integer "organizer_id", null: false
+    t.integer "team_id"
+    t.datetime "event_start"
+    t.datetime "event_end"
+    t.boolean "all_day_event", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["organizer_id", "team_id"], name: "index_calendar_events_on_organizer_id_and_team_id"
   end
 
   create_table "individual_task_tag_relationships", force: :cascade do |t|
@@ -104,7 +117,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_27_140219) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "assignee_id"
-    t.integer "creator_id", null: false
+    t.integer "creator_id"
     t.index ["creator_id"], name: "index_team_project_tasks_on_creator_id"
     t.index ["team_project_id", "created_at"], name: "team_project_tasks_index_on_team_project_id_and_created_at"
     t.index ["team_project_id"], name: "index_team_project_tasks_on_team_project_id"

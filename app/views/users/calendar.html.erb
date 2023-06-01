@@ -1,0 +1,7 @@
+<%= stylesheet_pack_tag '' %>
+<h2>Your Calendar</h2>
+<%= react_component('CalendarPage',
+                    currentDate: @current_date,
+                    userCalendar: true,
+                    currentUserId: current_user.id,
+                    currentTeamId: nil) %>

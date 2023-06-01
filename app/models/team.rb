@@ -9,6 +9,8 @@ class Team < ApplicationRecord
                               dependent: :destroy
   has_many :invited_users, through: :team_invitations, source: :invited
   has_many :team_projects, dependent: :destroy
+  has_many :team_project_tasks, through: :team_projects
+  has_many :calendar_events
 
   validates :name, presence: true,
                    length: { minimum: 5, maximum: 40 }
@@ -33,5 +35,9 @@ class Team < ApplicationRecord
 
   def retract_invitation(user)
     self.invited_users.delete(user)
+  end
+
+  def tasks
+    self.team_project_tasks
   end
 end

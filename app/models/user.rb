@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :user_todo_lists, dependent: :destroy
+  has_many :individual_tasks, through: :user_todo_lists
   has_many :team_memberships, class_name: 'TeamMembership',
                               foreign_key: 'member_id',
                               dependent: :destroy
@@ -11,6 +12,9 @@ class User < ApplicationRecord
   has_many :assigned_tasks, class_name: 'TeamProjectTask',
                             foreign_key: 'assignee_id',
                             dependent: :nullify
+  has_many :calendar_events, class_name: 'CalendarEvent',
+                             foreign_key: 'organizer_id',
+                             dependent: :destroy
 
   attr_accessor :remember_token, :activation_token, :reset_token  # adauga remember_token si activation_token ca atribut, nu il pune in DB
 
@@ -81,6 +85,13 @@ class User < ApplicationRecord
 
   def password_reset_expired?
     self.reset_sent_at < 2.hours.ago
+  end
+
+  def tasks
+    {
+      individual_tasks: self.individual_tasks,
+      assigned_tasks: self.assigned_tasks
+    }
   end
 
   private
