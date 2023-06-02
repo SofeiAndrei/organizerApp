@@ -79,6 +79,11 @@ Rails.application.routes.draw do
       end
     end
     resources :calendar_events
+    resources :task_comments, only: %i[create destroy] do
+      collection do
+        get '/:task_id', to: 'task_comments#comments_for_task'
+      end
+    end
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

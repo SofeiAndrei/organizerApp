@@ -365,3 +365,40 @@ textarea {
     }
   }
 }
+
+.team_project_task_view_modal {
+  width: 70vw;    /* Occupy the 70% of the screen width */
+  .team-project-task-info{
+    height: 100%;
+    width: 33%;
+    border-left: 1px solid;
+    border-color: #2f3030;
+    padding-left: 20px;
+    p, input, textarea, label{
+      max-width: 100%;
+      overflow-x: auto;
+      overflow-wrap: break-word;
+    }
+  }
+  .team-project-task-comments-container {
+    height: 100%;
+    width: 67%;
+    display: flex;
+    .team-project-task-comments {
+      overflow-y: auto;
+      height: 100%;
+      width: 100%;
+      .comment{
+        .comment-writer{
+          font-size: 1.1*12px;
+        }
+        .comment-content{
+          font-size: 1.1*14px;
+        }
+        .comment-created_at-time{
+          font-size: 1.1*10px;
+        }
+      }
+    }
+  }
+}

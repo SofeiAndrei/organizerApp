@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_01_194437) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_02_144007) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -117,6 +117,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_01_194437) do
     t.index ["user_todo_list_id"], name: "index_individual_tasks_on_user_todo_list_id"
   end
 
+  create_table "task_comments", force: :cascade do |t|
+    t.bigint "team_project_task_id", null: false
+    t.integer "writer_id"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["team_project_task_id", "created_at"], name: "index_task_comments_on_team_project_task_id_and_created_at"
+    t.index ["team_project_task_id"], name: "index_task_comments_on_team_project_task_id"
+  end
+
   create_table "team_invitations", force: :cascade do |t|
     t.integer "invited_id"
     t.integer "team_id"
@@ -200,6 +210,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_01_194437) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "individual_task_tags", "user_todo_lists"
   add_foreign_key "individual_tasks", "user_todo_lists"
+  add_foreign_key "task_comments", "team_project_tasks"
   add_foreign_key "team_project_tasks", "team_projects"
   add_foreign_key "team_projects", "teams"
   add_foreign_key "user_todo_lists", "users"

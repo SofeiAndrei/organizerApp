@@ -2,6 +2,7 @@ class TeamProjectTask < ApplicationRecord
   belongs_to :team_project
   belongs_to :creator, class_name: 'User', foreign_key: :creator_id
   belongs_to :assignee, class_name: 'User', foreign_key: :assignee_id, optional: true
+  has_many :task_comments, dependent: :destroy
 
   validates :team_project_id, presence: true
   validates :creator_id, presence: true
