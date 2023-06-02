@@ -15,6 +15,8 @@ class User < ApplicationRecord
   has_many :calendar_events, class_name: 'CalendarEvent',
                              foreign_key: 'organizer_id',
                              dependent: :destroy
+  has_many :calendar_event_invitations, dependent: :destroy
+  has_many :events_invited_to, through: :calendar_event_invitations, source: :calendar_event
   has_many :sent_friendship_requests, class_name: 'FriendshipRequest',
                                       foreign_key: 'sender_id',
                                       dependent: :destroy

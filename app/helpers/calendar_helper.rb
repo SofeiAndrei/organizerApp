@@ -21,7 +21,14 @@ module CalendarHelper
 
   def format_events(events, start_index)
     current_index = start_index
+
     events.map do |event|
+      mapped_users = event.invited_users.map do |user|
+        {
+          data: user,
+          answer: event.calendar_event_invitations.find_by(user_id: user.id).answer
+        }
+      end
       current_index += 1
       {
         id: current_index + 1,
@@ -33,7 +40,9 @@ module CalendarHelper
           type: event.team_id.nil? ? 'personal_event' : 'team_event',
           description: event.description,
           real_id: event.id,
-          all_day_event: event.all_day_event
+          all_day_event: event.all_day_event,
+          organizer_id: event.organizer_id,
+          invited_users: mapped_users
         }
       }
     end
