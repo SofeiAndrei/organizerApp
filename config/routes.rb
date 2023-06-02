@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  get 'team_project_tasks/create'
-  get 'team_project_tasks/update'
-  get 'team_project_tasks/destroy'
   get 'password_resets/new'
   get 'password_resets/edit'
   root 'static_pages#home'
@@ -10,6 +7,7 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
+  patch '/calendar_event_invitations/:calendar_event_id/:user_id/:answer', to: 'calendar_event_invitations#update'
 
   resources :users do
     member do
@@ -52,6 +50,7 @@ Rails.application.routes.draw do
     end
   end
   resources :friendships, only: %i[destroy]
+  resources :calendar_event_invitations, only: [:destroy]
 
   namespace :api, defaults: { format: :json } do
     resources :users do

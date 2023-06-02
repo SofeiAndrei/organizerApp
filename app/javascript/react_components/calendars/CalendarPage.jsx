@@ -64,7 +64,8 @@ const CalendarPage = (props) => {
       event_end: clickedEvent.end.value,
       type: clickedEvent.tags.type,
       real_id: clickedEvent.tags.real_id,
-      organizer: clickedEvent.tags.organizer_id === props.currentUserId
+      organizer_id: clickedEvent.tags.organizer_id,
+      invited_users: clickedEvent.tags.invited_users
     }
     setNewEvent(false)
 
@@ -164,6 +165,7 @@ const CalendarPage = (props) => {
         currentTeamId={props.currentTeamId}
         currentUserId={props.currentUserId}
         getTasks={getTasks}
+        invitableUsers={props.invitableUsers}
       />
       <CalendarTaskPopup
         defaultDate={(new Date(props.currentDate.year, props.currentDate.month, props.currentDate.day + 1, 15)).toISOString().slice(0, 16)}
@@ -181,5 +183,6 @@ CalendarPage.propTypes = {
   currentDate: PropTypes.object,
   userCalendar: PropTypes.bool,
   currentUserId: PropTypes.number,
-  currentTeamId: PropTypes.number
+  currentTeamId: PropTypes.number,
+  invitableUsers: PropTypes.array
 }

@@ -5,5 +5,5 @@ class CalendarEventInvitation < ApplicationRecord
   validates :user_id, presence: true
   validates :calendar_event_id, presence: true
 
-  enum answer: { none: 1, yes: 2, no: 3, organizer: 4 }
+  enum answer: { no_answer: 1, yes: 2, no: 3, organizer: 4 }
 end
