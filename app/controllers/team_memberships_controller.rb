@@ -17,7 +17,11 @@ class TeamMembershipsController < ApplicationController
   end
 
   def destroy
-    @team_membership = TeamMembership.find(params[:id]).destroy
+    @team_membership = TeamMembership.includes(:member, team: :team_projects).find(params[:id])
+    @member = @team_membership.member
+    @team_projects_ids = @team_membership.team.team_projects.pluck(:id)
+    TeamProjectTask.where(team_project_id: @team_projects_ids, assignee_id: @member.id).update_all(assignee_id: nil)
+    @team_membership.destroy
   end
 
   private
