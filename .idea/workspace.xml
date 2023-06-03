@@ -6,7 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="e28e46e0-8ac2-47f7-9869-d99e49173358" name="Changes" comment="Merged master into main">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/team_memberships_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/team_memberships_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/react_components/calendars/CalendarEventPopup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/react_components/calendars/CalendarEventPopup.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/users/calendar.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/users/calendar.html.erb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
