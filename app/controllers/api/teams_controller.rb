@@ -4,12 +4,6 @@ class Api::TeamsController < ApplicationController
   before_action :team_member
 
   def calendar_filtered_events
-    puts params[:filters]
-
-    puts params[:filters][:team_projects_ids]
-    puts params[:filters][:team_members_ids]
-    puts params[:filters][:team_members_ids][-1].nil?
-
     calendar_events = []
 
     selected_team_projects_ids = params[:filters][:team_projects_ids]

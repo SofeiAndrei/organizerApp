@@ -29,8 +29,14 @@ const CalendarPage = (props) => {
       `/api/users/${props.currentUserId}/calendar_filtered_events` :
       `/api/teams/${props.currentTeamId}/calendar_filtered_events`
 
+    let data
+    if(props.userCalendar){
+      data = {filters: {team_projects_ids: selectedFilters.team_projects.map(project => project.id), teams_ids: selectedFilters.teams.map(team => team.id), personal: selectedFilters.personal}}
+    } else {
+      data = {filters: {team_projects_ids: selectedFilters.team_projects.map(project => project.id), team_members_ids: selectedFilters.team_members.map(member => member.id)}}
+    }
     console.log(url)
-    callAPI(url, 'GET', {filters: {team_projects_ids: selectedFilters.team_projects.map(project => project.id), team_members_ids: selectedFilters.team_members.map(member => member.id)}})
+    callAPI(url, 'GET', data)
       .then((json) => {
         console.log(json)
         const events = json.events
