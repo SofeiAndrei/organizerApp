@@ -5,7 +5,7 @@ const TagSelector = (props) => {
   console.log("Available tags", props.availableTags)
   return (
     <select
-      className='tag-selector'
+      className='tag-selector form-control'
       defaultValue={props.selectedTag.id}
       onChange={(e) => {
         console.log(e.target.value)

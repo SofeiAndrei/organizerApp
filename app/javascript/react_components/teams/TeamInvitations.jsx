@@ -29,7 +29,7 @@ const TeamInvitations = (props) => {
 
   return (
     <div className='team_invites'>
-      <h4>Sent Team Invitations</h4>
+      <h3>{`Sent Team Invitations (${props.invitedUsers ? props.invitedUsers.length : 0})`}</h3>
       {props.invitedUsers.map((user) => (
         <div key={user.id} className='team_invitation'>
           {user.name}

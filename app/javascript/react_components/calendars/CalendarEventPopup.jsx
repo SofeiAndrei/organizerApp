@@ -140,21 +140,21 @@ const CalendarEventPopup = (props) => {
           <div>
             <div>
               <label htmlFor="name">Name:</label>
-              <input type='text' id='name' placeholder='Add a name...' value={name} onChange={(e) => setName(e.target.value)}/>
+              <input className='form-control' type='text' id='name' placeholder='Add a name...' value={name} onChange={(e) => setName(e.target.value)}/>
             </div>
             <div>
               <label htmlFor="description">Description:</label>
-              <textarea className='description-input' id='description' placeholder='Add a description...' value={description} onChange={(e) => setDescription(e.target.value)}/>
+              <textarea className='description-input form-control' id='description' placeholder='Add a description...' value={description} onChange={(e) => setDescription(e.target.value)}/>
             </div>
             <div>
               <label htmlFor="all-day-event">All Day Event:</label>
-              <input type='checkbox' id='all-day-event' checked={allDayEvent} onChange={() => setAllDayEvent(!allDayEvent)}/>
+              <input className='form-control' type='checkbox' id='all-day-event' checked={allDayEvent} onChange={() => setAllDayEvent(!allDayEvent)}/>
             </div>
             {allDayEvent ? (
               <div>
                 <div>
                   <label htmlFor="event-start">Event Start Time:</label>
-                  <input type="date" id="event-start" name="event-start" value={eventStart.slice(0, 10)} onChange={(e) => {
+                  <input className='form-control' type="date" id="event-start" name="event-start" value={eventStart.slice(0, 10)} onChange={(e) => {
                     setEventStart(e.target.value)
                     const startDate = new Date(e.target.value).getTime()
                     const endDate = new Date(eventEnd).getTime()
@@ -165,14 +165,14 @@ const CalendarEventPopup = (props) => {
                 </div>
                 <div>
                   <label htmlFor="event-end">Event End Time:</label>
-                  <input type="date" id="event-end" name="event-end" value={eventEnd.slice(0, 10)} min={eventStart.slice(0, 10)} onChange={(e) => setEventEnd(e.target.value)}/>
+                  <input className='form-control' type="date" id="event-end" name="event-end" value={eventEnd.slice(0, 10)} min={eventStart.slice(0, 10)} onChange={(e) => setEventEnd(e.target.value)}/>
                 </div>
               </div>
             ) : (
               <div>
                 <div>
                   <label htmlFor="event-start">Event Start Time:</label>
-                  <input type="datetime-local" id="event-start" name="event-start" value={eventStart} onChange={(e) => {
+                  <input className='form-control' type="datetime-local" id="event-start" name="event-start" value={eventStart} onChange={(e) => {
                     setEventStart(e.target.value)
                     const startDate = new Date(e.target.value).getTime()
                     const endDate = new Date(eventEnd).getTime()
@@ -183,7 +183,7 @@ const CalendarEventPopup = (props) => {
                 </div>
                 <div>
                   <label htmlFor="event-end">Event End Time:</label>
-                  <input type="datetime-local" id="event-end" name="event-end" value={eventEnd} min={eventStart} onChange={(e) => setEventEnd(e.target.value)}/>
+                  <input className='form-control' type="datetime-local" id="event-end" name="event-end" value={eventEnd} min={eventStart} onChange={(e) => setEventEnd(e.target.value)}/>
                 </div>
               </div>
             )}
@@ -196,6 +196,7 @@ const CalendarEventPopup = (props) => {
                   {user.data.id !== props.currentUserId &&
                     <td key={user.data.id}>
                       <button
+                        className='btn btn-primary button-dark-red'
                         onClick={() => handleRemoveInvitedUser(user.data.id)}
                       >
                         Remove
@@ -209,7 +210,7 @@ const CalendarEventPopup = (props) => {
             {invitedUsers.length !== props.invitableUsers.length &&
               <button
                 onClick={() => setShowInviteUserSelector(true)}
-                className='btn btn-primary'
+                className='btn btn-primary button-dark'
               >Invite User
               </button>
             }
@@ -238,6 +239,7 @@ const CalendarEventPopup = (props) => {
                       {props.currentUserId !== props.event.organizer_id && props.currentUserId === user.data.id &&
                         <td>
                           <select
+                            className='form-control'
                             onChange={(e) => {setYourAnswer(e.target.value)}}
                             defaultValue={yourAnswer}
                           >
@@ -248,7 +250,7 @@ const CalendarEventPopup = (props) => {
                           ))}
                           </select>
                           {yourAnswer !== user.answer &&
-                            <button onClick={handleSendAnswer}>
+                            <button className='btn btn-primary button-dark' onClick={handleSendAnswer}>
                               Send Answer
                             </button>
                           }
@@ -263,10 +265,10 @@ const CalendarEventPopup = (props) => {
         )}
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={() => cancelChanges()}>{props.newEvent ? 'Cancel' : 'Back'}</Button>
-        <Button className={props.newEvent || editPressed || props.event.organizer_id !== props.currentUserId ? 'hidden' : ''}
+        <Button className='btn btn-primary button-dark' onClick={() => cancelChanges()}>{props.newEvent ? 'Cancel' : 'Back'}</Button>
+        <Button className={props.newEvent || editPressed || props.event.organizer_id !== props.currentUserId ? 'hidden' : 'btn btn-primary button-dark'}
                 onClick={() => setEditPressed(true)}>{'Edit'}</Button>
-        <Button className={props.newEvent || (editPressed && props.event.organizer_id === props.currentUserId) ? '' : 'hidden'}
+        <Button className={props.newEvent || (editPressed && props.event.organizer_id === props.currentUserId) ? 'btn btn-primary button-dark' : 'hidden'}
                 onClick={() => onSave()}>{'Save'}</Button>
       </Modal.Footer>
     </Modal>

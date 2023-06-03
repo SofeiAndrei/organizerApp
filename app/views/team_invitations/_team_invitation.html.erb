@@ -1,5 +1,5 @@
 <li>
-  <%= link_to team_invitation.team_name, team_path(team_invitation.team_id) %>
-  <%= link_to "Accept", accept_team_invitation_path(team_invitation), method: "delete" %>
-  <%= link_to "Reject", reject_team_invitation_path(team_invitation), method: "delete",  data: {confirm: "Are you sure?"}%>
+  <%= link_to team_invitation.team_name, team_path(team_invitation.team_id), class: 'user-team-invitation' %>
+  <%= link_to "Accept", accept_team_invitation_path(team_invitation), method: "delete", class: 'btn btn-primary button-dark' %>
+  <%= link_to "Reject", reject_team_invitation_path(team_invitation), method: "delete", class: 'btn btn-primary button-dark',  data: {confirm: "Are you sure?"}%>
 </li>

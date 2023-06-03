@@ -53,7 +53,7 @@ const TeamPage = (props) => {
       {props.userIsTeamAdmin &&
         <div className='team-admin-commands'>
           <button
-            className='btn btn-primary'
+            className='btn btn-primary button-dark'
             onClick={() => {setAddUserToTeamModalOpen(true)}}
           >Invite Users
           </button>
@@ -63,18 +63,20 @@ const TeamPage = (props) => {
       }
       <TeamMembers teamMemberships={props.teamMemberships} members={props.members} userIsTeamOwner={props.userIsTeamOwner} currentUserId={props.currentUserId}/>
       <TeamProjectIndex team={props.team} userIsTeamAdmin={props.userIsTeamAdmin} userIsTeamOwner={props.userIsTeamOwner} teamProjects={props.teamProjects}/>
-      <a href={`/teams/${props.team.id}/calendar`} className='btn btn-primary'>Team Calendar</a>
+      <br/>
+      <a href={`/teams/${props.team.id}/calendar`} className='btn btn-primary button-dark'>Team Calendar</a>
       {props.userIsTeamOwner ? (
         <div className='team-owner-commands'>
-          <a href={`/teams/${props.team.id}/edit`} className='btn btn-primary'>Edit Team</a>
+          <a href={`/teams/${props.team.id}/edit`} className='btn btn-primary button-dark'>Edit Team</a>
+          <br/>
           <button
-            className='btn btn-primary btn-danger delete-list-button'
+            className='btn btn-primary btn-danger delete-list-button button-dark-red'
             onClick={() => {handleTeamDelete()}}>Delete
           </button>
         </div>
       ) : (
         <button
-          className='btn btn-primary btn-danger'
+          className='btn btn-primary button-dark-red'
           onClick={handleLeaveTeam}
         >Leave Team
         </button>

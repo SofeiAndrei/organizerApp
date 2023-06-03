@@ -120,7 +120,7 @@ const CalendarPage = (props) => {
         </div>
       </div>
       <button
-        className='btn btn-primary'
+        className='btn btn-primary button-dark'
         onClick={() => {
           setCalendarEventPopupOpen(true)
           setNewEvent(true)

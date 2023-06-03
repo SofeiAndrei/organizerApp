@@ -85,7 +85,7 @@ const ProjectTasksBoard = (props) => {
 
   return (
     <div>
-      <button className='btn btn-primary'
+      <button className='btn btn-primary button-dark'
               onClick={() => {setNewProjectTaskModalOpen(true)}}>
         Create new Task
       </button>

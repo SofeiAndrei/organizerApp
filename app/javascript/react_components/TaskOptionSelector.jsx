@@ -10,7 +10,7 @@ const TaskOptionSelector = (props) => {
           props.onBlur()
         }
       }}
-      className='task-option-selector'
+      className='task-option-selector form-control'
       defaultValue={props.selectedOption}
       onChange={(e) => {
         console.log(e.target.value)

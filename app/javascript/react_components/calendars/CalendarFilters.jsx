@@ -167,8 +167,8 @@ const CalendarFilters = (props) => {
           )}
         </div>
       )}
-      <button onClick={handleResetFilters} className='btn btn-primary'>Reset</button>
-      <button onClick={handleApplyFilters} className='btn btn-primary'>Apply</button>
+      <button onClick={handleResetFilters} className='btn btn-primary button-dark-red'>Reset</button>
+      <button onClick={handleApplyFilters} className='btn btn-primary button-dark'>Apply</button>
     </div>
   )
 }

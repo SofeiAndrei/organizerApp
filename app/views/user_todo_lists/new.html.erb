@@ -1,7 +1,11 @@
-<%= form_with url: user_user_todo_lists_url(@user), method: :post do |f| %>
-  <%= render 'shared/error_messages', object: @user_todo_list %>
-  <div class="field">
-    <%=f.text_field :name, placeholder: 'List name'%>
-  </div>
-  <%= f.submit "Create List", class: 'btn btn-primary' %>
-<% end %>
+<div class='col-md-6 col-md-offset-3 jumbotron'>
+  <h1>Create a new Todo List</h1>
+  <%= form_with url: user_user_todo_lists_url(@user), method: :post do |f| %>
+    <%= render 'shared/error_messages', object: @user_todo_list %>
+    <div class="field">
+      <%= f.label :list_name %>
+      <%= f.text_field :name, placeholder: 'List name', class: 'form-control' %>
+    </div>
+    <%= f.submit "Create List", class: 'btn btn-primary button-dark' %>
+  <% end %>
+</div>

@@ -55,17 +55,18 @@ const ToDoList = (props) => {
   useEffect(getTasks, [])
 
 	return (
-    <div className='todo-list'>
+    <div className='todo-list jumbotron'>
       <h1>
         {props.todoList.name}
       </h1>
       <div className='d-flex justify-content-between'>
-        <button className='btn btn-primary'
+        <button className='btn btn-primary button-dark'
                 onClick={() => {setNewTaskFormModalOpen(true)}}>
           Create new Task
         </button>
+        {' '}
         <button
-          className='btn btn-primary btn-danger delete-list-button'
+          className='btn btn-primary btn-primary button-dark-red'
           onClick={() => {handleListDelete()}}
         >Delete</button>
       </div>

@@ -146,11 +146,12 @@ const IndividualTask = (props) => {
               />
             </p>
             <button
-              className='delete-task-button'
+              className='btn btn-primary button-dark-red'
               onClick={() => {props.handleTaskDelete()}
               }>Delete Task</button>
+            {' '}
             <button
-              className='edit-task-button'
+              className='btn btn-primary button-dark'
               onClick={() => {
                 setEditPressed(true)
               }}
@@ -163,7 +164,7 @@ const IndividualTask = (props) => {
             <div className='card-title'>
               <label htmlFor="name">Name:</label>
               <input
-                className='card-title'
+                className='card-title form-control'
                 type='text'
                 value={name}
                 onChange={(e) => setName(e.target.value)}
@@ -172,7 +173,7 @@ const IndividualTask = (props) => {
             <p className='card-text'>
               <label htmlFor="description">Description:</label>
               <textarea
-                className='description-input'
+                className='description-input form-control'
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
               />
@@ -187,7 +188,7 @@ const IndividualTask = (props) => {
                           {tag.name}
                         </div>
                       </div>
-                      <a type='button' className='delete-tag-button' onClick={() => onTagDelete(tag)}>
+                      <a type='button' className='btn btn-xs btn-primary delete-tag-button button-dark-red' onClick={() => onTagDelete(tag)}>
                         x
                       </a>
                     </div>
@@ -197,7 +198,7 @@ const IndividualTask = (props) => {
             </div>
             <span className='add-tag'>
               <a
-                className='add-tag-button'
+                className='add-tag-button btn btn-primary btn-xs button-dark'
                 onClick={() => setTagModalOpen(true)}>
                 <span>Add</span>
               </a>
@@ -209,6 +210,7 @@ const IndividualTask = (props) => {
             <p className='card-text'>
               <label htmlFor='deadline'>Deadline:</label>
               <input
+                className='form-control'
                 type="date"
                 value={deadline}
                 onChange={(e) => setDeadline(e.target.value)}
@@ -229,10 +231,11 @@ const IndividualTask = (props) => {
               />
             </p>
             <Button
-              className='edit-task-button-cancel'
+              className='btn btn-primary button-dark'
               onClick={() => { cancelChanges()}}>Cancel</Button>
+            {' '}
             <Button
-              className='edit-task-button-save'
+              className='btn btn-primary button-dark'
               onClick={() => { saveChanges()}}>Save</Button>
           </div>
         }

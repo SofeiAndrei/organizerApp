@@ -172,9 +172,9 @@ const ViewProjectTaskPopup = (props) => {
           <Modal.Title>
             {editingName ? (
               <div>
-                <textarea id='name' value={tempName} onChange={(e) => setTempName(e.target.value)} autoFocus onBlur={cancelNameChanges}/>
-                <button className='btn' onClick={cancelNameChanges}>{'Cancel'}</button>
-                <button className='btn' onClick={saveNameChanges}>{'Save'}</button>
+                <textarea className='form-control' id='name' value={tempName} onChange={(e) => setTempName(e.target.value)} autoFocus onBlur={cancelNameChanges}/>
+                <button className='btn btn-primary button-dark' onClick={cancelNameChanges}>{'Cancel'}</button>
+                <button className='btn btn-primary button-dark' onClick={saveNameChanges}>{'Save'}</button>
               </div>
             ) : (
               <p onClick={() => setEditingName(true)}>{name}</p>
@@ -187,14 +187,14 @@ const ViewProjectTaskPopup = (props) => {
             <div className='row'>
               <div className='col-xs-12 col-sm-7 col-md-7 col-lg-7 col-xl-7 team-project-task-comments-container'>
                 <div className='team-project-task-comments'>
-                  <input type='text' placeholder='Add a comment...' onChange={(e) => setComment(e.target.value)} value={comment}/>
-                  <button className={comment === '' ? 'hidden ' : '' + 'btn btn-primary'} onClick={handleCommentPosted}>Send</button>
+                  <input className='form-control' type='text' placeholder='Add a comment...' onChange={(e) => setComment(e.target.value)} value={comment}/>
+                  <button className={comment === '' ? 'hidden ' : '' + 'btn btn-primary button-dark'} onClick={handleCommentPosted}>Send</button>
                   {comments.map(comment => (
                     <div key={comment.id} className={'comment' + (comment.writer_id === props.currentUserId ? ' align-items-end' : '')}>
                       <a className='comment-writer' href={`/users/${comment.writer.id}`}>{comment.writer.name}</a>
                       <div className='comment-content'>{comment.content}</div>
                       <div className='comment-created_at-time'>{(new Date(comment.created_at)).toString()}</div>
-                      <button onClick={() => handleCommentDelete(comment.id)}>x</button>
+                      <button className='btn btn-xs btn-primary delete-comment-button button-dark-red' onClick={() => handleCommentDelete(comment.id)}>x</button>
                     </div>
                   ))}
                 </div>
@@ -204,9 +204,9 @@ const ViewProjectTaskPopup = (props) => {
                   <label>{'Description'}</label>
                   {editingDescription ? (
                     <div>
-                      <textarea id='description' placeholder='Add a description...' value={tempDescription} onChange={(e) => setTempDescription(e.target.value)} autoFocus onBlur={cancelDescriptionChanges}/>
-                      <button className='btn' onClick={cancelDescriptionChanges}>{'Cancel'}</button>
-                      <button className='btn' onClick={saveDescriptionChanges}>{'Save'}</button>
+                      <textarea className='form-control' id='description' placeholder='Add a description...' value={tempDescription} onChange={(e) => setTempDescription(e.target.value)} autoFocus onBlur={cancelDescriptionChanges}/>
+                      <button className='btn btn-primary button-dark' onClick={cancelDescriptionChanges}>{'Cancel'}</button>
+                      <button className='btn btn-primary button-dark' onClick={saveDescriptionChanges}>{'Save'}</button>
                     </div>
                   ) : (
                     <p onClick={() => setEditingDescription(true)}>{description ? description : 'Add a description...'}</p>
@@ -249,6 +249,7 @@ const ViewProjectTaskPopup = (props) => {
                     <div>
                       <div>
                         <input
+                          className='form-control'
                           autoFocus
                           type="date"
                           value={deadline}
@@ -281,13 +282,13 @@ const ViewProjectTaskPopup = (props) => {
         </Modal.Body>
         <Modal.Footer>
           {(props.userIsTeamAdmin || props.currentUserId === props.data.task.creator_id) && (
-            <Button className='btn btn-danger' onClick={() => {
+            <Button className='btn btn-primary button-dark-red' onClick={() => {
               handleModalClose()
               props.handleTaskDelete(props.data.task)
             }}>Delete</Button>
           )}
-          <Button onClick={() => handleModalClose()}>Cancel</Button>
-          <Button className={changesHaveBeenMade() ? '' : 'hidden'} onClick={SaveChanges}>Save</Button>
+          <Button className='btn btn-primary button-dark' onClick={() => handleModalClose()}>Cancel</Button>
+          <Button className='btn btn-primary button-dark-red' className={changesHaveBeenMade() ? '' : 'hidden'} onClick={SaveChanges}>Save</Button>
         </Modal.Footer>
       </Modal>
     )

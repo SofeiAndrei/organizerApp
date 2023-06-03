@@ -32,7 +32,6 @@ h1{
 h2{
   margin-bottom: 25px;
   text-align: center;
-  color: $rosu-inchis;
 }
 p{
   font-size: 1.1*16px;
@@ -53,6 +52,11 @@ img{
   display:none;
 }
 */
+a{
+  &:hover{
+    color: $rosu-inchis;
+  }
+}
 
 @mixin box_sizing {
   -moz-box-sizing: border-box;
@@ -69,6 +73,8 @@ img{
 
 aside{
   section.user-info{
+    display: inline-block;
+    font-size: 20px;
     margin-top: 30px;
   }
   section{
@@ -93,8 +99,16 @@ aside{
   }
 }
 .gravatar{
-  float: left;
+  align-items: center;
   margin-right: 5px;
+  .button-change-gravatar{
+    width: 80px;
+    background-color: #2E2F30;
+    color: white;
+    &:hover{
+      background-color: $rosu-inchis;
+    }
+  }
 }
 .gravatar_edit{
   margin-top: 15px;
@@ -104,18 +118,20 @@ aside{
   overflow: auto;
   margin-top: 0;
   padding: 0;
-  a{
+  .user-activated-date, a{
     float: left;
     padding: 0 10px;
     border-left: 1px solid $gray-lighter;
     color: gray;
+  }
+  a{
     &:first-child {
       padding-left: 0;
       border: 0;
     }
     &:hover {
       text-decoration: none;
-      color: blue;
+      color: $rosu-inchis;
     }
   }
   strong {
@@ -138,6 +154,7 @@ aside{
 
 .user-information{
   display: inline-block;
+  vertical-align: top;
 }
 /* forms */
 input, textarea, select, .uneditable-input{
@@ -175,16 +192,13 @@ input{
   }
 }
 
-.checkbox-completed{
-  padding-left: 10px;
-  width: auto
-}
+
 #session_remember_me{  /* asta e stiling-ul al casutei propriu-zise */
   width: auto;
   margin-left: 0;
 }
 
-.users{
+.users, .user_todo_lists, .teams, .team_invitations, .team-projects, .team_members{
   list-style: none;
   margin: 0;
   li{
@@ -193,6 +207,7 @@ input{
     border-bottom: 1px solid $rosu-inchis;
   }
 }
+
 #follow-form{
   padding-top: 30px;
 }
@@ -224,6 +239,7 @@ textarea {
     border-radius: 10px;
     max-width: 500px;
     width: auto;
+    overflow-wrap: break-word;
 
     .card-title{
       font-size: 1.1*16px*1.5;
@@ -257,7 +273,7 @@ textarea {
           min-width: 45px;
           height: 25px;
           text-align: center;
-          background-color: #0275d8;
+          background-color: #2E2F30;
           color: white;
           border-radius: 2px;
           display: flex;
@@ -274,9 +290,7 @@ textarea {
           width: 15px;
           text-align: center;
           vertical-align: top;
-          color: #FFFFFF;
           opacity: 1;
-          background: #DC3545;
           border-radius: 50%;
           margin-right: 10px;
         }
@@ -318,6 +332,7 @@ textarea {
     }
   }
 }
+
 .kanban-container {
   height: 500px;
   overflow: auto;
@@ -405,6 +420,49 @@ textarea {
     }
   }
 }
+
 .team-team-projects-filters{
   padding-left: 10px;
+}
+
+.button-dark{
+  background-color: #2E2F30;
+  border: none;
+  &:hover{
+    background-color: $rosu-inchis;
+  }
+}
+
+.button-dark-red{
+  background-color: $rosu-inchis;
+  border: none;
+  &:hover{
+    background-color: red;
+  }
+}
+
+.friendship-form{
+  display: flex;
+  float: left;
+  padding: 0 10px;
+  .button-friendship-action{
+    background-color: #2E2F30;
+    &:hover{
+      background-color: $rosu-inchis;
+    }
+  }
+}
+
+.user-name-link, .user-todo-list-link, .user-team, .user-team-invitation, .team-project-link, .team-member-link{
+  font-size: 20px;
+  color: black;
+}
+
+.delete-tag-button{
+  width: 15px;
+  text-align: center;
+  vertical-align: top;
+  opacity: 1;
+  border-radius: 50%;
+  margin-right: 10px;
 }
