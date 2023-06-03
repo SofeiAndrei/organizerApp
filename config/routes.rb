@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  get 'team_project_tasks/create'
-  get 'team_project_tasks/update'
-  get 'team_project_tasks/destroy'
   get 'password_resets/new'
   get 'password_resets/edit'
   root 'static_pages#home'
@@ -10,11 +7,14 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
+  patch '/calendar_event_invitations/:calendar_event_id/:user_id/:answer', to: 'calendar_event_invitations#update'
 
   resources :users do
     member do
       get :calendar
       get :my_teams
+      get :friend_list
+      get :common_friends
     end
     resources :user_todo_lists do
       resources :individual_tasks, only: %i[create update destroy]
@@ -25,6 +25,9 @@ Rails.application.routes.draw do
   resources :teams do
     resources :team_projects do
       resources :team_project_tasks, only: %i[create update destroy]
+    end
+    member do
+      get :calendar
     end
   end
   resources :team_memberships, only: %i[create destroy update] do
@@ -40,10 +43,22 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :friendship_requests, only: %i[create destroy] do
+    member do
+      delete :accept
+      delete :reject
+    end
+  end
+  resources :friendships, only: %i[destroy]
+  resources :calendar_event_invitations, only: [:destroy]
+
   namespace :api, defaults: { format: :json } do
     resources :users do
       collection do
         get :search_users
+      end
+      member do
+        get :calendar_filtered_events
       end
     end
     resources :user_todo_lists do
@@ -56,6 +71,17 @@ Rails.application.routes.draw do
     resources :team_projects do
       member do
         get :get_project_tasks
+      end
+    end
+    resources :teams do
+      member do
+        get :calendar_filtered_events
+      end
+    end
+    resources :calendar_events
+    resources :task_comments, only: %i[create destroy] do
+      collection do
+        get '/:task_id', to: 'task_comments#comments_for_task'
       end
     end
   end

@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 import { Modal, Button} from 'react-bootstrap'
 import TaskOptionSelector from "../../../TaskOptionSelector";
+import {callAPI, getAuthenticityToken} from "../../../shared/helpers";
 
 const ViewProjectTaskPopup = (props) => {
   if(props.viewProjectTaskModalOpen) {
@@ -23,6 +24,9 @@ const ViewProjectTaskPopup = (props) => {
     const [editingPriority, setEditingPriority] = useState(false)
     const [editingDeadline, setEditingDeadline] = useState(false)
     const [editingStatus, setEditingStatus] = useState(false)
+
+    const [comment, setComment] = useState('')
+    const [comments, setComments] = useState([])
 
     const teamMemberOptions = [
       {id: 0, name: 'Unassigned'},
@@ -99,8 +103,71 @@ const ViewProjectTaskPopup = (props) => {
       handleModalClose()
     }
 
+    const saveNewComment = (content, writerId, taskId) => {
+      fetch(`/api/task_comments`, {
+        method: 'POST',
+        body: JSON.stringify({
+          task_comment: {
+            content: content,
+            writer_id: writerId,
+            team_project_task_id: taskId
+          }
+        }),
+        headers: {
+          'X-CSRF-Token': getAuthenticityToken(),
+          'Content-Type': "application/json"
+        }})
+        .then((response) => {
+          if(response.ok){
+            getTaskComments()
+            setComment('')
+          }
+          else{
+            throw new Error('Network response was not OK')
+          }
+        })
+        .catch(error => {
+          console.log(error)
+        })
+
+    }
+
+    const getTaskComments = () => {
+      callAPI(`/api/task_comments/${props.data.task.id}`, 'GET')
+        .then((json) => {
+          console.log(json.comments)
+          console.log("got task comments")
+          setComments(json.comments)
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    }
+
+    const handleCommentPosted = () => {
+      console.log("Written comment:", comment)
+      console.log("Call to create a comment with the text:", comment, " the creator_id:", props.currentUserId, " and the task_id:", props.data.task.id)
+      saveNewComment(comment, props.currentUserId, props.data.task.id)
+    }
+
+    const handleCommentDelete = (commentId) => {
+      if (confirm(`Are you sure you want to delete this comment?`)){
+        fetch(`/api/task_comments/${commentId}`, {
+          method: 'DELETE',
+          headers: {'X-CSRF-Token': getAuthenticityToken()}})
+          .then(() => {
+            getTaskComments()
+          })
+          .catch(error => {
+            console.log(error)
+          })
+      }
+    }
+
+    useEffect(() => getTaskComments(), [props.data])
+
     return (
-      <Modal show={props.viewProjectTaskModalOpen} onHide={() => handleModalClose()} animation={false}>
+      <Modal dialogClassName='team_project_task_view_modal' show={props.viewProjectTaskModalOpen} onHide={() => handleModalClose()} animation={false}>
         <Modal.Header>
           <Modal.Title>
             {editingName ? (
@@ -116,81 +183,99 @@ const ViewProjectTaskPopup = (props) => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div className='content'>
-            <div className='description-container'>
-              <label>{'Description'}</label>
-              {editingDescription ? (
-                <div>
-                  <textarea id='description' placeholder='Add a description...' value={tempDescription} onChange={(e) => setTempDescription(e.target.value)} autoFocus onBlur={cancelDescriptionChanges}/>
-                  <button className='btn' onClick={cancelDescriptionChanges}>{'Cancel'}</button>
-                  <button className='btn' onClick={saveDescriptionChanges}>{'Save'}</button>
+          <div className='container'>
+            <div className='row'>
+              <div className='col-xs-12 col-sm-7 col-md-7 col-lg-7 col-xl-7 team-project-task-comments-container'>
+                <div className='team-project-task-comments'>
+                  <input type='text' placeholder='Add a comment...' onChange={(e) => setComment(e.target.value)} value={comment}/>
+                  <button className={comment === '' ? 'hidden ' : '' + 'btn btn-primary'} onClick={handleCommentPosted}>Send</button>
+                  {comments.map(comment => (
+                    <div key={comment.id} className={'comment' + (comment.writer_id === props.currentUserId ? ' align-items-end' : '')}>
+                      <a className='comment-writer' href={`/users/${comment.writer.id}`}>{comment.writer.name}</a>
+                      <div className='comment-content'>{comment.content}</div>
+                      <div className='comment-created_at-time'>{(new Date(comment.created_at)).toString()}</div>
+                      <button onClick={() => handleCommentDelete(comment.id)}>x</button>
+                    </div>
+                  ))}
                 </div>
-              ) : (
-                <p onClick={() => setEditingDescription(true)}>{description ? description : 'Add a description...'}</p>
-              )
-              }
-            </div>
-            <div className='assignee-container'>
-              <label>{'Assignee'}</label>
-              {editingAssignee ? (
-                <div>
-                  <div>
-                    <TaskOptionSelector options={teamMemberOptions} setOption={setAssigneeId} selectedOption={assigneeId} useIdAsValue={true} hasFocus={true} onBlur={() => setEditingAssignee(false)}/>
-                  </div>
+              </div>
+              <div className='col-xs-12 col-sm-5 col-md-5 col-lg-5 col-xl-5 team-project-task-info'>
+                <div className='description-container'>
+                  <label>{'Description'}</label>
+                  {editingDescription ? (
+                    <div>
+                      <textarea id='description' placeholder='Add a description...' value={tempDescription} onChange={(e) => setTempDescription(e.target.value)} autoFocus onBlur={cancelDescriptionChanges}/>
+                      <button className='btn' onClick={cancelDescriptionChanges}>{'Cancel'}</button>
+                      <button className='btn' onClick={saveDescriptionChanges}>{'Save'}</button>
+                    </div>
+                  ) : (
+                    <p onClick={() => setEditingDescription(true)}>{description ? description : 'Add a description...'}</p>
+                  )
+                  }
                 </div>
-              ) : (
-                <p onClick={() => setEditingAssignee(true)}>{teamMemberOptions.filter(member => (assigneeId ? member.id === parseInt(assigneeId) : member.id === assigneeId))[0].name}</p>
-              )
-              }
-              {props.currentUserId !== assigneeId &&
-                <a onClick={() => setAssigneeId(props.currentUserId)}>Assign to me</a>
-              }
+                <div className='assignee-container'>
+                  <label>{'Assignee'}</label>
+                  {editingAssignee ? (
+                    <div>
+                      <div>
+                        <TaskOptionSelector options={teamMemberOptions} setOption={setAssigneeId} selectedOption={assigneeId} useIdAsValue={true} hasFocus={true} onBlur={() => setEditingAssignee(false)}/>
+                      </div>
+                    </div>
+                  ) : (
+                    <p onClick={() => setEditingAssignee(true)}>{teamMemberOptions.filter(member => (assigneeId ? member.id === parseInt(assigneeId) : member.id === assigneeId))[0].name}</p>
+                  )
+                  }
+                  {props.currentUserId !== assigneeId &&
+                    <a onClick={() => setAssigneeId(props.currentUserId)}>Assign to me</a>
+                  }
 
-            </div>
-            <div className='priority-container'>
-              <label>{'Priority'}</label>
-              {editingPriority ? (
-                <div>
-                  <div>
-                    <TaskOptionSelector options={priorityOptions} setOption={setPriority} selectedOption={priority} useIdAsValue={false} hasFocus={true} onBlur={() => setEditingPriority(false)}/>
-                  </div>
                 </div>
-              ) : (
-                <p onClick={() => setEditingPriority(true)}>{priority}</p>
-              )
-              }
-            </div>
-            <div className='deadline-container'>
-              <label>{'Deadline'}</label>
-              {editingDeadline ? (
-                <div>
-                  <div>
-                    <input
-                      autoFocus
-                      type="date"
-                      value={deadline}
-                      onBlur={() => setEditingDeadline(false)}
-                      onChange={(e) => setDeadline(e.target.value)}
-                    />
-                  </div>
+                <div className='priority-container'>
+                  <label>{'Priority'}</label>
+                  {editingPriority ? (
+                    <div>
+                      <div>
+                        <TaskOptionSelector options={priorityOptions} setOption={setPriority} selectedOption={priority} useIdAsValue={false} hasFocus={true} onBlur={() => setEditingPriority(false)}/>
+                      </div>
+                    </div>
+                  ) : (
+                    <p onClick={() => setEditingPriority(true)}>{priority}</p>
+                  )
+                  }
                 </div>
-              ) : (
-                <p onClick={() => setEditingDeadline(true)}>{deadline}</p>
-              )
-              }
-            </div>
-            <div className='status-container'>
-              <label>{'Status'}</label>
-              {editingStatus ? (
-                <div>
-                  <div>
-                    <TaskOptionSelector options={statusOptions} setOption={setStatus} selectedOption={status} useIdAsValue={false} hasFocus={true} onBlur={() => setEditingStatus(false)}/>
-                  </div>
+                <div className='deadline-container'>
+                  <label>{'Deadline'}</label>
+                  {editingDeadline ? (
+                    <div>
+                      <div>
+                        <input
+                          autoFocus
+                          type="date"
+                          value={deadline}
+                          onBlur={() => setEditingDeadline(false)}
+                          onChange={(e) => setDeadline(e.target.value)}
+                        />
+                      </div>
+                    </div>
+                  ) : (
+                    <p onClick={() => setEditingDeadline(true)}>{deadline}</p>
+                  )
+                  }
                 </div>
-              ) : (
-                <p onClick={() => setEditingStatus(true)}>{status}</p>
-              )
-              }
+                <div className='status-container'>
+                  <label>{'Status'}</label>
+                  {editingStatus ? (
+                    <div>
+                      <div>
+                        <TaskOptionSelector options={statusOptions} setOption={setStatus} selectedOption={status} useIdAsValue={false} hasFocus={true} onBlur={() => setEditingStatus(false)}/>
+                      </div>
+                    </div>
+                  ) : (
+                    <p onClick={() => setEditingStatus(true)}>{status}</p>
+                  )
+                  }
+                </div>
+              </div>
             </div>
           </div>
         </Modal.Body>

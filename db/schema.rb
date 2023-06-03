@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_27_140219) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_02_144007) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -40,6 +40,50 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_27_140219) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "calendar_event_invitations", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "calendar_event_id"
+    t.integer "answer", default: 1
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["calendar_event_id"], name: "index_calendar_event_invitations_on_calendar_event_id"
+    t.index ["user_id", "calendar_event_id"], name: "index_event_invitation_on_user_id_and_calendar_event_id", unique: true
+    t.index ["user_id"], name: "index_calendar_event_invitations_on_user_id"
+  end
+
+  create_table "calendar_events", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.integer "organizer_id", null: false
+    t.integer "team_id"
+    t.datetime "event_start"
+    t.datetime "event_end"
+    t.boolean "all_day_event", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["organizer_id", "team_id"], name: "index_calendar_events_on_organizer_id_and_team_id"
+  end
+
+  create_table "friendship_requests", force: :cascade do |t|
+    t.integer "sender_id"
+    t.integer "receiver_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["receiver_id", "sender_id"], name: "index_friendship_requests_on_receiver_id_and_sender_id", unique: true
+    t.index ["receiver_id"], name: "index_friendship_requests_on_receiver_id"
+    t.index ["sender_id"], name: "index_friendship_requests_on_sender_id"
+  end
+
+  create_table "friendships", force: :cascade do |t|
+    t.integer "sender_id"
+    t.integer "receiver_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["receiver_id", "sender_id"], name: "index_friendships_on_receiver_id_and_sender_id", unique: true
+    t.index ["receiver_id"], name: "index_friendships_on_receiver_id"
+    t.index ["sender_id"], name: "index_friendships_on_sender_id"
   end
 
   create_table "individual_task_tag_relationships", force: :cascade do |t|
@@ -73,6 +117,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_27_140219) do
     t.index ["user_todo_list_id"], name: "index_individual_tasks_on_user_todo_list_id"
   end
 
+  create_table "task_comments", force: :cascade do |t|
+    t.bigint "team_project_task_id", null: false
+    t.integer "writer_id"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["team_project_task_id", "created_at"], name: "index_task_comments_on_team_project_task_id_and_created_at"
+    t.index ["team_project_task_id"], name: "index_task_comments_on_team_project_task_id"
+  end
+
   create_table "team_invitations", force: :cascade do |t|
     t.integer "invited_id"
     t.integer "team_id"
@@ -104,7 +158,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_27_140219) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "assignee_id"
-    t.integer "creator_id", null: false
+    t.integer "creator_id"
     t.index ["creator_id"], name: "index_team_project_tasks_on_creator_id"
     t.index ["team_project_id", "created_at"], name: "team_project_tasks_index_on_team_project_id_and_created_at"
     t.index ["team_project_id"], name: "index_team_project_tasks_on_team_project_id"
@@ -156,6 +210,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_27_140219) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "individual_task_tags", "user_todo_lists"
   add_foreign_key "individual_tasks", "user_todo_lists"
+  add_foreign_key "task_comments", "team_project_tasks"
   add_foreign_key "team_project_tasks", "team_projects"
   add_foreign_key "team_projects", "teams"
   add_foreign_key "user_todo_lists", "users"

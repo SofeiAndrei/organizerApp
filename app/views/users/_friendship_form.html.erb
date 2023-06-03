@@ -1,0 +1,15 @@
+<% unless current_user?(@user) %>
+  <div id='friendship-form'>
+    <% if current_user.friend?(@user) %>
+      <%= render 'unfriend'%>
+    <% else %>
+      <% if current_user.sent_friend_request?(@user) %>
+        <%= render 'retract_friendship_request'%>
+      <% elsif current_user.received_friend_request?(@user) %>
+        <%= render 'respond_friendship_request' %>
+      <% else %>
+        <%= render 'send_friendship_request' %>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>

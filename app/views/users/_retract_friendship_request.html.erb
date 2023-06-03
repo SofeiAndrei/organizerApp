@@ -1,0 +1,3 @@
+<%= form_with(model: current_user.sent_friendship_requests.find_by(receiver_id: @user.id), html: { method: :delete }, remote: true) do |f| %>
+  <%= f.submit "Retract Friend Request", class: 'btn btn-primary' %>
+<% end %>
