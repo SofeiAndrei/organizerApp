@@ -27,6 +27,23 @@ class TeamsController < ApplicationController
 
   def calendar
     @team = Team.find(params[:id])
+    team_projects = @team.team_projects.map do |project|
+      {
+        id: project.id,
+        name: project.name
+      }
+    end
+    team_members = @team.members.map do |member|
+      {
+        id: member.id,
+        name: member.name
+      }
+    end
+    team_members.append({ id: nil, name: 'Unassigned' })
+    @filters = {
+      team_projects: team_projects,
+      team_members: team_members
+    }
     now = Time.now
     @current_date = {
       year: now.year,
