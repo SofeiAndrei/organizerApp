@@ -6,6 +6,7 @@ import {DayPilot, DayPilotCalendar} from "daypilot-pro-react";
 import {formatDate} from "../shared/calendar_helper";
 import CalendarEventPopup from "./CalendarEventPopup";
 import CalendarTaskPopup from "./CalendarTaskPopup";
+import CalendarFilters from "./CalendarFilters";
 
 const CalendarPage = (props) => {
   const [calendarType, setCalendarType] = useState('today') // 1 -> today, 2 -> 3days, 3 -> week
@@ -21,13 +22,15 @@ const CalendarPage = (props) => {
   const [newEvent, setNewEvent] = useState(true)
   const [eventData, setEventData] = useState({})
 
+  const [selectedFilters, setSelectedFilters] = useState(props.availableFilters)
+
   const getCalendarEvents = () => {
     const url = props.userCalendar ?
       `/api/users/${props.currentUserId}/calendar_filtered_events` :
       `/api/teams/${props.currentTeamId}/calendar_filtered_events`
 
     console.log(url)
-    callAPI(url, 'GET')
+    callAPI(url, 'GET', {filters: {team_projects_ids: selectedFilters.team_projects.map(project => project.id), team_members_ids: selectedFilters.team_members.map(member => member.id)}})
       .then((json) => {
         console.log(json)
         const events = json.events
@@ -81,9 +84,14 @@ const CalendarPage = (props) => {
     console.log("again")
   }
 
-  useEffect(getCalendarEvents, [])
+  const handleNewSetFilters = (filters) => {
+    setSelectedFilters(filters)
+  }
+
+  useEffect(getCalendarEvents, [selectedFilters])
   useEffect(() => {calendar().update({events})})
 
+  console.log(props.availableFilters)
   return (
     <div>
       <div>
@@ -113,6 +121,12 @@ const CalendarPage = (props) => {
         }}>
         {`Create ${props.userCalendar ? '' : 'Team '}Event`}
       </button>
+      <CalendarFilters
+        teamCalendar={props.currentTeamId}
+        availableFilters={props.availableFilters}
+        selectedFilters={selectedFilters}
+        handleNewSetFilters={handleNewSetFilters}
+      />
       { calendarType === 'today' &&
         <DayPilotCalendar
           ref={calendarReference}
@@ -184,5 +198,6 @@ CalendarPage.propTypes = {
   userCalendar: PropTypes.bool,
   currentUserId: PropTypes.number,
   currentTeamId: PropTypes.number,
-  invitableUsers: PropTypes.array
+  invitableUsers: PropTypes.array,
+  availableFilters: PropTypes.object
 }

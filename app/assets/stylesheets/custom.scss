@@ -146,6 +146,9 @@ input, textarea, select, .uneditable-input{
   margin-bottom: 15px;
   @include box_sizing
 }
+input[type=checkbox]{
+  width: auto;
+}
 input{
   height: auto !important;
 }
