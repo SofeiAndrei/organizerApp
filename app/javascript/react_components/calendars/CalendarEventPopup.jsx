@@ -79,7 +79,7 @@ const CalendarEventPopup = (props) => {
       }})
       .then((response) => {
         if(response.ok){
-          props.getTasks()
+          props.getCalendarEvents()
         }
         else{
           throw new Error('Network response was not OK')
@@ -101,7 +101,7 @@ const CalendarEventPopup = (props) => {
       }})
       .then((response) => {
         if(response.ok){
-          props.getTasks()
+          props.getCalendarEvents()
         }
         else{
           throw new Error('Network response was not OK')
@@ -281,7 +281,7 @@ CalendarEventPopup.propTypes = {
   setCalendarEventPopupOpen: PropTypes.func,
   currentTeamId: PropTypes.number,
   currentUserId: PropTypes.number,
-  getTasks: PropTypes.func,
+  getCalendarEvents: PropTypes.func,
   invitableUsers: PropTypes.array
 }
 

@@ -21,7 +21,7 @@ const CalendarPage = (props) => {
   const [newEvent, setNewEvent] = useState(true)
   const [eventData, setEventData] = useState({})
 
-  const getTasks = () => {
+  const getCalendarEvents = () => {
     const url = props.userCalendar ?
       `/api/users/${props.currentUserId}/calendar_filtered_events` :
       `/api/teams/${props.currentTeamId}/calendar_filtered_events`
@@ -81,7 +81,7 @@ const CalendarPage = (props) => {
     console.log("again")
   }
 
-  useEffect(getTasks, [])
+  useEffect(getCalendarEvents, [])
   useEffect(() => {calendar().update({events})})
 
   return (
@@ -164,7 +164,7 @@ const CalendarPage = (props) => {
         setCalendarEventPopupOpen={setCalendarEventPopupOpen}
         currentTeamId={props.currentTeamId}
         currentUserId={props.currentUserId}
-        getTasks={getTasks}
+        getCalendarEvents={getCalendarEvents}
         invitableUsers={props.invitableUsers}
       />
       <CalendarTaskPopup
