@@ -3,6 +3,7 @@ import { getAuthenticityToken, callAPI } from "../shared/helpers";
 import PropTypes from 'prop-types'
 import IndividualTask from "./IndividualTask";
 import NewIndividualTaskPopup from "./NewIndividualTaskPopup";
+import Loader from "../Loader";
 
 const ToDoList = (props) => {
   const [tasks, setTasks] = useState([])
@@ -15,7 +16,7 @@ const ToDoList = (props) => {
         console.log(json.tasks)
         console.log("got tasks")
         setTasks(json.tasks)
-        setDataIsLoading(false)
+        setTimeout(() => setDataIsLoading(false), 500)
       })
       .catch(error => {
         console.log(error)
@@ -70,7 +71,7 @@ const ToDoList = (props) => {
           onClick={() => {handleListDelete()}}
         >Delete</button>
       </div>
-      { !dataIsLoading &&
+      { !dataIsLoading ? (
         <div>
           <div className='todolist_tasks'>
             {tasks.map((individualTask) =>
@@ -78,7 +79,11 @@ const ToDoList = (props) => {
             )}
           </div>
         </div>
-      }
+      ) : (
+        <div>
+          <Loader smallLoader={false}/>
+        </div>
+      )}
       <NewIndividualTaskPopup
         newTaskFormModalOpen={newTaskFormModalOpen}
         setNewTaskFormModalOpen={setNewTaskFormModalOpen}

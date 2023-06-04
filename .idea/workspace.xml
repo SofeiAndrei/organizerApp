@@ -5,15 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e28e46e0-8ac2-47f7-9869-d99e49173358" name="Changes" comment="Merged master into main">
+      <change afterPath="$PROJECT_DIR$/app/javascript/react_components/Loader.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/custom.scss" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/stylesheets/custom.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/helpers/application_helper.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers/application_helper.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/javascript/react_components/TaskOptionSelector.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/react_components/TaskOptionSelector.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/javascript/react_components/calendars/CalendarEventPopup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/react_components/calendars/CalendarEventPopup.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/javascript/react_components/shared/formater_helper.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/react_components/shared/formater_helper.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/javascript/react_components/teams/projects/ProjectTasksBoardKanban.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/react_components/teams/projects/ProjectTasksBoardKanban.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/javascript/react_components/teams/projects/tasks/ProjectTaskKanban.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/react_components/teams/projects/tasks/ProjectTaskKanban.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/react_components/teams/projects/ProjectTasksBoard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/react_components/teams/projects/ProjectTasksBoard.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/javascript/react_components/teams/projects/tasks/ViewProjectTaskPopup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/react_components/teams/projects/tasks/ViewProjectTaskPopup.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/react_components/todo_lists/ToDoList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/react_components/todo_lists/ToDoList.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -391,7 +388,7 @@
       <workItem from="1683893388245" duration="82149000" />
       <workItem from="1684963575673" duration="30543000" />
       <workItem from="1685560340160" duration="8095000" />
-      <workItem from="1685800974262" duration="39699000" />
+      <workItem from="1685800974262" duration="42112000" />
     </task>
     <task id="LOCAL-00001" summary="Merged master into main">
       <created>1683892404964</created>

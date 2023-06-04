@@ -4,6 +4,7 @@ import {callAPI, getAuthenticityToken} from "../../shared/helpers";
 import NewProjectTaskPopup from "./tasks/NewProjectTaskPopup";
 import ProjectTasksBoardKanban from "./ProjectTasksBoardKanban";
 import ViewProjectTaskPopup from "./tasks/ViewProjectTaskPopup";
+import Loader from "../../Loader";
 
 const ProjectTasksBoard = (props) => {
   const [tasks, setTasks] = useState([])
@@ -18,7 +19,7 @@ const ProjectTasksBoard = (props) => {
         console.log(json.tasks)
         console.log("got project tasks")
         setTasks(json.tasks)
-        setDataIsLoading(false)
+        setTimeout(() => setDataIsLoading(false), 500)
       })
       .catch(error => {
         console.log(error)
@@ -84,11 +85,15 @@ const ProjectTasksBoard = (props) => {
         Create new Task
       </button>
       <br/><br/>
-      {!dataIsLoading &&
+      {!dataIsLoading ? (
         <div>
           <ProjectTasksBoardKanban tasks={tasks} setTasks={setTasks} teamMembers={props.teamMembers} updateTask={updateTask} handleViewTaskClicked={handleViewTaskClicked}/>
         </div>
-      }
+      ) : (
+        <div>
+          <Loader smallLoader={false}/>
+        </div>
+      )}
       <NewProjectTaskPopup
         newProjectTaskModalOpen={newProjectTaskModalOpen}
         setNewProjectTaskModalOpen={setNewProjectTaskModalOpen}

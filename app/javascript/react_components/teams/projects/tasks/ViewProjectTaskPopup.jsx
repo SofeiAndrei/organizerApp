@@ -5,6 +5,7 @@ import { Modal, Button} from 'react-bootstrap'
 import TaskOptionSelector from "../../../TaskOptionSelector";
 import {callAPI, getAuthenticityToken} from "../../../shared/helpers";
 import {formatWords} from "../../../shared/formater_helper";
+import Loader from "../../../Loader";
 
 const ViewProjectTaskPopup = (props) => {
   if(props.viewProjectTaskModalOpen) {
@@ -28,6 +29,7 @@ const ViewProjectTaskPopup = (props) => {
 
     const [comment, setComment] = useState('')
     const [comments, setComments] = useState([])
+    const [commentsLoading, setCommentsLoading] = useState(true)
 
     const teamMemberOptions = [
       {id: 0, name: 'Unassigned'},
@@ -50,6 +52,7 @@ const ViewProjectTaskPopup = (props) => {
     ]
 
     const handleModalClose = () => {
+      setCommentsLoading(true)
       props.setViewProjectTaskModalOpen(false)
     }
 
@@ -121,7 +124,6 @@ const ViewProjectTaskPopup = (props) => {
         .then((response) => {
           if(response.ok){
             getTaskComments()
-            setComment('')
           }
           else{
             throw new Error('Network response was not OK')
@@ -139,6 +141,7 @@ const ViewProjectTaskPopup = (props) => {
           console.log(json.comments)
           console.log("got task comments")
           setComments(json.comments)
+          setTimeout(() => setCommentsLoading(false), 500)
         })
         .catch(error => {
           console.log(error)
@@ -148,10 +151,13 @@ const ViewProjectTaskPopup = (props) => {
     const handleCommentPosted = () => {
       console.log("Written comment:", comment)
       console.log("Call to create a comment with the text:", comment, " the creator_id:", props.currentUserId, " and the task_id:", props.data.task.id)
+      setComment('')
+      setCommentsLoading(true)
       saveNewComment(comment, props.currentUserId, props.data.task.id)
     }
 
     const handleCommentDelete = (commentId) => {
+      setCommentsLoading(true)
       if (confirm(`Are you sure you want to delete this comment?`)){
         fetch(`/api/task_comments/${commentId}`, {
           method: 'DELETE',
@@ -190,14 +196,20 @@ const ViewProjectTaskPopup = (props) => {
                 <div className='team-project-task-comments'>
                   <input className='form-control' type='text' placeholder='Add a comment...' onChange={(e) => setComment(e.target.value)} value={comment}/>
                   <button className={comment === '' ? 'hidden ' : '' + 'btn btn-primary button-dark'} onClick={handleCommentPosted}>Send</button>
-                  {comments.map(comment => (
-                    <div key={comment.id} className={'comment' + (comment.writer_id === props.currentUserId ? ' align-items-end' : '')}>
-                      <a className='comment-writer' href={`/users/${comment.writer.id}`}>{comment.writer.name}</a>
-                      <div className='comment-content'>{comment.content}</div>
-                      <div className='comment-created_at-time'>{(new Date(comment.created_at)).toString()}</div>
-                      <button className='btn btn-xs btn-primary delete-comment-button button-dark-red' onClick={() => handleCommentDelete(comment.id)}>x</button>
+                  {!commentsLoading ? (
+                    <div>
+                    {comments.map(comment => (
+                      <div key={comment.id} className={'comment' + (comment.writer_id === props.currentUserId ? ' align-items-end' : '')}>
+                        <a className='comment-writer' href={`/users/${comment.writer.id}`}>{comment.writer.name}</a>
+                        <div className='comment-content'>{comment.content}</div>
+                        <div className='comment-created_at-time'>{(new Date(comment.created_at)).toString()}</div>
+                        <button className='btn btn-xs btn-primary delete-comment-button button-dark-red' onClick={() => handleCommentDelete(comment.id)}>x</button>
+                      </div>
+                    ))}
                     </div>
-                  ))}
+                  ) : (
+                    <Loader smallLoader={true}/>
+                  )}
                 </div>
               </div>
               <div className='col-xs-12 col-sm-5 col-md-5 col-lg-5 col-xl-5 team-project-task-info'>
