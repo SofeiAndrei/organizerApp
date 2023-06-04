@@ -23,6 +23,7 @@ const CalendarEventPopup = (props) => {
   ]
 
   const handleModalClose = () => {
+    setYourAnswer('new_event')
     props.setCalendarEventPopupOpen(false)
   }
 
@@ -192,7 +193,7 @@ const CalendarEventPopup = (props) => {
               {invitedUsers.map(user => (
                 <tr key={user.data.id}>
                   <td>{user.data.name}</td>
-                  <td>{`->${user.answer}`}</td>
+                  <td>{user.answer}</td>
                   {user.data.id !== props.currentUserId &&
                     <td key={user.data.id}>
                       <button
@@ -235,26 +236,31 @@ const CalendarEventPopup = (props) => {
                   {props.event.invited_users.map(user => (
                     <tr key={user.data.id}>
                       <td>{user.data.name}</td>
-                      <td>{`->${user.answer}`}</td>
-                      {props.currentUserId !== props.event.organizer_id && props.currentUserId === user.data.id &&
-                        <td>
-                          <select
-                            className='form-control'
-                            onChange={(e) => {setYourAnswer(e.target.value)}}
-                            defaultValue={yourAnswer}
-                          >
-                          {answers.map((answer) => (
-                            <option key={answer.id} value={answer.name}>
-                              {answer.name}
-                            </option>
-                          ))}
-                          </select>
+
+                      {props.currentUserId !== props.event.organizer_id && props.currentUserId === user.data.id ? (
+                        <div>
+                          <td>
+                            <select
+                              className='form-control answer'
+                              onChange={(e) => {setYourAnswer(e.target.value)}}
+                              defaultValue={yourAnswer}
+                            >
+                            {answers.map((answer) => (
+                              <option key={answer.id} value={answer.name}>
+                                {answer.name}
+                              </option>
+                            ))}
+                            </select>
+                          </td>
                           {yourAnswer !== user.answer &&
-                            <button className='btn btn-primary button-dark' onClick={handleSendAnswer}>
+                            <button className='btn btn-primary button-dark answer' onClick={handleSendAnswer}>
                               Send Answer
                             </button>
                           }
-                        </td>
+                        </div>
+                      ) : (
+                        <td>{user.answer}</td>
+                      )
                       }
                     </tr>
                   ))}

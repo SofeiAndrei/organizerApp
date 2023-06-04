@@ -122,15 +122,15 @@ const CalendarPage = (props) => {
               <div className='radio-button-group-container'>
                 <div className='form-control radio-button-div'>
                   <label className='radio-label' htmlFor='today'>Today</label>
-                  <input className='radio-button' type='radio' id='today' name='today' value='today' checked={calendarType === 'today'} onChange={onChangeCalendarType}/>
+                  <input className='radio-button radio-button-calendar' type='radio' id='today' name='today' value='today' checked={calendarType === 'today'} onChange={onChangeCalendarType}/>
                 </div>
                 <div className='form-control radio-button-div'>
                   <label className='radio-label' htmlFor='3days'>3 Days</label>
-                  <input className='radio-button' type='radio' id='3days' name='3days' value='3days' checked={calendarType === '3days'} onChange={onChangeCalendarType}/>
+                  <input className='radio-button radio-button-calendar' type='radio' id='3days' name='3days' value='3days' checked={calendarType === '3days'} onChange={onChangeCalendarType}/>
                 </div>
                 <div className='form-control radio-button-div'>
                   <label className='radio-label' htmlFor='week'>Week</label>
-                  <input className='radio-button' type='radio' id='week' name='week' value='week' checked={calendarType === 'week'} onChange={onChangeCalendarType}/>
+                  <input className='radio-button radio-button-calendar' type='radio' id='week' name='week' value='week' checked={calendarType === 'week'} onChange={onChangeCalendarType}/>
                 </div>
               </div>
             </div>

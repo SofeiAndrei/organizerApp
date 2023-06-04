@@ -431,6 +431,15 @@ textarea {
   &:hover{
     background-color: $rosu-inchis;
   }
+  &:active{
+    background-color: $rosu-inchis;
+  }
+  &:focus{
+    background-color: $rosu-inchis;
+  }
+  &:active:focus{
+    background-color: $rosu-inchis;
+  }
   max-width: 100%;
   width: fit-content;
   overflow-wrap: break-word;
@@ -441,6 +450,15 @@ textarea {
   background-color: $rosu-inchis;
   border: none;
   &:hover{
+    background-color: red;
+  }
+  &:active{
+    background-color: red;
+  }
+  &:focus{
+    background-color: red;
+  }
+  &:active:focus{
     background-color: red;
   }
   max-width: 100%;
@@ -494,11 +512,18 @@ textarea {
         max-height: 205px;
         overflow-y: scroll;
       }
+      .checkbox-filter{
+        accent-color: $rosu-inchis;
+      }
     }
     .view-list{
       @media (max-width: 576px){
         width: 100%;
         padding-left: 15px;
+      }
+
+      .radio-button-calendar{
+        accent-color: $rosu-inchis;
       }
     }
   }
@@ -507,4 +532,20 @@ textarea {
       padding-left: 0;
     }
   }
+}
+
+.answer{
+  vertical-align: baseline;
+  margin: 0 0 0 10px;
+  align-self: center;
+  width: 120px;
+}
+
+td{
+  text-align: center;
+  max-width: 120px;
+}
+
+.checkbox-completed{
+  accent-color: $rosu-inchis
 }
