@@ -5,9 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e28e46e0-8ac2-47f7-9869-d99e49173358" name="Changes" comment="Merged master into main">
-      <change beforePath="$PROJECT_DIR$/app/javascript/react_components/teams/projects/ProjectTasksBoard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/react_components/teams/projects/ProjectTasksBoard.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/javascript/react_components/teams/projects/tasks/ViewProjectTaskPopup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/react_components/teams/projects/tasks/ViewProjectTaskPopup.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/user_todo_lists/_form.html.erb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/user_todo_lists/edit.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/user_todo_lists_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/user_todo_lists_controller.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/javascript/react_components/todo_lists/ToDoList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/react_components/todo_lists/ToDoList.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/user_todo_lists/new.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/user_todo_lists/new.html.erb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,8 +22,8 @@
       <list>
         <option value="SCSS File" />
         <option value="JavaScript File" />
-        <option value="ERB File" />
         <option value="Ruby File" />
+        <option value="ERB File" />
       </list>
     </option>
   </component>

@@ -66,6 +66,8 @@ const ToDoList = (props) => {
           Create new Task
         </button>
         {' '}
+        <a className='btn btn-primary button-dark' href={`${props.todoList.id}/edit`}>Edit List</a>
+        {' '}
         <button
           className='btn btn-primary btn-primary button-dark-red'
           onClick={() => {handleListDelete()}}
