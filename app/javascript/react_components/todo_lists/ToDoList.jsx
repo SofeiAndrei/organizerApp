@@ -16,7 +16,7 @@ const ToDoList = (props) => {
         console.log(json.tasks)
         console.log("got tasks")
         setTasks(json.tasks)
-        setTimeout(() => setDataIsLoading(false), 500)
+        setTimeout(() => setDataIsLoading(false), 1000)
       })
       .catch(error => {
         console.log(error)
