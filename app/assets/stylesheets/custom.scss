@@ -323,7 +323,7 @@ textarea {
   .radio-button-div{
     display: inline;
     align-items: start;
-    width: 150px;
+    width: 100px;
     .radio-label{
       width: 70%
     }
@@ -431,6 +431,10 @@ textarea {
   &:hover{
     background-color: $rosu-inchis;
   }
+  max-width: 100%;
+  width: fit-content;
+  overflow-wrap: break-word;
+  white-space: normal
 }
 
 .button-dark-red{
@@ -439,6 +443,10 @@ textarea {
   &:hover{
     background-color: red;
   }
+  max-width: 100%;
+  width: fit-content;
+  overflow-wrap: break-word;
+  white-space: normal
 }
 
 .friendship-form{
@@ -465,4 +473,38 @@ textarea {
   opacity: 1;
   border-radius: 50%;
   margin-right: 10px;
+}
+
+.calendar-events-container{
+  overflow-wrap: break-word;
+  .filters{
+    @media (min-width: 992px) {
+      padding-right: 0;
+    }
+    .filter-list{
+      @media (max-width: 576px){
+        width: 100%;
+      }
+      padding-left: 15px;
+      .team-calendar-filters{
+        max-height: 205px;
+        overflow-y: scroll;
+      }
+      .personal-calendar-filters{
+        max-height: 205px;
+        overflow-y: scroll;
+      }
+    }
+    .view-list{
+      @media (max-width: 576px){
+        width: 100%;
+        padding-left: 15px;
+      }
+    }
+  }
+  .calendar-plot{
+    @media (min-width: 992px) {
+      padding-left: 0;
+    }
+  }
 }
