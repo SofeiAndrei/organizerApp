@@ -3,14 +3,14 @@ class Api::UsersController < ApplicationController
   before_action :correct_user, only: [:calendar_filtered_events]
 
   def search_users
-    user_limit_for_search = 5
+    user_limit_for_search = 25
 
     if params[:search_input] == ''
       render json: { users: {} }
     else
       users = if params[:search_by_id] == 'true'
                 User.where(activated: true).where.not(id: params[:already_selected_ids])
-                  &.find_by(id: params[:search_input].to_i)
+                  &.where(id: params[:search_input].to_i)&.limit(1)
               else
                 User.where(activated: true).where.not(id: params[:already_selected_ids])
                   &.where("name ILIKE '#{params[:search_input]}%'")&.limit(user_limit_for_search)

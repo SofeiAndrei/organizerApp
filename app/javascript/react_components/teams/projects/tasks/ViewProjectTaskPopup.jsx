@@ -183,7 +183,7 @@ const ViewProjectTaskPopup = (props) => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div className='container'>
+          <div>
             <div className='row'>
               <div className='col-xs-12 col-sm-7 col-md-7 col-lg-7 col-xl-7 team-project-task-comments-container'>
                 <div className='team-project-task-comments'>

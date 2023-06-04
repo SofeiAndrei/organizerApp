@@ -23,12 +23,12 @@ const ProjectTasksBoardKanban = (props) => {
 
   return(
     <DragDropContext onDragEnd={onDragEnd}>
-      <div className='container'>
+      <div>
         <div className='row kanban-container'>
           {taskStatuses.map((status, index) =>
             <Droppable droppableId={status}>
               { (provided) => (
-                <div className='col-sm-2 kanban-column-container'
+                <div className='col kanban-column-container'
                      ref={provided.innerRef}
                      {...provided.droppableProps}
                 >

@@ -11,7 +11,6 @@ const ProjectTasksBoard = (props) => {
   const [newProjectTaskModalOpen, setNewProjectTaskModalOpen] = useState(false)
   const [viewProjectTaskModalOpen, setViewProjectTaskModalOpen] = useState(false)
   const [selectedTaskData, setSelectedTaskData] = useState({})
-  const [viewTasksAsKanbanBoard, setViewTasksAsKanbanBoard] = useState(true)
 
   const getTasks = () => {
     callAPI(`/api/team_projects/${props.teamProject.id}/get_project_tasks`, 'GET')
@@ -71,11 +70,6 @@ const ProjectTasksBoard = (props) => {
     }
   }
 
-  const onChangeViewType = (e) => {
-    console.log(e.target.value)
-    setViewTasksAsKanbanBoard(e.target.value === 'kanban')
-  }
-
   const handleViewTaskClicked = (clickedTaskData) => {
     setViewProjectTaskModalOpen(true)
     setSelectedTaskData(clickedTaskData)
@@ -89,26 +83,10 @@ const ProjectTasksBoard = (props) => {
               onClick={() => {setNewProjectTaskModalOpen(true)}}>
         Create new Task
       </button>
+      <br/><br/>
       {!dataIsLoading &&
         <div>
-          <div className='radio-button-group-container'>
-            <div className='radio-button-div'>
-              <label className='radio-label' htmlFor='kanban'>Kanban board</label>
-              <input className='radio-button' type='radio' id='kanban' name='kanban' value='kanban' checked={viewTasksAsKanbanBoard} onChange={onChangeViewType}/>
-            </div>
-            <div className='radio-button-div'>
-              <label className='radio-label' htmlFor='task_list'>Task List</label>
-              <input className='radio-button' type='radio' id='task_list' name='task_list' value='task_list' checked={!viewTasksAsKanbanBoard} onChange={onChangeViewType}/>
-            </div>
-          </div>
-          {viewTasksAsKanbanBoard &&
-            <ProjectTasksBoardKanban tasks={tasks} setTasks={setTasks} teamMembers={props.teamMembers} updateTask={updateTask} handleViewTaskClicked={handleViewTaskClicked}/>
-          }
-          {!viewTasksAsKanbanBoard &&
-            <div>
-              Task List View
-            </div>
-          }
+          <ProjectTasksBoardKanban tasks={tasks} setTasks={setTasks} teamMembers={props.teamMembers} updateTask={updateTask} handleViewTaskClicked={handleViewTaskClicked}/>
         </div>
       }
       <NewProjectTaskPopup
