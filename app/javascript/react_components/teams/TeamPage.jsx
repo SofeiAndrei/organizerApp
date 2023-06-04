@@ -50,31 +50,38 @@ const TeamPage = (props) => {
       <h1>
         {props.team.name}
       </h1>
-      {props.userIsTeamAdmin &&
-        <div className='team-admin-commands'>
-          <button
-            className='btn btn-primary'
-            onClick={() => {setAddUserToTeamModalOpen(true)}}
-          >Invite Users
-          </button>
-          <br/>
-          <TeamInvitations teamInvitations={props.teamInvitations} invitedUsers={props.invitedUsers} userIsTeamAdmin={props.userIsTeamAdmin}/>
+      <div className='row'>
+        <div className='col-12 col-xs-12 col-sm-5 col-md-4 col-lg-4 col-xl-4 team-members-and-invitations'>
+          {props.userIsTeamAdmin &&
+            <div className='team-admin-commands'>
+              <button
+                className='btn btn-primary button-dark'
+                onClick={() => {setAddUserToTeamModalOpen(true)}}
+              >Invite Users
+              </button>
+              <br/>
+              <TeamInvitations teamInvitations={props.teamInvitations} invitedUsers={props.invitedUsers} userIsTeamAdmin={props.userIsTeamAdmin}/>
+            </div>
+          }
+          <TeamMembers teamMemberships={props.teamMemberships} members={props.members} userIsTeamOwner={props.userIsTeamOwner} currentUserId={props.currentUserId}/>
         </div>
-      }
-      <TeamMembers teamMemberships={props.teamMemberships} members={props.members} userIsTeamOwner={props.userIsTeamOwner} currentUserId={props.currentUserId}/>
-      <TeamProjectIndex team={props.team} userIsTeamAdmin={props.userIsTeamAdmin} userIsTeamOwner={props.userIsTeamOwner} teamProjects={props.teamProjects}/>
-      <a href={`/teams/${props.team.id}/calendar`} className='btn btn-primary'>Team Calendar</a>
+        <div className='col-12 col-xs-12 col-sm-7 col-md-8 col-lg-8 col-xl-8 team-projects-index'>
+          <a href={`/teams/${props.team.id}/calendar`} className='btn btn-primary button-dark'>Team Calendar</a>
+          <TeamProjectIndex team={props.team} userIsTeamAdmin={props.userIsTeamAdmin} userIsTeamOwner={props.userIsTeamOwner} teamProjects={props.teamProjects}/>
+        </div>
+      </div>
       {props.userIsTeamOwner ? (
         <div className='team-owner-commands'>
-          <a href={`/teams/${props.team.id}/edit`} className='btn btn-primary'>Edit Team</a>
+          <a href={`/teams/${props.team.id}/edit`} className='btn btn-primary button-dark team-owner-command'>Edit Team</a>
+          <br/>
           <button
-            className='btn btn-primary btn-danger delete-list-button'
+            className='btn btn-primary btn-danger delete-list-button button-dark-red team-owner-command'
             onClick={() => {handleTeamDelete()}}>Delete
           </button>
         </div>
       ) : (
         <button
-          className='btn btn-primary btn-danger'
+          className='btn btn-primary button-dark-red team-user-command'
           onClick={handleLeaveTeam}
         >Leave Team
         </button>

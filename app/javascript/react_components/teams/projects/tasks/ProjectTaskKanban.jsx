@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {Draggable} from "react-beautiful-dnd";
+import {formatWords} from "../../../shared/formater_helper";
 
 const ProjectTaskKanban = (props) => {
   return (
@@ -14,11 +15,8 @@ const ProjectTaskKanban = (props) => {
         >
           <div className="card-body">
             <p className="card-text task-name">{props.data.task.name}</p>
-            <div className='task-tags'>
-              <span className="badge task-tag">{'FakeTag'}</span>
-            </div>
             <div className='task-footer'>
-              <div className='card-text'>{props.data.task.priority}</div>
+              <div className='card-text'>{formatWords(props.data.task.priority, false)}</div>
               {props.data.assignee !== null &&
                 <div className="card-text">{props.data.assignee.name + '#' + props.data.assignee.id}</div>
               }

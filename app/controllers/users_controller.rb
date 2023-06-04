@@ -39,7 +39,6 @@ class UsersController < ApplicationController
   end
 
   def index
-    # @users = User.all  -> no pagination
     @users = User.where(activated: true).paginate(page: params[:page])
   end
 

@@ -29,7 +29,7 @@ const CalendarTaskPopup = (props) => {
         </div>
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={handleModalClose}>{'Back'}</Button>
+        <Button className='btn btn-primary button-dark' onClick={handleModalClose}>{'Back'}</Button>
       </Modal.Footer>
     </Modal>
   )

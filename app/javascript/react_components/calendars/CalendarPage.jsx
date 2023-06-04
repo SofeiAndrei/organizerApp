@@ -99,83 +99,94 @@ const CalendarPage = (props) => {
 
   console.log(props.availableFilters)
   return (
-    <div>
+    <div className='container'>
       <div>
         <Calendar onChange={selectNewDate}/>
-        {`Selected Date: ${selectedDate.toDateString()}`}
-        <br/>
       </div>
-      <div className='radio-button-group-container'>
-        <div className='radio-button-div'>
-          <label className='radio-label' htmlFor='today'>Today</label>
-          <input className='radio-button' type='radio' id='today' name='today' value='today' checked={calendarType === 'today'} onChange={onChangeCalendarType}/>
+      <div className='calendar-events-container row'>
+        <div className='col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 filters'>
+          <div className='row'>
+            <div className='col-3 col-xs-3 col-sm-3 col-md-12 col-lg-12 col-xl-12 view-list'>
+              <br/>
+              <button
+                className='btn btn-primary button-dark'
+                onClick={() => {
+                  setCalendarEventPopupOpen(true)
+                  setNewEvent(true)
+                }}>
+                {`Create ${props.userCalendar ? '' : 'Team '}Event`}
+              </button>
+              <h3>{`Selected Date:`}</h3>
+              {selectedDate.toDateString()}
+              <br/><br/>
+              <div className='radio-button-group-container'>
+                <div className='form-control radio-button-div'>
+                  <label className='radio-label' htmlFor='today'>Today</label>
+                  <input className='radio-button radio-button-red' type='radio' id='today' name='today' value='today' checked={calendarType === 'today'} onChange={onChangeCalendarType}/>
+                </div>
+                <div className='form-control radio-button-div'>
+                  <label className='radio-label' htmlFor='3days'>3 Days</label>
+                  <input className='radio-button radio-button-red' type='radio' id='3days' name='3days' value='3days' checked={calendarType === '3days'} onChange={onChangeCalendarType}/>
+                </div>
+                <div className='form-control radio-button-div'>
+                  <label className='radio-label' htmlFor='week'>Week</label>
+                  <input className='radio-button radio-button-red' type='radio' id='week' name='week' value='week' checked={calendarType === 'week'} onChange={onChangeCalendarType}/>
+                </div>
+              </div>
+            </div>
+            <div className='col-9 col-xs-9 col-sm-9 col-md-12 col-lg-12 col-xl-12 filter-list'>
+              <CalendarFilters
+                teamCalendar={props.currentTeamId}
+                availableFilters={props.availableFilters}
+                selectedFilters={selectedFilters}
+                handleNewSetFilters={handleNewSetFilters}
+              />
+            </div>
+          </div>
         </div>
-        <div className='radio-button-div'>
-          <label className='radio-label' htmlFor='3days'>3 Days</label>
-          <input className='radio-button' type='radio' id='3days' name='3days' value='3days' checked={calendarType === '3days'} onChange={onChangeCalendarType}/>
-        </div>
-        <div className='radio-button-div'>
-          <label className='radio-label' htmlFor='week'>Week</label>
-          <input className='radio-button' type='radio' id='week' name='week' value='week' checked={calendarType === 'week'} onChange={onChangeCalendarType}/>
+        <div className='col-12 col-sm-12 col-md-10 col-lg-10 calendar-plot'>
+          { calendarType === 'today' &&
+            <DayPilotCalendar
+              ref={calendarReference}
+              headerDateFormat="dddd dd.MM.yyyy"
+              startDate={pilotSelectedDate}
+              showAllDayEvents={true}
+              allDayEnd={"Date"}
+              onEventClick={(args) => {
+                handleClickCalendarEvent(args.e.data)
+              }}
+            />
+          }
+          { calendarType === '3days' &&
+            <DayPilotCalendar
+              ref={calendarReference}
+              headerDateFormat="dddd dd.MM.yyyy"
+              startDate={pilotSelectedDate}
+              viewType="Days"
+              days={3}
+              showAllDayEvents={true}
+              allDayEnd={"Date"}
+              onEventClick={(args) => {
+                handleClickCalendarEvent(args.e.data)
+              }}
+            />
+          }
+          { calendarType === 'week' &&
+            <DayPilotCalendar
+              ref={calendarReference}
+              headerDateFormat="dddd dd.MM.yyyy"
+              startDate={pilotSelectedDate}
+              viewType="Week"
+              weekStarts={1} // Week starts on Monday
+              showAllDayEvents={true}
+              allDayEnd={"Date"}
+              onEventClick={(args) => {
+                handleClickCalendarEvent(args.e.data)
+              }}
+            />
+          }
         </div>
       </div>
-      <button
-        className='btn btn-primary'
-        onClick={() => {
-          setCalendarEventPopupOpen(true)
-          setNewEvent(true)
-        }}>
-        {`Create ${props.userCalendar ? '' : 'Team '}Event`}
-      </button>
-      <CalendarFilters
-        teamCalendar={props.currentTeamId}
-        availableFilters={props.availableFilters}
-        selectedFilters={selectedFilters}
-        handleNewSetFilters={handleNewSetFilters}
-      />
-      { calendarType === 'today' &&
-        <DayPilotCalendar
-          ref={calendarReference}
-          headerDateFormat="dddd dd.MM.yyyy"
-          startDate={pilotSelectedDate}
-          showAllDayEvents={true}
-          allDayEnd={"Date"}
-          onEventClick={(args) => {
-            handleClickCalendarEvent(args.e.data)
-          }}
-          // onTimeRangeSelected={args => {
-          //   calendar().message("Selected range: " + args.start.toString("hh:mm tt") + " - " + args.end.toString("hh:mm tt"));
-          // }}
-        />
-      }
-      { calendarType === '3days' &&
-        <DayPilotCalendar
-          ref={calendarReference}
-          headerDateFormat="dddd dd.MM.yyyy"
-          startDate={pilotSelectedDate}
-          viewType="Days"
-          days={3}
-          showAllDayEvents={true}
-          allDayEnd={"Date"}
-          onEventClick={(args) => {
-            handleClickCalendarEvent(args.e.data)
-          }}
-        />
-      }
-      { calendarType === 'week' &&
-        <DayPilotCalendar
-          ref={calendarReference}
-          headerDateFormat="dddd dd.MM.yyyy"
-          startDate={pilotSelectedDate}
-          viewType="Week"
-          weekStarts={1} // Week starts on Monday
-          showAllDayEvents={true}
-          allDayEnd={"Date"}
-          onEventClick={(args) => {
-            handleClickCalendarEvent(args.e.data)
-          }}
-        />
-      }
       <CalendarEventPopup
         defaultDate={(new Date(props.currentDate.year, props.currentDate.month, props.currentDate.day + 1, 15)).toISOString().slice(0, 16)}
         newEvent={newEvent}

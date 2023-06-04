@@ -1,15 +1,19 @@
 <% provide(:title, @user.name) %>
-<div class='show-user'>
+<div class='user'>
   <aside class='col-md-4'>
     <section class='user-info'>
-      <h1>
+      <div>
       <%= gravatar_for @user, size: 100%>
       <%= @user.name %>
       <%= "##{@user.id}" %>
-      </h1>
+      </div>
     </section>
     <section class="stats">
       <div class="stats">
+        <div class="user-activated-date">
+          <%= @user.activated_at.strftime("Member since: %d/%m/%Y") %>
+        </div>
+        <br/>
         <% if current_user?(@user) || current_user.friend?(@user)%>
           <%= link_to "Friends", friend_list_user_path(@user) %>
         <% else %>
@@ -17,8 +21,7 @@
         <% end %>
       </div>
     </section>
-  </aside>
-  <div>
     <%= render 'friendship_form' if logged_in? %>
-  </div>
+  </aside>
+
 </div>

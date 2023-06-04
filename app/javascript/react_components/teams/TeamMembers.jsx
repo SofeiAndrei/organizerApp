@@ -51,25 +51,25 @@ const TeamMembers = (props) => {
 
   return (
     <div className='team_members'>
-      <h4>Team Members</h4>
+      <h3>{`Team Members (${props.members.length})`}</h3>
       {props.members.map((user) => (
         <div key={user.id} className='team_member'>
-          {user.name}
+          <a href={`/users/${user.id}` } className='team-member-link'>{user.name}</a>
           {props.userIsTeamOwner && props.currentUserId !== user.id &&
-            <div>
-              <button
-                className='btn btn-primary btn-danger'
-                onClick={() => handleKickUser(user)}
-              >
-                Kick
-              </button>
-              <button
-                className='btn btn-primary btn-danger'
-                onClick={() => handleChangeAdminStatus(user)}
-              >
-                {adminStatusButtonText(user)}
-              </button>
-            </div>
+            <button
+              className='btn btn-primary button-dark-red'
+              onClick={() => handleKickUser(user)}
+            >
+              Kick
+            </button>
+          }
+          {props.userIsTeamOwner && props.currentUserId !== user.id &&
+            <button
+              className='btn btn-primary button-dark'
+              onClick={() => handleChangeAdminStatus(user)}
+            >
+              {adminStatusButtonText(user)}
+            </button>
           }
         </div>
       ))}

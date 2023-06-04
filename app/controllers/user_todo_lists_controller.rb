@@ -26,7 +26,7 @@ class UserTodoListsController < ApplicationController
   end
 
   def index
-    @user_todo_lists = UserTodoList.where(user_id: params[:user_id]).paginate(page: params[:page])
+    @user_todo_lists = UserTodoList.where(user_id: params[:user_id]).includes(:individual_tasks).paginate(page: params[:page])
   end
 
   def destroy

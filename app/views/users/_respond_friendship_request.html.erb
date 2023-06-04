@@ -1,7 +1,8 @@
 <% friendship_request = current_user.received_friendship_requests.find_by(sender_id: @user.id) %>
 <%= form_with(model: friendship_request, url: accept_friendship_request_path(friendship_request),  html: { method: :delete }, remote: true) do |f| %>
-  <%= f.submit "Accept", class: 'btn btn-primary' %>
+  <%= f.submit "Accept", class: 'btn btn-primary button-friendship-action' %>
 <% end %>
+&nbsp
 <%= form_with(model: friendship_request, url: reject_friendship_request_path(friendship_request),  html: { method: :delete }, remote: true) do |f| %>
-  <%= f.submit "Reject", class: 'btn btn-danger' %>
+  <%= f.submit "Reject", class: 'btn btn-primary button-friendship-action' %>
 <% end %>

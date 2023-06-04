@@ -4,23 +4,25 @@ import PropTypes from "prop-types";
 const TeamProjectIndex = (props) => {
   return (
     <div>
-      <h4>Projects</h4>
+      <h3>{`Projects (${props.teamProjects ? props.teamProjects.length : 0})`}</h3>
       {(props.userIsTeamOwner || props.userIsTeamAdmin) &&
         <a
           href={`/teams/${props.team.id}/team_projects/new`}
-          className='btn btn-primary'
+          className='btn btn-primary button-dark'
         >Create Project
         </a>
       }
-      {props.teamProjects.map(project => (
-        <div key={project.id} className='team_project_index_item'>
-          <a
-            href={`/teams/${props.team.id}/team_projects/${project.id}`}
-            className='btn'
-          >{project.name}
-          </a>
-        </div>
-      ))}
+      <ul className="team-projects">
+        {props.teamProjects.map(project => (
+          <li key={project.id} className='team_project_index_item'>
+            <a
+              href={`/teams/${props.team.id}/team_projects/${project.id}`}
+              className='team-project-link'
+            >{project.name}
+            </a>
+          </li>
+        ))}
+      </ul>
     </div>
   )
 }

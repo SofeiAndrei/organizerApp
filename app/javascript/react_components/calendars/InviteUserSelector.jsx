@@ -32,7 +32,7 @@ const InviteUserSelector = (props) => {
   return (
     <div>
       <select
-        className='task-option-selector'
+        className='task-option-selector form-control'
         defaultValue={props.availableUsers[0]}
         onChange={(e) => {
           console.log(e.target.value)
@@ -46,8 +46,9 @@ const InviteUserSelector = (props) => {
           </option>
         ))}
       </select>
-      <button onClick={onCancel}>Cancel</button>
-      <button onClick={onInvite}>Invite</button>
+      <button className='btn btn-primary button-dark' onClick={onCancel}>Cancel</button>
+      {' '}
+      <button className='btn btn-primary button-dark' onClick={onInvite}>Invite</button>
     </div>
   )
 }

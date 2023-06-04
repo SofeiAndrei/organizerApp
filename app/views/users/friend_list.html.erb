@@ -1,8 +1,11 @@
-Friend requests (<%= @received_friend_request_from.size %>):
-<ul class="users">
-  <%= render @received_friend_request_from %>
-</ul>
-Friends (<%= @friends.size %>):
-<ul class="users">
-  <%= render @friends %>
-</ul>
+<div class="jumbotron">
+  <h1>Friends</h1>
+  <h3>Friend requests (<%= @received_friend_request_from.size %>):</h3>
+  <ul class="users">
+    <%= render @received_friend_request_from %>
+  </ul>
+  <h3>Friends (<%= @friends.size %>):</h3>
+  <ul class="users">
+    <%= render @friends %>
+  </ul>
+</div>
