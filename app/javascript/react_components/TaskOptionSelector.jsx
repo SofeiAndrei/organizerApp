@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from "prop-types";
+import {formatWords} from "./shared/formater_helper";
 
 const TaskOptionSelector = (props) => {
   return (
@@ -19,7 +20,7 @@ const TaskOptionSelector = (props) => {
       disabled={props.disabled}>
       {props.options.map((option) => (
         <option key={option.id} value={props.useIdAsValue ? option.id : option.name}>
-          {option.name}
+          {formatWords(option.name, false)}
         </option>
       ))}
     </select>

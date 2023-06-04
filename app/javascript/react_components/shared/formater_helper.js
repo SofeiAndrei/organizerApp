@@ -1,12 +1,8 @@
-export const formatStatus = (givenStatus, allCaps) => {
+export const formatWords = (givenWordsCombined, allCaps = false) => {
   if(allCaps){
-    return givenStatus.toUpperCase().replaceAll('_', ' ')
+    return givenWordsCombined.toUpperCase().replaceAll('_', ' ')
   } else {
-    const words = givenStatus.split("_").map(word => capitalize(word))
-    const capitalize = (word) => {
-      return word.charAt(0).toUpperCase() + word.slice(1)
-    }
+    const words = givenWordsCombined.split("_").map(word => word.charAt(0).toUpperCase() + word.slice(1))
     return words.join(' ')
   }
-
 }

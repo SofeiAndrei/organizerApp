@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { Modal, Button} from 'react-bootstrap'
 import TaskOptionSelector from "../../../TaskOptionSelector";
 import {callAPI, getAuthenticityToken} from "../../../shared/helpers";
+import {formatWords} from "../../../shared/formater_helper";
 
 const ViewProjectTaskPopup = (props) => {
   if(props.viewProjectTaskModalOpen) {
@@ -239,7 +240,7 @@ const ViewProjectTaskPopup = (props) => {
                       </div>
                     </div>
                   ) : (
-                    <p onClick={() => setEditingPriority(true)}>{priority}</p>
+                    <p onClick={() => setEditingPriority(true)}>{formatWords(priority, false)}</p>
                   )
                   }
                 </div>
@@ -272,7 +273,7 @@ const ViewProjectTaskPopup = (props) => {
                       </div>
                     </div>
                   ) : (
-                    <p onClick={() => setEditingStatus(true)}>{status}</p>
+                    <p onClick={() => setEditingStatus(true)}>{formatWords(status, false)}</p>
                   )
                   }
                 </div>

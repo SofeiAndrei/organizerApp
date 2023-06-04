@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import {Button, Modal} from "react-bootstrap";
 import {getAuthenticityToken} from "../shared/helpers";
 import InviteUserSelector from "./InviteUserSelector";
+import {formatWords} from "../shared/formater_helper";
 
 const CalendarEventPopup = (props) => {
   const [editPressed, setEditPressed] = useState(props.newEvent)
@@ -192,8 +193,8 @@ const CalendarEventPopup = (props) => {
               <tbody>
               {invitedUsers.map(user => (
                 <tr key={user.data.id}>
-                  <td>{user.data.name}</td>
-                  <td>{user.answer}</td>
+                  <td className='invitee-name'>{user.data.name}</td>
+                  <td>{formatWords(user.answer, false)}</td>
                   {user.data.id !== props.currentUserId &&
                     <td key={user.data.id}>
                       <button
@@ -235,7 +236,7 @@ const CalendarEventPopup = (props) => {
                 <tbody>
                   {props.event.invited_users.map(user => (
                     <tr key={user.data.id}>
-                      <td>{user.data.name}</td>
+                      <td className='invitee-name'>{user.data.name}</td>
 
                       {props.currentUserId !== props.event.organizer_id && props.currentUserId === user.data.id ? (
                         <div>
@@ -247,19 +248,21 @@ const CalendarEventPopup = (props) => {
                             >
                             {answers.map((answer) => (
                               <option key={answer.id} value={answer.name}>
-                                {answer.name}
+                                {formatWords(answer.name, false)}
                               </option>
                             ))}
                             </select>
                           </td>
                           {yourAnswer !== user.answer &&
-                            <button className='btn btn-primary button-dark answer' onClick={handleSendAnswer}>
-                              Send Answer
-                            </button>
+                            <td>
+                              <button className='btn btn-primary button-dark answer' onClick={handleSendAnswer}>
+                                Send Answer
+                              </button>
+                            </td>
                           }
                         </div>
                       ) : (
-                        <td>{user.answer}</td>
+                        <td>{formatWords(user.answer, false)}</td>
                       )
                       }
                     </tr>
