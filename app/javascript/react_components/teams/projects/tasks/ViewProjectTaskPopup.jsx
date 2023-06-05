@@ -199,11 +199,14 @@ const ViewProjectTaskPopup = (props) => {
                   {!commentsLoading ? (
                     <div>
                     {comments.map(comment => (
-                      <div key={comment.id} className={'comment' + (comment.writer_id === props.currentUserId ? ' align-items-end' : '')}>
+                      <div key={comment.id} className={'comment' + (comment.writer.id === props.currentUserId ? ' align-items-end' : '')}>
                         <a className='comment-writer' href={`/users/${comment.writer.id}`}>{comment.writer.name}</a>
                         <div className='comment-content'>{comment.content}</div>
                         <div className='comment-created_at-time'>{(new Date(comment.created_at)).toString()}</div>
-                        <button className='btn btn-xs btn-primary delete-comment-button button-dark-red' onClick={() => handleCommentDelete(comment.id)}>x</button>
+                        {props.currentUserId === comment.writer.id &&
+                          <button className='btn btn-xs btn-primary delete-comment-button button-dark-red'
+                                  onClick={() => handleCommentDelete(comment.id)}>x</button>
+                        }
                       </div>
                     ))}
                     </div>

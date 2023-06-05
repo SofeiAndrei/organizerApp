@@ -33,7 +33,6 @@ class Api::CalendarEventsController < ApplicationController
 
   def destroy
     @calendar_event.destroy
-    flash[:success] = 'Event deleted successfully!'
   end
 
   private
