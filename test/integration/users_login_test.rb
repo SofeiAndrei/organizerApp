@@ -13,7 +13,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert_template 'sessions/new'
     post login_path, params: { session: { email: 'user@invalid',
                                           password: 'wrong password' } }
-    assert_not is_logged_in?
+    assert_not logged_in?
     assert_not flash.empty?
     get root_path
     assert flash.empty?
@@ -22,7 +22,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     get login_path
     post login_path, params: { session: { email: 'andreisofei@yahoo.com',
                                           password: 'passoflengthmin8' } }
-    assert is_logged_in?
+    assert logged_in?
     assert_redirected_to @user
     follow_redirect!
     assert_template 'users/show'
@@ -38,7 +38,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     # assert_select 'a[href=?]', logout_path, count: 0  -> daca era link to, care face un a cu referinta
     assert_select 'a[href=?]', logout_path, count: 0
     assert_select 'a[href=?]', user_path(@user), count: 0
-    assert_not is_logged_in?
+    assert_not logged_in?
   end
   test 'authenticated? shoud return false for a user with digest -> nil' do
     assert_not @user.authenticated?(:remember, '')

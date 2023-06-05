@@ -1,0 +1,70 @@
+AllCops:
+  Exclude:
+    - 'db/*'
+    - 'config/*'
+    - 'bin/*'
+    - 'node_modules/*'
+    - 'tmp/*'
+    - 'Guardfile'
+    - 'Rakefile'
+    - 'Gemfile'
+  NewCops: enable
+Style/ClassAndModuleChildren:
+  Enabled: true
+  EnforcedStyle: compact
+Style/FrozenStringLiteralComment:
+  Enabled: false
+# Checks for missing top-level documentation of classes and modules.
+Style/Documentation:
+  Enabled: false
+# Makes sure that accessor methods are named properly. Applies to both instance and class methods.
+Naming/AccessorMethodName:
+  Enabled: false
+# Transforms usages of a method call safeguarded by a non `nil` check for the variable whose method is being called to safe navigation `&.`.
+Style/SafeNavigation:
+  Enabled: false
+# Checks for redundant escapes inside Regexp literals.
+Style/RedundantRegexpEscape:
+  Enabled: false
+# Check uses of `::` insted of `.`
+Style/ColonMethodCall:
+  Enabled: false
+# `ENV[]` silently fails and returns nil when the environment variable is unset, which may cause unexpected behaviors when the developer forgets to set it.
+Style/FetchEnvVar:
+  Enabled: true
+# * Metrics: https://docs.rubocop.org/rubocop/cops_metrics.html
+# Checks if the length of a method exceeds some maximum value.
+Metrics/MethodLength:
+  Enabled: true
+  CountComments: false
+  Max: 35
+  CountAsOne: ['array', 'heredoc', 'hash']
+# Checks the length of lines in the source code.
+Layout/LineLength:
+  Enabled: true
+  Max: 200
+# Checks if the length of a block exceeds some maximum value.
+Metrics/BlockLength:
+  Enabled: true
+  CountAsOne: ['array', 'heredoc', 'hash']
+  CountComments: false
+  Max: 40
+# Checks that the ABC size of methods is not higher than the configured maximum.
+Metrics/AbcSize:
+  Enabled: true
+  CountRepeatedAttributes: false
+  Max: 35
+# Checks if the length a class exceeds some maximum value.
+Metrics/ClassLength:
+  Enabled: true
+  CountComments: false
+  Max: 200
+  CountAsOne: ['array', 'heredoc', 'hash']
+# Tries to produce a complexity score that’s a measure of the complexity the reader experiences when looking at a method.
+Metrics/PerceivedComplexity:
+  Enabled: true
+  Max: 10
+# Checks that the cyclomatic complexity of methods is not higher than the configured maximum.
+Metrics/CyclomaticComplexity:
+  Enabled: true
+  Max: 10

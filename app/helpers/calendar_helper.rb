@@ -14,7 +14,7 @@ module CalendarHelper
           description: task.description,
           real_id: task.id,
           all_day_event: true,
-          assignee_id: personal ? nil : task.assignee_id,
+          assignee_id: personal ? nil : task.assignee_id
         }
       }
     end
@@ -49,4 +49,3 @@ module CalendarHelper
     end
   end
 end
-

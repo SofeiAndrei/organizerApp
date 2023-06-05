@@ -7,6 +7,6 @@ class CreateTeams < ActiveRecord::Migration[7.0]
       t.timestamps
     end
 
-    add_index :teams, [:owner_id, :created_at]
+    add_index :teams, %i[owner_id created_at]
   end
 end

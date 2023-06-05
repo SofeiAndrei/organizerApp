@@ -7,7 +7,7 @@ class Api::TeamsController < ApplicationController
     calendar_events = []
 
     selected_team_projects_ids = params[:filters][:team_projects_ids]
-    selected_team_members_ids = params[:filters][:team_members_ids].map {|member_id| member_id == '' ? nil : member_id}
+    selected_team_members_ids = params[:filters][:team_members_ids].map { |member_id| member_id == '' ? nil : member_id }
 
     tasks = @team.tasks.where(team_project_id: selected_team_projects_ids, assignee_id: selected_team_members_ids)
     team_calendar_events = @team.calendar_events.includes(:invited_users, :calendar_event_invitations)

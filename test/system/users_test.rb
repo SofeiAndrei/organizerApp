@@ -1,4 +1,4 @@
-require "application_system_test_case"
+require 'application_system_test_case'
 
 # validations on user
 # 5  <= name.length  <= 50

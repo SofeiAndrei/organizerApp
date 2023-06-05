@@ -8,6 +8,6 @@ class CreateTeamMemberships < ActiveRecord::Migration[7.0]
     end
     add_index :team_memberships, :team_id
     add_index :team_memberships, :member_id
-    add_index :team_memberships, [:team_id, :member_id], unique: true
+    add_index :team_memberships, %i[team_id member_id], unique: true
   end
 end

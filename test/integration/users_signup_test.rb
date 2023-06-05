@@ -19,7 +19,6 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     assert_template 'users/new' # am inclus ca in caz ca o submisie failed re-renders actiunea new
     assert_select 'div#error-explanations'
     assert_select 'div.field_with_errors'
-
   end
 
   test 'valid submissions with account activation' do
@@ -30,7 +29,8 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
                                          password: 'passoflengthmin8',
                                          password_confirmation: 'passoflengthmin8',
                                          activated: false } }
-    end  # verifica daca la introducerea unui user valid diferenta este exact 1 la User.count
+    end
+    # verifica daca la introducerea unui user valid diferenta este exact 1 la User.count
 
     assert_equal 1, ActionMailer::Base.deliveries.size
     user = assigns(:user)
@@ -42,18 +42,18 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     assert_not user.activated?
     # Try to log in before activation
     log_in_as(user)
-    assert_not is_logged_in?
+    assert_not logged_in?
     # Invalid activation token
     get edit_account_activation_path('invalid token', email: user.email)
-    assert_not is_logged_in?
+    assert_not logged_in?
     # Valid token, wrong email
     get edit_account_activation_path(user.activation_token, email: 'wrong@email')
-    assert_not is_logged_in?
+    assert_not logged_in?
     # Valid token and email
     get edit_account_activation_path(user.activation_token, email: user.email)
     assert user.reload.activated?
     follow_redirect!
     assert_template 'users/show'
-    assert is_logged_in?
+    assert logged_in?
   end
 end

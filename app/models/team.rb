@@ -16,12 +16,12 @@ class Team < ApplicationRecord
                    length: { minimum: 5, maximum: 40 }
 
   def team_member?(user)
-    return self.members.include?(user)
+    members.include?(user)
   end
 
   def team_admin?(user)
-    team_membership = self.team_memberships.find_by(member_id: user.id)
-    return team_membership.nil? ? false : team_membership.team_admin?
+    team_membership = team_memberships.find_by(member_id: user.id)
+    team_membership.nil? ? false : team_membership.team_admin?
   end
 
   def add_member(user, is_admin)
@@ -34,10 +34,10 @@ class Team < ApplicationRecord
   end
 
   def retract_invitation(user)
-    self.invited_users.delete(user)
+    invited_users.delete(user)
   end
 
   def tasks
-    self.team_project_tasks
+    team_project_tasks
   end
 end

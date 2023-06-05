@@ -25,37 +25,37 @@ class Api::IndividualTasksController < ApplicationController
       deadline: permitted_params[:deadline],
       completed: permitted_params[:completed]
     }
-    if @individual_task.update(task_params)
-      flash[:success] = 'Changes saved successfully!'
-      tags_ids = permitted_params[:tags].map { |tag| tag[:id]}
-      tags = IndividualTaskTag.where(id: tags_ids) # new tags
-      set_tags = @individual_task.individual_task_tags # old tags
+    return unless @individual_task.update(task_params)
 
-      deleted_old_tags = []
-      new_added_tags = []
-      # Remove deleted tasks
-      set_tags.each do |old_tag|
-        deleted_old_tags.append(old_tag) unless tags.include? old_tag
-      end
-      # Add newly added tags
-      tags.each do |new_tag|
-        new_added_tags.append(new_tag) unless set_tags.include? new_tag
-        set_tags << new_tag unless set_tags.include? new_tag
-      end
-      set_tags.delete(deleted_old_tags) unless deleted_old_tags.empty?
+    flash[:success] = 'Changes saved successfully!'
+    tags_ids = permitted_params[:tags].map { |tag| tag[:id] }
+    tags = IndividualTaskTag.where(id: tags_ids) # new tags
+    set_tags = @individual_task.individual_task_tags # old tags
+
+    deleted_old_tags = []
+    new_added_tags = []
+    # Remove deleted tasks
+    set_tags.each do |old_tag|
+      deleted_old_tags.append(old_tag) unless tags.include? old_tag
     end
+    # Add newly added tags
+    tags.each do |new_tag|
+      new_added_tags.append(new_tag) unless set_tags.include? new_tag
+      set_tags << new_tag unless set_tags.include? new_tag
+    end
+    set_tags.delete(deleted_old_tags) unless deleted_old_tags.empty?
   end
 
   def destroy
-    individual_task = IndividualTask.find(params[:id]).destroy
+    IndividualTask.find(params[:id]).destroy
     flash[:success] = 'Deleted task successfully'
   end
 
   private
 
   def individual_task_params
-    params.require(:individual_task).permit(:name, :description, :priority, :deadline, :completed, tags: [:id, :name, :user_todo_list_id, :created_at, :updated_at])
-          .tap { |whitelisted| whitelisted[:priority] = params[:individual_task][:priority].to_i.zero? ? params[:individual_task][:priority] : params[:individual_task][:priority].to_i}
+    params.require(:individual_task).permit(:name, :description, :priority, :deadline, :completed, tags: %i[id name user_todo_list_id created_at updated_at])
+          .tap { |whitelisted| whitelisted[:priority] = params[:individual_task][:priority].to_i.zero? ? params[:individual_task][:priority] : params[:individual_task][:priority].to_i }
   end
 
   def load_todo_list

@@ -40,6 +40,4 @@ class FriendshipRequestsController < ApplicationController
       format.js
     end
   end
-
-  private
 end

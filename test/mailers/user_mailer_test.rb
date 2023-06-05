@@ -23,5 +23,4 @@ class UserMailerTest < ActionMailer::TestCase
     assert_match user.reset_token, mail.body.encoded # sa fie token-ul in body(adica in url-ul de la link-ul de activare)
     assert_match CGI.escape(user.email), mail.body.encoded # sa fie prezent link-ul de activare
   end
-
 end
