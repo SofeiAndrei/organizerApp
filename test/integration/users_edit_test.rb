@@ -1,4 +1,4 @@
-require "test_helper"
+require 'test_helper'
 
 class UsersEditTest < ActionDispatch::IntegrationTest
   def setup
@@ -48,5 +48,4 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     assert_equal 'New Name', @user.name
     assert_equal 'newemail@yahoo.com', @user.email
   end
-
 end

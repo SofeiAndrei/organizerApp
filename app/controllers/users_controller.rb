@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:index, :edit, :update, :destroy, :calendar, :my_teams]
+  before_action :logged_in_user, only: %i[index edit update destroy calendar my_teams]
   before_action :load_user, only: %i[edit show update destroy calendar friend_list common_friends]
-  before_action :correct_user, only: [:edit, :update, :calendar]
+  before_action :correct_user, only: %i[edit update calendar]
   before_action :correct_user_or_friend, only: [:friend_list]
   before_action :not_same_user, only: [:common_friends]
   before_action :admin_user, only: [:destroy]
@@ -88,10 +88,10 @@ class UsersController < ApplicationController
   end
 
   def activated_user
-    unless activated?
-      flash[:danger] = 'Please activate your account'
-      redirect_to login_url
-    end
+    return if activated?
+
+    flash[:danger] = 'Please activate your account'
+    redirect_to login_url
   end
 
   def load_user

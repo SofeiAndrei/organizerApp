@@ -4,16 +4,16 @@ class TeamMembershipsController < ApplicationController
 
   def promote
     @team_membership = TeamMembership.find(params[:id])
-    if @team_membership.update(team_admin: true)
-      flash[:success] = 'User promoted successfully!'
-    end
+    return unless @team_membership.update(team_admin: true)
+
+    flash[:success] = 'User promoted successfully!'
   end
 
   def demote
     @team_membership = TeamMembership.find(params[:id])
-    if @team_membership.update(team_admin: false)
-      flash[:success] = 'User demoted successfully!'
-    end
+    return unless @team_membership.update(team_admin: false)
+
+    flash[:success] = 'User demoted successfully!'
   end
 
   def destroy

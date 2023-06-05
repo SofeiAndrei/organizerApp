@@ -45,19 +45,19 @@ class PasswordResetsTest < ActionDispatch::IntegrationTest
           params: { email: user.email,
                     user: { password: 'parola_gresita',
                             password_confirmation: 'mult_mai_gresit' } }
-    #assert_select 'div#error_explanation'
+    # assert_select 'div#error_explanation'
     # Empty password
     patch password_reset_path(user.reset_token),
           params: { email: user.email,
                     user: { password: '',
                             password_confirmation: '' } }
-    #assert_select 'div#error_explanation'
+    # assert_select 'div#error_explanation'
     # Valid password & confirmation
     patch password_reset_path(user.reset_token),
           params: { email: user.email,
                     user: { password: 'passoflengthmin8',
                             password_confirmation: 'passoflengthmin8' } }
-    assert is_logged_in?
+    assert logged_in?
     assert_not flash.empty?
     assert_redirected_to user
   end

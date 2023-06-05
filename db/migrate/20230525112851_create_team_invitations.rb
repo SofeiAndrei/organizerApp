@@ -8,6 +8,6 @@ class CreateTeamInvitations < ActiveRecord::Migration[7.0]
     end
     add_index :team_invitations, :invited_id
     add_index :team_invitations, :team_id
-    add_index :team_invitations, [:invited_id, :team_id], unique: true
+    add_index :team_invitations, %i[invited_id team_id], unique: true
   end
 end

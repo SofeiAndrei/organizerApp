@@ -67,7 +67,7 @@ class TeamsController < ApplicationController
   end
 
   def destroy
-    team = Team.find(params[:id]).destroy
+    Team.find(params[:id]).destroy
     flash[:success] = 'Deleted team successfully'
 
     respond_to do |f|

@@ -32,11 +32,11 @@ module SessionsHelper
 
   def log_out
     # Exista posibilitatea de pe 2 tab-uri sa dai pe logout si pe cealalta sa te logheze din ceva ce nu exista, adica eroare
-    if logged_in?
-      forget(current_user)
-      session.delete(:user_id)
-      @current_user = nil
-    end
+    return unless logged_in?
+
+    forget(current_user)
+    session.delete(:user_id)
+    @current_user = nil
   end
 
   def remember(user)

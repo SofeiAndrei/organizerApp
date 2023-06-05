@@ -19,7 +19,7 @@ class Api::IndividualTaskTagsController < ApplicationController
   end
 
   def destroy
-    individual_task_tag = IndividualTaskTag.find(params[:id]).destroy
+    IndividualTaskTag.find(params[:id]).destroy
     flash[:success] = 'Deleted tag successfully'
   end
 

@@ -4,7 +4,92 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e28e46e0-8ac2-47f7-9869-d99e49173358" name="Changes" comment="Merged master into main" />
+    <list default="true" id="e28e46e0-8ac2-47f7-9869-d99e49173358" name="Changes" comment="Merged master into main">
+      <change afterPath="$PROJECT_DIR$/.rubocop.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/channels/application_cable/channel.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/channels/application_cable/channel.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/channels/application_cable/connection.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/channels/application_cable/connection.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/account_activations_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/account_activations_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/api/calendar_events_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/api/calendar_events_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/api/individual_task_tags_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/api/individual_task_tags_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/api/individual_tasks_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/api/individual_tasks_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/api/team_projects_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/api/team_projects_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/api/teams_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/api/teams_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/api/users_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/api/users_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/application_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/application_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/friendship_requests_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/friendship_requests_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/friendships_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/friendships_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/password_resets_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/password_resets_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/sessions_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/sessions_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/team_memberships_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/team_memberships_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/team_project_tasks_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/team_project_tasks_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/teams_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/teams_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/users_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/users_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/helpers/calendar_helper.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers/calendar_helper.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/helpers/password_resets_helper.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers/password_resets_helper.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/helpers/sessions_helper.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers/sessions_helper.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/helpers/users_helper.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers/users_helper.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/mailers/application_mailer.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/mailers/application_mailer.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/mailers/user_mailer.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/mailers/user_mailer.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/team.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/team.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/team_invitation.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/team_invitation.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/user.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/user.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.ru" beforeDir="false" afterPath="$PROJECT_DIR$/config.ru" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/environments/development.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/environments/development.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/environments/production.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/environments/production.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/environments/test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/environments/test.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/initializers/assets.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/initializers/assets.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/initializers/filter_parameter_logging.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/initializers/filter_parameter_logging.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/initializers/smtp.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/initializers/smtp.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/migrate/20220713201451_create_active_storage_tables.active_storage.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/migrate/20220713201451_create_active_storage_tables.active_storage.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/migrate/20230514205210_create_individual_task_tag_relationships.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/migrate/20230514205210_create_individual_task_tag_relationships.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/migrate/20230524150529_create_teams.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/migrate/20230524150529_create_teams.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/migrate/20230524154409_create_team_memberships.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/migrate/20230524154409_create_team_memberships.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/migrate/20230525112851_create_team_invitations.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/migrate/20230525112851_create_team_invitations.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/migrate/20230531122832_create_calendar_events.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/migrate/20230531122832_create_calendar_events.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/application_system_test_case.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/application_system_test_case.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/channels/application_cable/connection_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/channels/application_cable/connection_test.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/controllers/account_activations_controller_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/controllers/account_activations_controller_test.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/controllers/calendar_event_invitations_controller_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/controllers/calendar_event_invitations_controller_test.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/controllers/friendship_requests_controller_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/controllers/friendship_requests_controller_test.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/controllers/friendships_controller_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/controllers/friendships_controller_test.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/controllers/individual_tasks_controller_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/controllers/individual_tasks_controller_test.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/controllers/sessions_controller_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/controllers/sessions_controller_test.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/controllers/team_invitations_controller_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/controllers/team_invitations_controller_test.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/controllers/team_memberships_controller_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/controllers/team_memberships_controller_test.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/controllers/team_project_tasks_controller_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/controllers/team_project_tasks_controller_test.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/controllers/team_projects_controller_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/controllers/team_projects_controller_test.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/controllers/teams_controller_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/controllers/teams_controller_test.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/controllers/user_todo_lists_controller_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/controllers/user_todo_lists_controller_test.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/controllers/users_controller_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/controllers/users_controller_test.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/helpers/sessions_helper_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/helpers/sessions_helper_test.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/integration/password_resets_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/integration/password_resets_test.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/integration/site_layout_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/integration/site_layout_test.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/integration/users_edit_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/integration/users_edit_test.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/integration/users_index_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/integration/users_index_test.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/integration/users_login_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/integration/users_login_test.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/integration/users_profile_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/integration/users_profile_test.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/integration/users_signup_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/integration/users_signup_test.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/mailers/previews/user_mailer_preview.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/mailers/previews/user_mailer_preview.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/mailers/user_mailer_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/mailers/user_mailer_test.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/models/calendar_event_invitation_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/models/calendar_event_invitation_test.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/models/calendar_event_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/models/calendar_event_test.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/models/friendship_request_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/models/friendship_request_test.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/models/friendship_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/models/friendship_test.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/models/individual_task_tag_relationship_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/models/individual_task_tag_relationship_test.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/models/individual_task_tag_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/models/individual_task_tag_test.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/models/individual_task_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/models/individual_task_test.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/models/task_comment_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/models/task_comment_test.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/models/team_invitation_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/models/team_invitation_test.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/models/team_membership_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/models/team_membership_test.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/models/team_project_task_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/models/team_project_task_test.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/models/team_project_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/models/team_project_test.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/models/team_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/models/team_test.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/models/user_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/models/user_test.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/models/user_todo_list_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/models/user_todo_list_test.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/system/users_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/system/users_test.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/test_helper.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_helper.rb" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

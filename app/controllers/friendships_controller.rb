@@ -6,17 +6,16 @@ class FriendshipsController < ApplicationController
     if current_user?(@sender)
       current_user.unfriend(@receiver)
       respond_to do |format|
-        format.html {redirect_to @receiver}
+        format.html { redirect_to @receiver }
         format.js
       end
     else
       current_user.unfriend(@sender)
       respond_to do |format|
-        format.html {redirect_to @sender}
+        format.html { redirect_to @sender }
         format.js
       end
     end
-
   end
 
   private

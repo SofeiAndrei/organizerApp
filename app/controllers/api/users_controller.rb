@@ -29,9 +29,7 @@ class Api::UsersController < ApplicationController
     tasks = @user.tasks
     user_calendar_events = @user.events_invited_to.includes(:invited_users, :calendar_event_invitations).where(team_id: selected_teams_ids)
 
-    if selected_team_projects_ids
-      calendar_events.concat(format_tasks(tasks[:assigned_tasks].where(team_project_id: selected_team_projects_ids), false, 0))
-    end
+    calendar_events.concat(format_tasks(tasks[:assigned_tasks].where(team_project_id: selected_team_projects_ids), false, 0)) if selected_team_projects_ids
     calendar_events.concat(format_tasks(tasks[:individual_tasks], true, calendar_events.length)) if personal_checked
     calendar_events.concat(format_events(user_calendar_events, calendar_events.length))
 
