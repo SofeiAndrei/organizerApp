@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "start": "react-scripts start --openssl-legacy-provider"
+  },
   "dependencies": {
     "@babel/preset-react": "^7.18.6",
     "@rails/activestorage": "^6.0.5",
