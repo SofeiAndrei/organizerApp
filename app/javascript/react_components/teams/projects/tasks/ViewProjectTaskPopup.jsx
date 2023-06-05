@@ -4,6 +4,8 @@ import PropTypes from "prop-types";
 import { Modal, Button} from 'react-bootstrap'
 import TaskOptionSelector from "../../../TaskOptionSelector";
 import {callAPI, getAuthenticityToken} from "../../../shared/helpers";
+import {formatWords} from "../../../shared/formater_helper";
+import Loader from "../../../Loader";
 
 const ViewProjectTaskPopup = (props) => {
   if(props.viewProjectTaskModalOpen) {
@@ -27,6 +29,7 @@ const ViewProjectTaskPopup = (props) => {
 
     const [comment, setComment] = useState('')
     const [comments, setComments] = useState([])
+    const [commentsLoading, setCommentsLoading] = useState(true)
 
     const teamMemberOptions = [
       {id: 0, name: 'Unassigned'},
@@ -49,6 +52,7 @@ const ViewProjectTaskPopup = (props) => {
     ]
 
     const handleModalClose = () => {
+      setCommentsLoading(true)
       props.setViewProjectTaskModalOpen(false)
     }
 
@@ -120,7 +124,6 @@ const ViewProjectTaskPopup = (props) => {
         .then((response) => {
           if(response.ok){
             getTaskComments()
-            setComment('')
           }
           else{
             throw new Error('Network response was not OK')
@@ -138,6 +141,7 @@ const ViewProjectTaskPopup = (props) => {
           console.log(json.comments)
           console.log("got task comments")
           setComments(json.comments)
+          setTimeout(() => setCommentsLoading(false), 500)
         })
         .catch(error => {
           console.log(error)
@@ -147,10 +151,13 @@ const ViewProjectTaskPopup = (props) => {
     const handleCommentPosted = () => {
       console.log("Written comment:", comment)
       console.log("Call to create a comment with the text:", comment, " the creator_id:", props.currentUserId, " and the task_id:", props.data.task.id)
+      setComment('')
+      setCommentsLoading(true)
       saveNewComment(comment, props.currentUserId, props.data.task.id)
     }
 
     const handleCommentDelete = (commentId) => {
+      setCommentsLoading(true)
       if (confirm(`Are you sure you want to delete this comment?`)){
         fetch(`/api/task_comments/${commentId}`, {
           method: 'DELETE',
@@ -172,9 +179,9 @@ const ViewProjectTaskPopup = (props) => {
           <Modal.Title>
             {editingName ? (
               <div>
-                <textarea id='name' value={tempName} onChange={(e) => setTempName(e.target.value)} autoFocus onBlur={cancelNameChanges}/>
-                <button className='btn' onClick={cancelNameChanges}>{'Cancel'}</button>
-                <button className='btn' onClick={saveNameChanges}>{'Save'}</button>
+                <textarea className='form-control' id='name' value={tempName} onChange={(e) => setTempName(e.target.value)} autoFocus onBlur={cancelNameChanges}/>
+                <button className='btn btn-primary button-dark' onClick={cancelNameChanges}>{'Cancel'}</button>
+                <button className='btn btn-primary button-dark' onClick={saveNameChanges}>{'Save'}</button>
               </div>
             ) : (
               <p onClick={() => setEditingName(true)}>{name}</p>
@@ -183,20 +190,29 @@ const ViewProjectTaskPopup = (props) => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div className='container'>
+          <div>
             <div className='row'>
               <div className='col-xs-12 col-sm-7 col-md-7 col-lg-7 col-xl-7 team-project-task-comments-container'>
                 <div className='team-project-task-comments'>
-                  <input type='text' placeholder='Add a comment...' onChange={(e) => setComment(e.target.value)} value={comment}/>
-                  <button className={comment === '' ? 'hidden ' : '' + 'btn btn-primary'} onClick={handleCommentPosted}>Send</button>
-                  {comments.map(comment => (
-                    <div key={comment.id} className={'comment' + (comment.writer_id === props.currentUserId ? ' align-items-end' : '')}>
-                      <a className='comment-writer' href={`/users/${comment.writer.id}`}>{comment.writer.name}</a>
-                      <div className='comment-content'>{comment.content}</div>
-                      <div className='comment-created_at-time'>{(new Date(comment.created_at)).toString()}</div>
-                      <button onClick={() => handleCommentDelete(comment.id)}>x</button>
+                  <input className='form-control' type='text' placeholder='Add a comment...' onChange={(e) => setComment(e.target.value)} value={comment}/>
+                  <button className={comment === '' ? 'hidden ' : '' + 'btn btn-primary button-dark'} onClick={handleCommentPosted}>Send</button>
+                  {!commentsLoading ? (
+                    <div>
+                    {comments.map(comment => (
+                      <div key={comment.id} className={'comment' + (comment.writer.id === props.currentUserId ? ' align-items-end' : '')}>
+                        <a className='comment-writer' href={`/users/${comment.writer.id}`}>{comment.writer.name}</a>
+                        <div className='comment-content'>{comment.content}</div>
+                        <div className='comment-created_at-time'>{(new Date(comment.created_at)).toString()}</div>
+                        {props.currentUserId === comment.writer.id &&
+                          <button className='btn btn-xs btn-primary delete-comment-button button-dark-red'
+                                  onClick={() => handleCommentDelete(comment.id)}>x</button>
+                        }
+                      </div>
+                    ))}
                     </div>
-                  ))}
+                  ) : (
+                    <Loader smallLoader={true}/>
+                  )}
                 </div>
               </div>
               <div className='col-xs-12 col-sm-5 col-md-5 col-lg-5 col-xl-5 team-project-task-info'>
@@ -204,9 +220,9 @@ const ViewProjectTaskPopup = (props) => {
                   <label>{'Description'}</label>
                   {editingDescription ? (
                     <div>
-                      <textarea id='description' placeholder='Add a description...' value={tempDescription} onChange={(e) => setTempDescription(e.target.value)} autoFocus onBlur={cancelDescriptionChanges}/>
-                      <button className='btn' onClick={cancelDescriptionChanges}>{'Cancel'}</button>
-                      <button className='btn' onClick={saveDescriptionChanges}>{'Save'}</button>
+                      <textarea className='form-control' id='description' placeholder='Add a description...' value={tempDescription} onChange={(e) => setTempDescription(e.target.value)} autoFocus onBlur={cancelDescriptionChanges}/>
+                      <button className='btn btn-primary button-dark' onClick={cancelDescriptionChanges}>{'Cancel'}</button>
+                      <button className='btn btn-primary button-dark' onClick={saveDescriptionChanges}>{'Save'}</button>
                     </div>
                   ) : (
                     <p onClick={() => setEditingDescription(true)}>{description ? description : 'Add a description...'}</p>
@@ -239,7 +255,7 @@ const ViewProjectTaskPopup = (props) => {
                       </div>
                     </div>
                   ) : (
-                    <p onClick={() => setEditingPriority(true)}>{priority}</p>
+                    <p onClick={() => setEditingPriority(true)}>{formatWords(priority, false)}</p>
                   )
                   }
                 </div>
@@ -249,6 +265,7 @@ const ViewProjectTaskPopup = (props) => {
                     <div>
                       <div>
                         <input
+                          className='form-control'
                           autoFocus
                           type="date"
                           value={deadline}
@@ -271,7 +288,7 @@ const ViewProjectTaskPopup = (props) => {
                       </div>
                     </div>
                   ) : (
-                    <p onClick={() => setEditingStatus(true)}>{status}</p>
+                    <p onClick={() => setEditingStatus(true)}>{formatWords(status, false)}</p>
                   )
                   }
                 </div>
@@ -281,13 +298,13 @@ const ViewProjectTaskPopup = (props) => {
         </Modal.Body>
         <Modal.Footer>
           {(props.userIsTeamAdmin || props.currentUserId === props.data.task.creator_id) && (
-            <Button className='btn btn-danger' onClick={() => {
+            <Button className='btn btn-primary button-dark-red' onClick={() => {
               handleModalClose()
               props.handleTaskDelete(props.data.task)
             }}>Delete</Button>
           )}
-          <Button onClick={() => handleModalClose()}>Cancel</Button>
-          <Button className={changesHaveBeenMade() ? '' : 'hidden'} onClick={SaveChanges}>Save</Button>
+          <Button className='btn btn-primary button-dark' onClick={() => handleModalClose()}>Cancel</Button>
+          <Button className={(changesHaveBeenMade() ? '' : 'hidden ') + 'btn btn-primary button-dark'} onClick={SaveChanges}>Save</Button>
         </Modal.Footer>
       </Modal>
     )

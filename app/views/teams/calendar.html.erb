@@ -1,8 +1,11 @@
 <%= stylesheet_pack_tag '' %>
-<h2>Team Calendar</h2>
-<%= react_component('CalendarPage',
-                    currentDate: @current_date,
-                    userCalendar: false,
-                    currentUserId: current_user.id,
-                    currentTeamId: @team.id,
-                    invitableUsers: @team.members) %>
+<div>
+  <h1>Team Calendar</h1>
+  <%= react_component('CalendarPage',
+                      currentDate: @current_date,
+                      userCalendar: false,
+                      currentUserId: current_user.id,
+                      currentTeamId: @team.id,
+                      invitableUsers: @team.members,
+                      availableFilters: @filters) %>
+</div>

@@ -1,0 +1,13 @@
+<div class='row'>
+  <div class='col-md-6 col-md-offset-3 jumbotron'>
+    <h1>Edit List</h1>
+    <%= form_with(model:@user_todo_list, url: user_user_todo_list_path(@user, @user_todo_list), local: true) do |f| %>
+      <%= render 'shared/error_messages', object: @user_todo_list %>
+      <div class="field">
+        <%= f.label :list_name %>
+        <%= f.text_field :name, placeholder: 'List name', class: 'form-control' %>
+      </div>
+      <%= f.submit 'Save changes', class: 'btn btn-primary button-dark' %>
+    <% end %>
+  </div>
+</div>

@@ -85,11 +85,11 @@ const NewProjectTaskPopup = (props) => {
         <div className='content'>
           <div>
             <label htmlFor="name">Name:</label>
-            <input type='text' id='name' value={name} onChange={(e) => setName(e.target.value)}/>
+            <input className='form-control' type='text' id='name' value={name} onChange={(e) => setName(e.target.value)}/>
           </div>
           <div>
             <label htmlFor="description">Description:</label>
-            <textarea className='description-input' id='description' value={description} onChange={(e) => setDescription(e.target.value)}/>
+            <textarea className='description-input form-control' id='description' value={description} onChange={(e) => setDescription(e.target.value)}/>
           </div>
           <div>
             <label htmlFor="priority">Priority:</label>
@@ -98,20 +98,21 @@ const NewProjectTaskPopup = (props) => {
           <div>
             <label htmlFor='deadline'>Deadline:</label>
             <input
-              type="date"
+              className='form-control'
+              type='date'
               value={deadline}
               onChange={(e) => setDeadline(e.target.value)}
             />
           </div>
           <div>
-            <label htmlFor="status">Status:</label>
+            <label htmlFor='status'>Status:</label>
             <TaskOptionSelector options={statusOptions} setOption={setStatus} selectedOption={status} useIdAsValue={false}/>
           </div>
         </div>
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={() => handleModalClose()}>Cancel</Button>
-        <Button onClick={() => onSave()}>Save</Button>
+        <Button className='btn btn-primary button-dark' onClick={() => handleModalClose()}>Cancel</Button>
+        <Button className='btn btn-primary button-dark' onClick={() => onSave()}>Save</Button>
       </Modal.Footer>
     </Modal>
   )

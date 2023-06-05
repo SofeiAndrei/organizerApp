@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import ProjectTaskKanban from "./tasks/ProjectTaskKanban";
 import {DragDropContext, Droppable} from "react-beautiful-dnd"
+import {formatWords} from "../../shared/formater_helper";
 
 const ProjectTasksBoardKanban = (props) => {
 
@@ -23,17 +24,17 @@ const ProjectTasksBoardKanban = (props) => {
 
   return(
     <DragDropContext onDragEnd={onDragEnd}>
-      <div className='container'>
+      <div>
         <div className='row kanban-container'>
           {taskStatuses.map((status, index) =>
             <Droppable droppableId={status}>
               { (provided) => (
-                <div className='col-sm-2 kanban-column-container'
+                <div className='col kanban-column-container'
                      ref={provided.innerRef}
                      {...provided.droppableProps}
                 >
                   <div className='kanban-column-header'>
-                    <h5>{status.toUpperCase().replaceAll('_', ' ') + ' ' + props.tasks.filter(task => task.task.status === status).length.toString()}</h5>
+                    <h5>{formatWords(status, true) + ' ' + props.tasks.filter(task => task.task.status === status).length.toString()}</h5>
                   </div>
                   <div className='kanban-column-body'>
                     {props.tasks.filter(task => task.task.status === status).map((task, index) =>

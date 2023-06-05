@@ -1,12 +1,14 @@
 <% provide(:title, "User ToDo Lists") %>
-<h1>
-  Your To Do Lists
-</h1>
-
-<%= link_to 'Create New List', new_user_user_todo_list_path(@user) %>
-
-<%= will_paginate %>
-<ul class="user_todo_lists">
-  <%= render @user_todo_lists %>
-</ul>
-<%= will_paginate %>
+<div class="jumbotron">
+  <h1>
+    Your To Do Lists
+  </h1>
+  <%= link_to 'Create New List', new_user_user_todo_list_path(@user), class: 'btn btn-primary button-dark' %>
+  <br/><br/>
+  <p>Todo Lists:</p>
+  <%= will_paginate %>
+  <ul class="user_todo_lists">
+    <%= render @user_todo_lists %>
+  </ul>
+  <%= will_paginate %>
+</div>

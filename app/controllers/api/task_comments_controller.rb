@@ -4,9 +4,7 @@ class Api::TaskCommentsController < ApplicationController
 
   def create
     @comment = TaskComment.new(task_comment_params)
-    if @comment.save
-      flash[:success] = 'Comment posted successfully'
-    end
+    @comment.save
   end
 
   def comments_for_task

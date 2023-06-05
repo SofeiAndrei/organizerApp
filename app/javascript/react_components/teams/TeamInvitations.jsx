@@ -29,18 +29,20 @@ const TeamInvitations = (props) => {
 
   return (
     <div className='team_invites'>
-      <h4>Sent Team Invitations</h4>
+      <h3>{`Sent Team Invitations (${props.invitedUsers ? props.invitedUsers.length : 0})`}</h3>
       {props.invitedUsers.map((user) => (
-        <div key={user.id} className='team_invitation'>
-          {user.name}
-          {props.userIsTeamAdmin &&
-            <button
-              className='btn btn-primary btn-danger'
-              onClick={() => handleInvitationRetracted(user)}
-            >
-              Retract Invitation
-            </button>
-          }
+        <div className='user-team-invitation-container'>
+          <div key={user.id} className='user-team-invitation'>
+            <a href={`/users/${user.id}` } className='invited-user-link'>{user.name}</a>
+            {props.userIsTeamAdmin &&
+              <button
+                className='btn btn-primary button-dark-red'
+                onClick={() => handleInvitationRetracted(user)}
+              >
+                Retract Invitation
+              </button>
+            }
+          </div>
         </div>
       ))}
     </div>

@@ -13,7 +13,8 @@ module CalendarHelper
           type: personal ? 'personal_task' : 'team_task',
           description: task.description,
           real_id: task.id,
-          all_day_event: true
+          all_day_event: true,
+          assignee_id: personal ? nil : task.assignee_id,
         }
       }
     end

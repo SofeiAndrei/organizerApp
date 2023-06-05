@@ -116,7 +116,7 @@ const AddUserToTeamPopup = (props) => {
       <Modal.Body>
         {usersToInvite.length > 0 &&
           <div className='users_to_invite'>
-            Select Users to invite:
+            <h4>Selected Users to invite:</h4>
             <br/>
             <div className='tags-container'>
               <div className='content-tags'>
@@ -127,7 +127,7 @@ const AddUserToTeamPopup = (props) => {
                         {user.name}
                       </div>
                     </div>
-                    <a type='button' className='delete-tag-button' onClick={() => onUserDelete(user)}>
+                    <a type='button' className='btn btn-xs btn-primary delete-tag-button button-dark-red' onClick={() => onUserDelete(user)}>
                       x
                     </a>
                   </div>
@@ -137,19 +137,19 @@ const AddUserToTeamPopup = (props) => {
           </div>
         }
         <div className='radio-button-group-container'>
-          <div className='radio-button-div'>
+          <div className='form-control radio-button-div'>
             <label className='radio-label' htmlFor='by_name'>By Name</label>
-            <input className='radio-button' type='radio' id='by_name' name='by_name' value='by_name' checked={!findUserById} onChange={onChangeSearchType}/>
+            <input className='radio-button radio-button-red' type='radio' id='by_name' name='by_name' value='by_name' checked={!findUserById} onChange={onChangeSearchType}/>
           </div>
-          <div className='radio-button-div'>
+          <div className='form-control radio-button-div'>
             <label className='radio-label' htmlFor='by_id'>By Id</label>
-            <input className='radio-button' type='radio' id='by_id' name='by_id' value='by_id' checked={findUserById} onChange={onChangeSearchType}/>
+            <input className='radio-button radio-button-red' type='radio' id='by_id' name='by_id' value='by_id' checked={findUserById} onChange={onChangeSearchType}/>
           </div>
         </div>
         <div className='content'>
           <div>
             <label htmlFor="search_input">Search for User:</label>
-            <input type='text' id='search_input' value={userSearchInput} onChange={handleSearchInputChange}/>
+            <input className='form-control' type='text' id='search_input' value={userSearchInput} onChange={handleSearchInputChange}/>
           </div>
         </div>
         {searchResultUsers.length === 0 && userSearchInput !== '' &&
@@ -165,9 +165,9 @@ const AddUserToTeamPopup = (props) => {
         }
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={() => handleModalClose()}>Cancel</Button>
+        <Button className='btn btn-primary button-dark' onClick={() => handleModalClose()}>Cancel</Button>
         {usersToInvite.length > 0 &&
-          <Button onClick={() => onInviteUsers()}>Invite!</Button>
+          <Button className='btn btn-primary button-dark' onClick={() => onInviteUsers()}>Invite!</Button>
         }
       </Modal.Footer>
     </Modal>

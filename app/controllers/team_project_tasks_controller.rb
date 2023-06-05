@@ -6,19 +6,11 @@ class TeamProjectTasksController < ApplicationController
   before_action :team_admin, only: :destroy
 
   def create
-    puts params.inspect
     @team_project_task = @team_project.team_project_tasks.build(team_project_task_params)
-
-    puts @team_project_task.inspect
-    if @team_project_task.save
-      flash[:success] = 'Task Created!'
-    else
-      flash[:danger] = 'There was a problem creating the task'
-    end
+    @team_project_task.save
   end
 
   def update
-    puts params.inspect
     @team_project_task = TeamProjectTask.find(params[:id])
     permitted_params = team_project_task_params
 
@@ -30,15 +22,11 @@ class TeamProjectTasksController < ApplicationController
       status: permitted_params[:status],
       assignee_id: permitted_params[:assignee_id].to_i.zero? ? nil : permitted_params[:assignee_id].to_i
     }
-    if @team_project_task.update(task_params)
-      flash[:success] = 'Changes saved successfully!'
-    end
+    @team_project_task.update(task_params)
   end
 
   def destroy
-    puts params.inspect
     team_project_task = TeamProjectTask.find(params[:id]).destroy
-    flash[:success] = 'Deleted task successfully'
   end
 
   private

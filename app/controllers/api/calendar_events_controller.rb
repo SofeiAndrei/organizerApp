@@ -5,12 +5,8 @@ class Api::CalendarEventsController < ApplicationController
   # before_action :team_member_for_team_events
 
   def create
-    puts params[:invited_users_ids]
-    puts calendar_event_params
     @calendar_event = CalendarEvent.new(calendar_event_params)
     if @calendar_event.save
-      flash[:success] = 'Event created successfully!'
-      # CalendarEventInvitation.create({ user_id: current_user.id, calendar_event_id: @calendar_event.id, answer: 'organizer' })
       params[:invited_users_ids].each do |user_id|
         answer = user_id == current_user.id ? 'organizer' : 'no_answer'
         CalendarEventInvitation.create({ user_id: user_id, calendar_event_id: @calendar_event.id, answer: answer })
@@ -19,8 +15,6 @@ class Api::CalendarEventsController < ApplicationController
   end
 
   def update
-    puts params[:invited_users_ids]
-    puts calendar_event_params
     if @calendar_event.update(calendar_event_params)
       flash[:success] = 'Changes saved successfully!'
       # remove the users that were deleted from the invited list
@@ -39,7 +33,6 @@ class Api::CalendarEventsController < ApplicationController
 
   def destroy
     @calendar_event.destroy
-    flash[:success] = 'Event deleted successfully!'
   end
 
   private

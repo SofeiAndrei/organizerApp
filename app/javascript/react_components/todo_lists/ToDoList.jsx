@@ -3,6 +3,7 @@ import { getAuthenticityToken, callAPI } from "../shared/helpers";
 import PropTypes from 'prop-types'
 import IndividualTask from "./IndividualTask";
 import NewIndividualTaskPopup from "./NewIndividualTaskPopup";
+import Loader from "../Loader";
 
 const ToDoList = (props) => {
   const [tasks, setTasks] = useState([])
@@ -15,7 +16,7 @@ const ToDoList = (props) => {
         console.log(json.tasks)
         console.log("got tasks")
         setTasks(json.tasks)
-        setDataIsLoading(false)
+        setTimeout(() => setDataIsLoading(false), 1000)
       })
       .catch(error => {
         console.log(error)
@@ -55,21 +56,24 @@ const ToDoList = (props) => {
   useEffect(getTasks, [])
 
 	return (
-    <div className='todo-list'>
+    <div className='todo-list jumbotron'>
       <h1>
         {props.todoList.name}
       </h1>
       <div className='d-flex justify-content-between'>
-        <button className='btn btn-primary'
+        <button className='btn btn-primary button-dark'
                 onClick={() => {setNewTaskFormModalOpen(true)}}>
           Create new Task
         </button>
+        {' '}
+        <a className='btn btn-primary button-dark' href={`${props.todoList.id}/edit`}>Edit List</a>
+        {' '}
         <button
-          className='btn btn-primary btn-danger delete-list-button'
+          className='btn btn-primary btn-primary button-dark-red'
           onClick={() => {handleListDelete()}}
         >Delete</button>
       </div>
-      { !dataIsLoading &&
+      { !dataIsLoading ? (
         <div>
           <div className='todolist_tasks'>
             {tasks.map((individualTask) =>
@@ -77,7 +81,11 @@ const ToDoList = (props) => {
             )}
           </div>
         </div>
-      }
+      ) : (
+        <div>
+          <Loader smallLoader={false}/>
+        </div>
+      )}
       <NewIndividualTaskPopup
         newTaskFormModalOpen={newTaskFormModalOpen}
         setNewTaskFormModalOpen={setNewTaskFormModalOpen}

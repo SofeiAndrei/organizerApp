@@ -104,14 +104,14 @@ const AddTagPopup = (props) => {
           {selectedTag.id === 0 &&
             <div>
               <label htmlFor="new_tag">New Tag Name:</label>
-              <input type='text' id='new_tag' value={newTagName} onChange={(e) => setNewTagName(e.target.value)}/>
+              <input className='form-control' type='text' id='new_tag' value={newTagName} onChange={(e) => setNewTagName(e.target.value)}/>
             </div>
           }
         </div>
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={() => handleModalClose()}>Cancel</Button>
-        <Button onClick={() => onSave()}>Save</Button>
+        <Button className='btn btn-primary button-dark' onClick={() => handleModalClose()}>Cancel</Button>
+        <Button className='btn btn-primary button-dark' onClick={() => onSave()}>Save</Button>
       </Modal.Footer>
     </Modal>
   )

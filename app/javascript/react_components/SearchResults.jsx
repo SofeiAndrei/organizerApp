@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 const SearchResults = (props) => {
   return (
-    <div style={{overflowY: props.searchResults.length === 0 ? 'hidden' : 'scroll', overflowX: 'hidden'}}>
+    <div style={{maxHeight:300, overflowY: props.searchResults.length === 0 ? 'hidden' : 'scroll', overflowX: 'hidden'}}>
       <ul className='list-group'>
         {props.searchResults.map((user) => (
           <li

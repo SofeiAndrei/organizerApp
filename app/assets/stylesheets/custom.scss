@@ -32,7 +32,6 @@ h1{
 h2{
   margin-bottom: 25px;
   text-align: center;
-  color: $rosu-inchis;
 }
 p{
   font-size: 1.1*16px;
@@ -53,6 +52,11 @@ img{
   display:none;
 }
 */
+a{
+  &:hover{
+    color: $rosu-inchis;
+  }
+}
 
 @mixin box_sizing {
   -moz-box-sizing: border-box;
@@ -69,6 +73,8 @@ img{
 
 aside{
   section.user-info{
+    display: inline-block;
+    font-size: 20px;
     margin-top: 30px;
   }
   section{
@@ -93,8 +99,16 @@ aside{
   }
 }
 .gravatar{
-  float: left;
+  align-items: center;
   margin-right: 5px;
+  .button-change-gravatar{
+    width: 80px;
+    background-color: #2E2F30;
+    color: white;
+    &:hover{
+      background-color: $rosu-inchis;
+    }
+  }
 }
 .gravatar_edit{
   margin-top: 15px;
@@ -104,18 +118,20 @@ aside{
   overflow: auto;
   margin-top: 0;
   padding: 0;
-  a{
+  .user-activated-date, a{
     float: left;
     padding: 0 10px;
     border-left: 1px solid $gray-lighter;
     color: gray;
+  }
+  a{
     &:first-child {
       padding-left: 0;
       border: 0;
     }
     &:hover {
       text-decoration: none;
-      color: blue;
+      color: $rosu-inchis;
     }
   }
   strong {
@@ -138,6 +154,7 @@ aside{
 
 .user-information{
   display: inline-block;
+  vertical-align: top;
 }
 /* forms */
 input, textarea, select, .uneditable-input{
@@ -145,6 +162,9 @@ input, textarea, select, .uneditable-input{
   width: 100%;
   margin-bottom: 15px;
   @include box_sizing
+}
+input[type=checkbox]{
+  width: auto;
 }
 input{
   height: auto !important;
@@ -172,16 +192,13 @@ input{
   }
 }
 
-.checkbox-completed{
-  padding-left: 10px;
-  width: auto
-}
+
 #session_remember_me{  /* asta e stiling-ul al casutei propriu-zise */
   width: auto;
   margin-left: 0;
 }
 
-.users{
+.users, .user_todo_lists, .teams, .team_invitations, .team-projects, .team_members{
   list-style: none;
   margin: 0;
   li{
@@ -190,6 +207,7 @@ input{
     border-bottom: 1px solid $rosu-inchis;
   }
 }
+
 #follow-form{
   padding-top: 30px;
 }
@@ -221,6 +239,7 @@ textarea {
     border-radius: 10px;
     max-width: 500px;
     width: auto;
+    overflow-wrap: break-word;
 
     .card-title{
       font-size: 1.1*16px*1.5;
@@ -254,9 +273,9 @@ textarea {
           min-width: 45px;
           height: 25px;
           text-align: center;
-          background-color: #0275d8;
+          background-color: #2E2F30;
           color: white;
-          border-radius: 2px;
+          border-radius: 10px;
           display: flex;
           align-items: center;
           margin-right: 5px;
@@ -271,9 +290,7 @@ textarea {
           width: 15px;
           text-align: center;
           vertical-align: top;
-          color: #FFFFFF;
           opacity: 1;
-          background: #DC3545;
           border-radius: 50%;
           margin-right: 10px;
         }
@@ -306,7 +323,7 @@ textarea {
   .radio-button-div{
     display: inline;
     align-items: start;
-    width: 150px;
+    width: 130px;
     .radio-label{
       width: 70%
     }
@@ -315,11 +332,18 @@ textarea {
     }
   }
 }
+
 .kanban-container {
+  min-height: 500px;
   height: 500px;
-  overflow: auto;
+  min-width: 1250px;
+  overflow-x: scroll;
+  justify-content: space-between;
+  display: flex;
   .kanban-column-container{
-    height: 100%;
+    min-height: 100%;
+    height: fit-content;
+    width: 20%;
     background-color: #2f3030;
     border: 2px solid #2E2F30;
     border-radius: 10px;
@@ -335,10 +359,12 @@ textarea {
       color: white;
       .task-card{
         width: auto;
+        height: auto;
         border: 2px solid #2E2F30;
         border-radius: 10px;
         font-size-adjust: inherit;
         background-color: #494A4A;
+        margin: 2px;
         .task-name{
           font-size: 15px;
         }
@@ -401,4 +427,277 @@ textarea {
       }
     }
   }
+}
+
+.team-team-projects-filters{
+  padding-left: 10px;
+}
+
+.button-dark{
+  background-color: #2E2F30;
+  border: none;
+  &:hover{
+    background-color: $rosu-inchis;
+  }
+  &:active{
+    background-color: $rosu-inchis;
+  }
+  &:focus{
+    background-color: $rosu-inchis;
+  }
+  &:active:focus{
+    background-color: $rosu-inchis;
+  }
+  max-width: 100%;
+  width: fit-content;
+  overflow-wrap: break-word;
+  white-space: normal
+}
+
+.button-dark-red{
+  background-color: $rosu-inchis;
+  border: none;
+  &:hover{
+    background-color: red;
+  }
+  &:active{
+    background-color: red;
+  }
+  &:focus{
+    background-color: red;
+  }
+  &:active:focus{
+    background-color: red;
+  }
+  max-width: 100%;
+  width: fit-content;
+  overflow-wrap: break-word;
+  white-space: normal
+}
+
+.friendship-form{
+  display: flex;
+  float: left;
+  padding: 0 10px;
+  .button-friendship-action{
+    background-color: #2E2F30;
+    &:hover{
+      background-color: $rosu-inchis;
+    }
+  }
+}
+
+.user-name-link, .user-todo-list-link, .user-team, .user-team-invitation, .team-project-link, .team-member-link, .invited-user-link{
+  font-size: 20px;
+  color: black;
+}
+
+.delete-tag-button{
+  width: 15px;
+  text-align: center;
+  vertical-align: top;
+  opacity: 1;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.calendar-events-container{
+  overflow-wrap: break-word;
+  .filters{
+    @media (min-width: 992px) {
+      padding-right: 0;
+    }
+    .filter-list{
+      @media (max-width: 576px){
+        width: 100%;
+      }
+      padding-left: 15px;
+      .team-calendar-filters{
+        max-height: 205px;
+        overflow-y: scroll;
+      }
+      .personal-calendar-filters{
+        max-height: 205px;
+        overflow-y: scroll;
+      }
+      .checkbox-filter{
+        accent-color: $rosu-inchis;
+      }
+    }
+    .view-list{
+      @media (max-width: 576px){
+        width: 100%;
+        padding-left: 15px;
+      }
+
+      .radio-button-red{
+        accent-color: $rosu-inchis;
+      }
+    }
+  }
+  .calendar-plot{
+    @media (min-width: 992px) {
+      padding-left: 0;
+    }
+  }
+}
+
+.radio-button-red{
+  accent-color: $rosu-inchis;
+}
+
+.answer{
+  vertical-align: baseline;
+  align-self: center;
+  width: 120px;
+}
+
+.invitee-name{
+  border-right: 1px solid $gray-lighter;
+}
+
+td{
+  width: 120px;
+  padding: 5px;
+}
+
+.checkbox-completed{
+  accent-color: $rosu-inchis
+}
+
+.team_invites{
+  width: fit-content;
+  overflow-wrap: break-word;
+  .user-team-invitation-container{
+    .user-team-invitation{
+      justify-content: space-between;
+    }
+  }
+}
+
+.team-members-and-invitations{
+  float: right;
+  border: 1px solid $gray-lighter;
+  padding: 5px;
+  overflow-y: scroll;
+  height: 70vh;
+}
+
+.team-projects-index{
+  float: left;
+}
+
+.team-owner-commands{
+  float: right;
+  .team-owner-command{
+    display: inline-block;
+  }
+}
+
+.team-user-command{
+  float: right;
+}
+
+.tags-container{
+  .content-tags{
+    width: fit-content;
+    display: flex;
+    flex-flow: wrap;
+  }
+  .tag-row{
+    display: inherit;
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+    .tag-text-container{
+      min-width: 45px;
+      height: 25px;
+      text-align: center;
+      background-color: #2E2F30;
+      color: white;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      margin-right: 5px;
+    }
+
+    .text{
+      padding: 10px;
+      margin: 0px
+    }
+
+    .delete-tag-button{
+      width: 15px;
+      text-align: center;
+      vertical-align: top;
+      opacity: 1;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+  }
+}
+
+.todo-list{
+  min-height: 600px;
+}
+
+.loader{
+  align-content: center;
+  align-self: center;
+  width: 150px;
+  height: 150px;
+  border-radius: 10rem;
+  border: 3px solid white;
+  background: linear-gradient($rosu-inchis, #2E2F30);
+  box-shadow: 0px 0px 100px -50px black;
+  animation: animate 1s linear infinite;
+}
+
+.loader::before{
+  position: absolute;
+  content: "";
+  background: #fff;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
+  border-radius: 10rem;
+  border: 3px solid white;
+  box-shadow: inset 0px 0px 100px -70px #111;
+}
+
+@keyframes animate{
+  from{
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.small-loader{
+  align-content: center;
+  align-self: center;
+  width: 100px;
+  height: 100px;
+  border-radius: 10rem;
+  border: 3px solid white;
+  background: linear-gradient($rosu-inchis, #2E2F30);
+  box-shadow: 0px 0px 100px -50px black;
+  animation: animate 1s linear infinite;
+}
+
+.small-loader::before{
+  position: absolute;
+  content: "";
+  background: #fff;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
+  border-radius: 10rem;
+  border: 3px solid white;
+  box-shadow: inset 0px 0px 100px -70px #111;
 }

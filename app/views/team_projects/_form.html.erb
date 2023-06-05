@@ -5,5 +5,5 @@
   <%= f.text_field :name, class: 'form-control' %>
 
   <%= f.hidden_field :team_id, value: @team.id %>
-  <%= f.submit yield(:form_button_text), class: 'btn btn-primary' %>
+  <%= f.submit yield(:form_button_text), class: 'btn btn-primary button-dark' %>
 <% end %>

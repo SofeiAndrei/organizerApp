@@ -1,7 +1,10 @@
 class TeamInvitationsController < ApplicationController
   before_action :logged_in_user
+  before_action :load_invitation, only: %i[destroy reject accept]
+  before_action :load_team, only: %i[destroy accept reject]
+  before_action :team_admin, only: [:destroy]
+  before_action :team_admin_create, only: [:create]
   before_action :invited_user, only: %i[accept reject]
-  before_action :team_admin, only: %i[create destroy]
 
   def create
     puts params.inspect
@@ -17,24 +20,34 @@ class TeamInvitationsController < ApplicationController
 
   def reject
     @team_invitation = TeamInvitation.find(params[:id])
-    team = @team_invitation.team
     @team_invitation.destroy
-    flash[:success] = "Rejected invitation from #{team.name}!"
+    flash[:success] = "Rejected invitation from #{@team.name}!"
     redirect_to my_teams_user_path(current_user)
   end
 
   def accept
     @team_invitation = TeamInvitation.find(params[:id])
-    team = @team_invitation.team
-    team.add_member(current_user, false)
+    @team.add_member(current_user, false)
     @team_invitation.destroy
-    flash[:success] = "Accepted invitation from #{team.name}!"
+    flash[:success] = "Accepted invitation from #{@team.name}!"
     redirect_to my_teams_user_path(current_user)
   end
 
   private
 
+  def load_invitation
+    @team_invitation = TeamInvitation.find(params[:id])
+  end
+
+  def load_team
+    @team = @team_invitation.team
+  end
+
   def team_admin
+    redirect_to(root_url) unless @team.team_admin?(current_user)
+  end
+
+  def team_admin_create
     @team = Team.find(params[:team_id])
     redirect_to(root_url) unless @team.team_admin?(current_user)
   end
