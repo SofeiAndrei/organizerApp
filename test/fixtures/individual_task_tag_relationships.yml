@@ -1,9 +1,2 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  individual_task: one
-  individual_task_tag: one
-
-two:
-  individual_task: two
-  individual_task_tag: two

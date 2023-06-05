@@ -5,8 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e28e46e0-8ac2-47f7-9869-d99e49173358" name="Changes" comment="Merged master into main">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/users/common_friends.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/users/common_friends.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/controllers/friendship_requests_controller_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/controllers/friendship_requests_controller_test.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/controllers/friendships_controller_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/controllers/friendships_controller_test.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/controllers/static_pages_controller_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/controllers/static_pages_controller_test.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/controllers/team_project_tasks_controller_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/controllers/team_project_tasks_controller_test.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/controllers/users_controller_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/controllers/users_controller_test.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/fixtures/calendar_event_invitations.yml" beforeDir="false" afterPath="$PROJECT_DIR$/test/fixtures/calendar_event_invitations.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/fixtures/calendar_events.yml" beforeDir="false" afterPath="$PROJECT_DIR$/test/fixtures/calendar_events.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/fixtures/friendship_requests.yml" beforeDir="false" afterPath="$PROJECT_DIR$/test/fixtures/friendship_requests.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/fixtures/friendships.yml" beforeDir="false" afterPath="$PROJECT_DIR$/test/fixtures/friendships.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/fixtures/individual_task_tag_relationships.yml" beforeDir="false" afterPath="$PROJECT_DIR$/test/fixtures/individual_task_tag_relationships.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/fixtures/individual_task_tags.yml" beforeDir="false" afterPath="$PROJECT_DIR$/test/fixtures/individual_task_tags.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/fixtures/individual_tasks.yml" beforeDir="false" afterPath="$PROJECT_DIR$/test/fixtures/individual_tasks.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/fixtures/task_comments.yml" beforeDir="false" afterPath="$PROJECT_DIR$/test/fixtures/task_comments.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/fixtures/team_invitations.yml" beforeDir="false" afterPath="$PROJECT_DIR$/test/fixtures/team_invitations.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/fixtures/team_memberships.yml" beforeDir="false" afterPath="$PROJECT_DIR$/test/fixtures/team_memberships.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/fixtures/team_project_tasks.yml" beforeDir="false" afterPath="$PROJECT_DIR$/test/fixtures/team_project_tasks.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/fixtures/team_projects.yml" beforeDir="false" afterPath="$PROJECT_DIR$/test/fixtures/team_projects.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/fixtures/teams.yml" beforeDir="false" afterPath="$PROJECT_DIR$/test/fixtures/teams.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/integration/site_layout_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/integration/site_layout_test.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/integration/users_index_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/integration/users_index_test.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/integration/users_profile_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/integration/users_profile_test.rb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

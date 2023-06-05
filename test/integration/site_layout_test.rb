@@ -23,7 +23,7 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
     assert_select 'a[href=?]', logout_path, count: 1
   end
   test 'full title helper' do
-    assert_equal full_title, 'Ruby on Rails Tutorial Sample App'
-    assert_equal full_title('Sign Up'), 'Sign Up | Ruby on Rails Tutorial Sample App'
+    assert_equal full_title, 'OrganizerApp'
+    assert_equal full_title('Sign Up'), 'Sign Up | OrganizerApp'
   end
 end
