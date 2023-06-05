@@ -10,7 +10,7 @@ class Team < ApplicationRecord
   has_many :invited_users, through: :team_invitations, source: :invited
   has_many :team_projects, dependent: :destroy
   has_many :team_project_tasks, through: :team_projects
-  has_many :calendar_events
+  has_many :calendar_events, dependent: :destroy
 
   validates :name, presence: true,
                    length: { minimum: 5, maximum: 40 }

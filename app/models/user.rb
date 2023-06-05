@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :user_todo_lists, dependent: :destroy
   has_many :individual_tasks, through: :user_todo_lists
+  has_many :created_teams, class_name: 'Team', foreign_key: 'owner_id', dependent: :destroy
   has_many :team_memberships, class_name: 'TeamMembership',
                               foreign_key: 'member_id',
                               dependent: :destroy

@@ -71,7 +71,7 @@ class TeamsController < ApplicationController
     flash[:success] = 'Deleted team successfully'
 
     respond_to do |f|
-      f.html { redirect_to user_user_todo_lists_path(current_user) }
+      f.html { redirect_to my_teams_user_path(current_user) }
     end
   end
 

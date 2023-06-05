@@ -301,7 +301,7 @@ const ViewProjectTaskPopup = (props) => {
             }}>Delete</Button>
           )}
           <Button className='btn btn-primary button-dark' onClick={() => handleModalClose()}>Cancel</Button>
-          <Button className='btn btn-primary button-dark-red' className={changesHaveBeenMade() ? '' : 'hidden'} onClick={SaveChanges}>Save</Button>
+          <Button className={(changesHaveBeenMade() ? '' : 'hidden ') + 'btn btn-primary button-dark'} onClick={SaveChanges}>Save</Button>
         </Modal.Footer>
       </Modal>
     )
