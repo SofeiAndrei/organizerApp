@@ -6,6 +6,6 @@ class TeamInvitation < ApplicationRecord
   validates :invited_id, presence: true
 
   def team_name
-    return self.team.name
+    team.name
   end
 end

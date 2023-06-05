@@ -67,7 +67,7 @@ class User < ApplicationRecord
 
   def remember
     self.remember_token = User.new_token
-    update_attribute(:remember_digest, User.digest(self.remember_token))
+    update_attribute(:remember_digest, User.digest(remember_token))
   end
 
   def forget
@@ -83,7 +83,7 @@ class User < ApplicationRecord
   end
 
   def activate
-    self.update_columns(activated: true, activated_at: Time.zone.now)
+    update_columns(activated: true, activated_at: Time.zone.now)
     # echivalent cu
     # self.update_attribute(:activated, true)
     # self.update_attribute(:activated_at, Time.zone.now)
@@ -103,54 +103,54 @@ class User < ApplicationRecord
   end
 
   def password_reset_expired?
-    self.reset_sent_at < 2.hours.ago
+    reset_sent_at < 2.hours.ago
   end
 
   def tasks
     {
-      individual_tasks: self.individual_tasks,
-      assigned_tasks: self.assigned_tasks
+      individual_tasks: individual_tasks,
+      assigned_tasks: assigned_tasks
     }
   end
 
   def send_friend_request(another_user)
-    self.users_sent_friendship_requests_to << another_user
+    users_sent_friendship_requests_to << another_user
   end
 
   def retract_friend_request(another_user)
-    self.users_sent_friendship_requests_to.delete(another_user)
+    users_sent_friendship_requests_to.delete(another_user)
   end
 
   def sent_friend_request?(another_user)
-    self.users_sent_friendship_requests_to.include?(another_user)
+    users_sent_friendship_requests_to.include?(another_user)
   end
 
   def received_friend_request?(another_user)
-    self.users_received_friendship_requests_from.include?(another_user)
+    users_received_friendship_requests_from.include?(another_user)
   end
 
   def befriend(another_user)
-    self.passive_friends << another_user
+    passive_friends << another_user
   end
 
   def unfriend(another_user)
-    if self.active_friends.include?(another_user)
-      self.active_friends.delete(another_user)
-    elsif self.passive_friends.include?(another_user)
-      self.passive_friends.delete(another_user)
+    if active_friends.include?(another_user)
+      active_friends.delete(another_user)
+    elsif passive_friends.include?(another_user)
+      passive_friends.delete(another_user)
     end
   end
 
   def friend?(another_user)
-    self.active_friends.include?(another_user) || self.passive_friends.include?(another_user)
+    active_friends.include?(another_user) || passive_friends.include?(another_user)
   end
 
   def friendships
-    self.active_friendships.or(self.passive_friendships)
+    active_friendships.or(passive_friendships)
   end
 
   def friends
-    Friendship.includes(:receiver, :sender).where('friendships.receiver_id = ? or friendships.sender_id = ?', self.id, self.id).map do |friendship|
+    Friendship.includes(:receiver, :sender).where('friendships.receiver_id = ? or friendships.sender_id = ?', id, id).map do |friendship|
       if friendship.receiver == self
         friendship.sender
       else
@@ -160,7 +160,7 @@ class User < ApplicationRecord
   end
 
   def common_friends(another_user)
-    self.friends&.select { |friend| another_user.friend?(friend) && friend != self}
+    friends&.select { |friend| another_user.friend?(friend) && friend != self }
   end
 
   private
@@ -168,11 +168,10 @@ class User < ApplicationRecord
   def create_activation_digest
     # Creates the activation digest and token
     self.activation_token = User.new_token
-    self.activation_digest = User.digest(self.activation_token)
+    self.activation_digest = User.digest(activation_token)
 
     # e ca functia de remember
     # nu mai e nevoie de update_attribute pentru ca fiind apelata cu before_create,
     # o sa fie folosita asta doar la crearea unui user
   end
-
 end

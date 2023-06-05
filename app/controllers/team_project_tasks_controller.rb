@@ -26,7 +26,7 @@ class TeamProjectTasksController < ApplicationController
   end
 
   def destroy
-    team_project_task = TeamProjectTask.find(params[:id]).destroy
+    TeamProjectTask.find(params[:id]).destroy
   end
 
   private

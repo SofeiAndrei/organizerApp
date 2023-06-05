@@ -1,7 +1,7 @@
-ENV["RAILS_ENV"] ||= "test"
-require_relative "../config/environment"
-require "rails/test_help"
-require "minitest/reporters" # Asta
+ENV['RAILS_ENV'] ||= 'test'
+require_relative '../config/environment'
+require 'rails/test_help'
+require 'minitest/reporters' # Asta
 Minitest::Reporters.use! # Si asta sunt pentru teste ca in cazul in care e passed iti face text verde, altfel iti face text rosu
 class ActiveSupport::TestCase
   # Run tests in parallel with specified workers
@@ -11,7 +11,7 @@ class ActiveSupport::TestCase
   fixtures :all
   include ApplicationHelper
   # Add more helper methods to be used by all tests here...
-  def is_logged_in?
+  def logged_in?
     !session[:user_id].nil?
   end
 
