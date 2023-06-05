@@ -43,6 +43,22 @@ const CalendarEventPopup = (props) => {
     handleModalClose()
   }
 
+  const onDelete = () => {
+    console.log(`Deleted ${props.event.real_id}`)
+    if (confirm(`Are you sure you want to delete this event?`)){
+      fetch(`/api/calendar_events/${props.event.real_id}`, {
+        method: 'DELETE',
+        headers: {'X-CSRF-Token': getAuthenticityToken()}})
+        .then(() => {
+          props.getCalendarEvents()
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    }
+    cancelChanges()
+  }
+
   const onSave = () => {
     let method
     let url
@@ -274,6 +290,8 @@ const CalendarEventPopup = (props) => {
         )}
       </Modal.Body>
       <Modal.Footer>
+        <Button className={props.newEvent || props.event.organizer_id !== props.currentUserId ? 'hidden' : 'btn btn-primary button-dark-red left'}
+                onClick={() => onDelete()}>{'Delete'}</Button>
         <Button className='btn btn-primary button-dark' onClick={() => cancelChanges()}>{props.newEvent ? 'Cancel' : 'Back'}</Button>
         <Button className={props.newEvent || editPressed || props.event.organizer_id !== props.currentUserId ? 'hidden' : 'btn btn-primary button-dark'}
                 onClick={() => setEditPressed(true)}>{'Edit'}</Button>
