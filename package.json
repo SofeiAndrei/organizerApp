@@ -1,6 +1,12 @@
 {
+  "name": "example-app",
+  "description": "a really cool app",
+  "version": "1.0.0",
   "scripts": {
     "start": "react-scripts start --openssl-legacy-provider"
+  },
+  "engines": {
+    "node": "16.x"
   },
   "dependencies": {
     "@babel/preset-react": "^7.18.6",
