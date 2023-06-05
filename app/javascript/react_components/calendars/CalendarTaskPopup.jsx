@@ -25,6 +25,9 @@ const CalendarTaskPopup = (props) => {
         <div>
           <p>{name}</p>
           <p>{description}</p>
+          {props.teamTask && (
+            <p>{`Assignee: ${props.task.assignee ? props.task.assignee : 'Unassigned'}`}</p>
+          )}
           <p>{`Deadline: ${eventDeadline}`}</p>
         </div>
       </Modal.Body>
@@ -40,6 +43,7 @@ CalendarTaskPopup.propTypes = {
   task: PropTypes.object,
   calendarTaskPopupOpen: PropTypes.bool,
   setCalendarTaskPopupOpen: PropTypes.func,
+  teamTask: PropTypes.number
 }
 
 export default CalendarTaskPopup

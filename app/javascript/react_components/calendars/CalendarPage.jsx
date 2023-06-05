@@ -65,6 +65,7 @@ const CalendarPage = (props) => {
   }
 
   const handleClickCalendarEvent = (clickedEvent) => {
+    const filteredUsersForAssignee = props.invitableUsers.filter(user => user.id === clickedEvent.tags.assignee_id)
     const clickedEventData = {
       name: clickedEvent.text,
       description: clickedEvent.tags.description,
@@ -74,7 +75,9 @@ const CalendarPage = (props) => {
       type: clickedEvent.tags.type,
       real_id: clickedEvent.tags.real_id,
       organizer_id: clickedEvent.tags.organizer_id,
-      invited_users: clickedEvent.tags.invited_users
+      invited_users: clickedEvent.tags.invited_users,
+      assignee: filteredUsersForAssignee.length > 0 ? filteredUsersForAssignee[0].name : null,
+      project_name: clickedEvent.tags.project_name
     }
     setNewEvent(false)
 
@@ -203,6 +206,7 @@ const CalendarPage = (props) => {
         task={eventData}
         calendarTaskPopupOpen={calendarTaskPopupOpen}
         setCalendarTaskPopupOpen={setCalendarTaskPopupOpen}
+        teamTask={props.currentTeamId}
       />
     </div>
   )
