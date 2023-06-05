@@ -10,7 +10,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   test 'should get new' do
     get signup_path
     assert_response :success
-    assert_select 'title', 'Sign Up | Ruby on Rails Tutorial Sample App'
+    assert_select 'title', 'Sign Up | OrganizerApp'
   end
 
   test 'should redirect edit to login' do

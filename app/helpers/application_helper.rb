@@ -8,4 +8,9 @@ module ApplicationHelper
       "#{page_title} | #{base_title}"
     end
   end
+
+  def log_in_user
+    post login_path, params: { session: { email: 'andreisofei@yahoo.com',
+                                          password: 'passoflengthmin8' } }
+  end
 end
