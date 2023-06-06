@@ -61,7 +61,7 @@ Rails.application.configure do
   # Thigs to make SendGrid work to send emails in production:
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
-  host = 'socialist-pylon-16910.herokuapp.com'
+  host = 'hidden-depths-74402.herokuapp.com'
   config.action_mailer.default_url_options = { host: host }
   ActionMailer::Base.smtp_settings = {
     address: 'smtp.sendgrid.net',

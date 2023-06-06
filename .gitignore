@@ -36,8 +36,6 @@ db/test.*
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
-# Exclude Database, very important!! (it contains credentials to connect to the DB)
-/config/database.yml
 
 .DS_Store
 /public/packs
