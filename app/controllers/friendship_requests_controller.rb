@@ -17,7 +17,7 @@ class FriendshipRequestsController < ApplicationController
     current_user.retract_friend_request(@receiver)
     respond_to do |format|
       format.html { redirect_to @receiver }
-      format.js # this basically tells it to look in views/friendship_requests/destroy.js.erb to tell them what to do
+      format.js
     end
   end
 
@@ -40,4 +40,9 @@ class FriendshipRequestsController < ApplicationController
       format.js
     end
   end
+
+  private
+
+  # before_action :sender_user, only: :destroy
+  # before_action :receiver_user, only: %i[accept reject]
 end

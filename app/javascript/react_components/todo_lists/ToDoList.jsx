@@ -40,7 +40,7 @@ const ToDoList = (props) => {
 
   const handleTaskDelete = (deletedTask) => {
     if (confirm(`Are you sure you want to delete ${deletedTask.name}? This task will be permanently deleted.`)){
-      fetch(`${props.todoList.id}/individual_tasks/${deletedTask.id}`, {
+      fetch(`/api/user_todo_lists/${props.todoList.id}/individual_tasks/${deletedTask.id}`, {
         method: 'DELETE',
         headers: {'X-CSRF-Token': getAuthenticityToken()}})
       .then((response) => {

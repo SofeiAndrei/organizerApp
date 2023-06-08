@@ -1,4 +1,5 @@
 class FriendshipsController < ApplicationController
+  # before_action :friendship_exists
   before_action :logged_in_user
   before_action :correct_user
 
@@ -20,14 +21,12 @@ class FriendshipsController < ApplicationController
 
   private
 
+  # def friendship_exists
+
   def correct_user
     @friendship = Friendship.find(params[:id])
     @sender = @friendship.sender
     @receiver = @friendship.receiver
-    puts @sender
-    puts @receiver
-    puts current_user?(@sender)
-    puts current_user?(@receiver)
     redirect_to root_url unless current_user?(@sender) || current_user?(@receiver)
   end
 end

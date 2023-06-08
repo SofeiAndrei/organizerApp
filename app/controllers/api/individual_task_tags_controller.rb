@@ -10,11 +10,8 @@ class Api::IndividualTaskTagsController < ApplicationController
 
     puts response
     if response
-      flash[:success] = 'Tag Created!'
       tag = { id: @individual_task_tag.id, name: @individual_task_tag.name }
       render json: tag
-    else
-      flash[:danger] = 'There was a problem creating the tag'
     end
   end
 

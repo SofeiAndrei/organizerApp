@@ -6,14 +6,7 @@ module SessionsHelper
   def current_user
     if (user_id = session[:user_id]) # verificam daca este o sesiune temporara(adica folosim :session)
       @current_user ||= User.find_by(id: user_id)
-      # echivalent cu:
-      # if @current_user.nil?
-      #   return @current_user = User.find_by(id: session[:user_id])
-      # else
-      #   return @current_user
-      # end
     elsif (user_id = cookies.encrypted[:user_id]) # avem in cookie un session token
-      # raise # The tests don't pass because we have the test in the helpers directory for sessions, if we didn't it would have passed
       user = User.find_by(id: user_id)
       if user && user.authenticated?(:remember, cookies[:remember_token])
         log_in user

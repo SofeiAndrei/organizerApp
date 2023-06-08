@@ -13,7 +13,7 @@ class Api::UsersController < ApplicationController
                   &.where(id: params[:search_input].to_i)&.limit(1)
               else
                 User.where(activated: true).where.not(id: params[:already_selected_ids])
-                  &.where("name ILIKE '#{params[:search_input]}%'")&.limit(user_limit_for_search)
+                  &.where("name ILIKE '%#{params[:search_input]}%'")&.limit(user_limit_for_search)
               end
       render json: { users: users }
     end

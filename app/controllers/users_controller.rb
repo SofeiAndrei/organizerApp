@@ -10,8 +10,6 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  def edit; end
-
   def show
     redirect_to root_url and return unless @user.activated?
   end
@@ -22,17 +20,17 @@ class UsersController < ApplicationController
       @user.send_activation_email
       flash[:success] = 'Please check your email to activate your account!'
       redirect_to root_url
-      # echivalent cu redirect_to user_url(@user)
     else
       render 'new'
     end
   end
 
+  def edit; end
+
   def update
     if @user.update(user_params)
       flash[:success] = 'Changes saved successfully!'
       redirect_to @user
-      # echivalent cu redirect_to user_url(@user)
     else
       render 'edit'
     end

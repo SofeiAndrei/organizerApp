@@ -5,6 +5,6 @@ class CalendarEvent < ApplicationRecord
   has_many :invited_users, through: :calendar_event_invitations, source: :user
 
   validates :name, presence: true,
-                   length: { minimum: 5, maximum: 40 }
+                   length: { minimum: 2, maximum: 40 }
   validates :description, length: { maximum: 256 }
 end

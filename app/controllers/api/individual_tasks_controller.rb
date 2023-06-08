@@ -7,11 +7,7 @@ class Api::IndividualTasksController < ApplicationController
     puts params.inspect
     @individual_task = @user_todo_list.individual_tasks.build(individual_task_params)
     puts @individual_task.inspect
-    if @individual_task.save
-      flash[:success] = 'Task Created!'
-    else
-      flash[:danger] = 'There was a problem creating the task'
-    end
+    @individual_task.save
   end
 
   def update
@@ -27,7 +23,6 @@ class Api::IndividualTasksController < ApplicationController
     }
     return unless @individual_task.update(task_params)
 
-    flash[:success] = 'Changes saved successfully!'
     tags_ids = permitted_params[:tags].map { |tag| tag[:id] }
     tags = IndividualTaskTag.where(id: tags_ids) # new tags
     set_tags = @individual_task.individual_task_tags # old tags
@@ -48,7 +43,6 @@ class Api::IndividualTasksController < ApplicationController
 
   def destroy
     IndividualTask.find(params[:id]).destroy
-    flash[:success] = 'Deleted task successfully'
   end
 
   private
