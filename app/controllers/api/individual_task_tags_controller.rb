@@ -9,10 +9,10 @@ class Api::IndividualTaskTagsController < ApplicationController
     response = @individual_task_tag.save
 
     puts response
-    if response
-      tag = { id: @individual_task_tag.id, name: @individual_task_tag.name }
-      render json: tag
-    end
+    return unless response
+
+    tag = { id: @individual_task_tag.id, name: @individual_task_tag.name }
+    render json: tag
   end
 
   def destroy

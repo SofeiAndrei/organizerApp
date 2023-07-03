@@ -40,9 +40,4 @@ class FriendshipRequestsController < ApplicationController
       format.js
     end
   end
-
-  private
-
-  # before_action :sender_user, only: :destroy
-  # before_action :receiver_user, only: %i[accept reject]
 end
