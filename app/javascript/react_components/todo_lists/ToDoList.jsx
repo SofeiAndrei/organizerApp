@@ -44,7 +44,7 @@ const ToDoList = (props) => {
         method: 'DELETE',
         headers: {'X-CSRF-Token': getAuthenticityToken()}})
       .then((response) => {
-        const newTasks = tasks.filter((task) => task.id !== deletedTask.id)
+        const newTasks = tasks.filter((task) => task.task.id !== deletedTask.id)
         setTasks(newTasks)
       })
       .catch(error => {

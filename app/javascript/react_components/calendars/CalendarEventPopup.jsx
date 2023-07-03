@@ -16,7 +16,7 @@ const CalendarEventPopup = (props) => {
   const [invitedUsers, setInvitedUsers] = useState(props.newEvent ? [{data, answer: 'organizer'}] : props.event.invited_users)
   const [showInviteUserSelector, setShowInviteUserSelector] = useState(false)
   console.log(props.event.invited_users)
-  const [yourAnswer, setYourAnswer] = useState((props.newEvent || !props.event.invited_users) ? 'new_event' : props.event.invited_users.filter(user => user.data.id === props.currentUserId)[0].answer)
+  const [yourAnswer, setYourAnswer] = useState((props.newEvent || !props.event.invited_users) ? 'new_event' : (props.event.invited_users.filter(user => user.data.id === props.currentUserId).length !== 0 ? props.event.invited_users.filter(user => user.data.id === props.currentUserId)[0].answer : 'no_answer'))
   const answers = [
     {id: 1, name: 'no_answer'},
     {id: 2, name: 'yes'},
@@ -140,7 +140,7 @@ const CalendarEventPopup = (props) => {
     setEditPressed(props.newEvent)
     const data = props.invitableUsers.filter(user => user.id === props.currentUserId)[0]
     setInvitedUsers(props.newEvent ? [{data, answer: 'organizer'}] : props.event.invited_users)
-    setYourAnswer((props.newEvent || !props.event.invited_users) ? 'new_event' : props.event.invited_users.filter(user => user.data.id === props.currentUserId)[0].answer)
+    setYourAnswer((props.newEvent || !props.event.invited_users) ? 'new_event' : (props.event.invited_users.filter(user => user.data.id === props.currentUserId).length !== 0 ? props.event.invited_users.filter(user => user.data.id === props.currentUserId)[0].answer : 'no_answer'))
   }
 
   const handleRemoveInvitedUser = (userId) => {
@@ -253,7 +253,6 @@ const CalendarEventPopup = (props) => {
                   {props.event.invited_users.map(user => (
                     <tr key={user.data.id}>
                       <td className='invitee-name'>{user.data.name}</td>
-
                       {props.currentUserId !== props.event.organizer_id && props.currentUserId === user.data.id ? (
                         <div>
                           <td>
